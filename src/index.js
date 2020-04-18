@@ -10,6 +10,12 @@ const config = {
 		default: 'arcade',
 		arcade: { debug: true }
 	},
+	width: 640,
+	height: 480,
+	scale: {
+		mode: Phaser.Scale.FIT,
+		autoCenter: Phaser.Scale.CENTER_BOTH,
+	},
 	scene: [GameScene]
 };
 
