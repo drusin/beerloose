@@ -2,16 +2,19 @@ import squaredancer_png from './../assets/Squaredance.png';
 import { createSpriteObject } from './sprite-creator-factory';
 
 const frames = {
-    'squaredancer-clap': { start: 0, end: 5 },
-    'squaredancer-left-right': { start: 6, end: 13 },
+    'squaredancer-clap': { start: 0, end: 6 },
+    'squaredancer-left-right': { start: 6, end: 14 },
+}
+
+const spriteSheets = {
+    'squaredancer-spritesheet': { img: squaredancer_png }
 }
 
 export const squaredancer = {
  
     ...createSpriteObject({
-        spriteSheet: squaredancer_png,
-        frames,
-        spriteSheetKey: 'squaredancer-spritesheet'
+        spriteSheets,
+        frames
     }), 
     create: ({ scene, x, y }) => {
         return scene.physics.add.sprite(x, y, 'squaredancer-spritesheet');

@@ -1,7 +1,6 @@
 export function createSpriteObject({ 
-    spriteSheet, 
+    spriteSheets, 
     frames, 
-    spriteSheetKey, 
     frameDimensions = {
         frameWidth: 16,
         frameHeight: 32
@@ -10,18 +9,21 @@ export function createSpriteObject({
 }) {
     return {
         preloadSpritesheet: ({ scene }) => {
-            scene.load.spritesheet(spriteSheetKey, spriteSheet, frameDimensions);
+            Object.entries(spriteSheets).forEach(([key, value]) => scene.load.spritesheet(key, value.img, frameDimensions));
         },
 
         createAnimations: ({ scene }) => {
-            Object.entries(frames).forEach(([key, value]) => {
-                scene.anims.create({
-                    key,
-                    frames: scene.anims.generateFrameNumbers(spriteSheetKey, value),
-                    frameRate,
-                    repeat: -1
-                });
+            Object.entries(spriteSheets).forEach(([spriteSheetKey, spriteSheetInfo]) => {
+                const prefix = spriteSheetInfo.prefix ? spriteSheetInfo.prefix + '-' : '';
+                Object.entries(frames).forEach(([key, value]) => {
+                    scene.anims.create({
+                        key: prefix + key,
+                        frames: scene.anims.generateFrameNumbers(spriteSheetKey, value),
+                        frameRate,
+                        repeat: -1
+                    });
+                }) 
             });
-        },
+        }
     }
 }

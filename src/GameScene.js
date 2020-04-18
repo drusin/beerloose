@@ -1,11 +1,11 @@
 import { Scene } from 'phaser';
 import BeerBar from './beer_bar';
-import { discoDancer, squaredancer, metalDancer, preloadAllSprites, createAnimationsForAllSprites } from './sprites';
+import { discoDancer, squaredancer, metalDancer, player, preloadAllSprites, createAnimationsForAllSprites } from './sprites';
 
 export default class GameScene extends Scene {
 	constructor() {
 		super({ key: GameScene.KEY });
-		
+		this.keys = undefined;
 		this._count = 0;
 	}
 	
@@ -18,7 +18,7 @@ export default class GameScene extends Scene {
 	}
 
 	create() {
-
+		this.keys = this.input.keyboard.addKeys("W,A,S,D,LEFT,UP,RIGHT,DOWN,SPACE,ENTER");
 		const { width, height } = this.sys.game.canvas;
 
 		this._drops = this.physics.add.group();
@@ -33,6 +33,9 @@ export default class GameScene extends Scene {
 		squareGal.anims.play('squaredancer-left-right', true);
 		const metaller = metalDancer.create({ scene: this, x: 200, y: 100 });
 		metaller.anims.play('metal-dancer-headbang', true);
+
+		const playerC = player.create({ scene: this, x: 100, y: 150, sheet: 'player-two-beers-spritesheet' });
+		playerC.anims.play('two_beers-player-drop', true);
 
 		this.physics.add.overlap(this._player, this._drops,
 			(...args) => args.filter(arg => arg !== this._player).forEach(arg => arg.destroy())
