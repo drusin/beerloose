@@ -1,5 +1,6 @@
 import { Scene } from 'phaser';
 import BeerBar from './beer_bar';
+import { discoDancer, squaredancer, metalDancer, preloadAllSprites, createAnimationsForAllSprites } from './sprites';
 
 export default class GameScene extends Scene {
 	constructor() {
@@ -11,14 +12,28 @@ export default class GameScene extends Scene {
 	static get KEY() {
 		return 'game-scene'
 	}
-	
+
+	preload() {
+		preloadAllSprites({ scene: this });
+	}
+
 	create() {
+
 		const { width, height } = this.sys.game.canvas;
 
 		this._drops = this.physics.add.group();
 		this._player = this.physics.add.image(500, 600);
 		this._player.setInteractive();
 		
+		createAnimationsForAllSprites({ scene: this });
+
+		const discoDude = discoDancer.create({ scene: this, x: 100, y: 100 });
+		discoDude.anims.play('disco-dancer-up-down', true);
+		const squareGal = squaredancer.create({ scene: this, x: 150, y: 100 });
+		squareGal.anims.play('squaredancer-left-right', true);
+		const metaller = metalDancer.create({ scene: this, x: 200, y: 100 });
+		metaller.anims.play('metal-dancer-headbang', true);
+
 		this.physics.add.overlap(this._player, this._drops,
 			(...args) => args.filter(arg => arg !== this._player).forEach(arg => arg.destroy())
 		);
