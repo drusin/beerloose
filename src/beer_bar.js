@@ -43,8 +43,8 @@ export default class BeerBar {
         this.bar.fillRect(this.x + this.border, this.y + this.border, this.width - inset, this.height - inset);
 
         // Existing beer
-        const filledHeight = Math.floor(this.height * this.amount / 100);
+        const filledHeight = Math.floor((this.height - inset) * this.amount / 100);
         this.bar.fillStyle(0xffe80f);
-        this.bar.fillRect(this.x + this.border, this.y + this.border - filledHeight + this.height, this.width - inset, filledHeight - inset);
+        this.bar.fillRect(this.x + this.border, this.y - filledHeight + this.height - this.border, this.width - inset, filledHeight);
     }
 }

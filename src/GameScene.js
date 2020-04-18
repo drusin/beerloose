@@ -30,7 +30,7 @@ export default class GameScene extends Scene {
 			gameObject.y = dragY;
 		});
 
-		this.beer = new BeerBar(this, 300, 200);
+		this.beer = new BeerBar(this, width - 64, 48);		// position on top right corner.
 	}
 	
 	update(time, delta) {
