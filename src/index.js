@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+
 import GameScene from './GameScene';
 
 const config = {
@@ -12,4 +13,7 @@ const config = {
 	scene: [GameScene]
 };
 
-new Phaser.Game(config);
+const GAME = new Phaser.Game(config);
+GAME.globals = { };
+
+export default GAME;
