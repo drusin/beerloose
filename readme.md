@@ -1,4 +1,4 @@
-Very simple webpack template for a phaser 3 game
+Link to currently deployed game: https://drusin.github.io/beerloose/
 
 *Scripts:*  
 `npm start`: starts a dev server  
