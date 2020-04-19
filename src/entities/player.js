@@ -1,4 +1,5 @@
 import { player as playerSprite, indicator, SPRITE_SCALE_FACTOR } from '../sprites';
+import { Beer } from '../beer_bar.js';
 
 const PLAYER_SPEED = 100;
 const INDICATOR_OFFSET = 18 * SPRITE_SCALE_FACTOR;
@@ -6,6 +7,7 @@ const INDICATOR_OFFSET = 18 * SPRITE_SCALE_FACTOR;
 export function createPlayer() {
     return {
         sprite: {},
+        beer: new Beer(),
         createSprite: function({ scene, x, y }) {
             this.indicatorSprite = indicator.create({ scene, x, y: (y - INDICATOR_OFFSET), sheet: 'indicator-spritesheet' });
             this.indicatorSprite.anims.play('indicator-player', true);
@@ -14,9 +16,9 @@ export function createPlayer() {
             this.sprite.anims.play('two_beers-player-drop', true);
             this.sprite.setInteractive();
         },
-        update: function({ keys, partyPeople, physics, sfx, bartender, beer }) {
+        update: function({ keys, partyPeople, physics, sfx, bartender }) {
             this.updateMovement({ keys });
-            this.handleCollisions({ partyPeople, physics, sfx, bartender, beer });
+            this.handleCollisions({ partyPeople, physics, sfx, bartender });
         },
         updateMovement: function({ keys }) {
             const { LEFT, RIGHT, UP, DOWN, W, A, S, D } = keys;
@@ -39,7 +41,7 @@ export function createPlayer() {
             this.indicatorSprite.y = this.sprite.y - INDICATOR_OFFSET;
             this.sprite.setDepth(this.sprite.y);
         },
-        handleCollisions({ partyPeople, physics, sfx, bartender, beer }) {
+        handleCollisions({ partyPeople, physics, sfx, bartender }) {
             physics.overlap(
                 this.sprite,
                 partyPeople.partyPeople.map(p => p.sprite),
@@ -52,7 +54,7 @@ export function createPlayer() {
                 this.sprite,
                 bartender,
                 () => {
-                    beer.fill();
+                    this.beer.fill();
                 }
             );
         },
