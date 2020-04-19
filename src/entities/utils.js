@@ -1,10 +1,11 @@
 import { DANCEFLOOR_BOUNDING_BOX } from '../GameScene.js';
+import { randomItemFromArray } from '../util.js';
 
 export function generateRandomDirection() {
     const directionValuesOnOneAxis = [-1, 0, 1];
     return {
-        x: directionValuesOnOneAxis[Math.floor(Math.random() * directionValuesOnOneAxis.length)],
-        y: directionValuesOnOneAxis[Math.floor(Math.random() * directionValuesOnOneAxis.length)],
+        x: randomItemFromArray(directionValuesOnOneAxis),
+        y: randomItemFromArray(directionValuesOnOneAxis),
     };
 }
 

@@ -19,6 +19,10 @@ export function generateRandomPositionWithinRect({ left, right, top, bottom }) {
     };
 }
 
+export function randomItemFromArray(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
 export function generateRandomInteger({
     minInclusive = 0,
     maxExclusive

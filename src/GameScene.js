@@ -10,6 +10,7 @@ import discoBallHelper, { BALL_INPUTS, BALL_DEFAULTS } from './shaders/discoBall
 import prefrences from './preferences';
 import { createWomen } from './women.js';
 import MoodSlider from './mood_slider';
+import { Sound } from './sfx.js';
 
 export const DANCEFLOOR_BOUNDING_BOX = { left: 100, right: 615, top: 45, bottom: 370 }
 
@@ -21,6 +22,7 @@ export default class GameScene extends Scene {
 		this._count = 0;
 		this.partyPeople = createPartyPeople();
 		this.women = createWomen();
+		this.sfx = Sound({ scene: this });
 	}
 	
 	static get KEY() {
@@ -33,6 +35,7 @@ export default class GameScene extends Scene {
 		this.load.audio('beerbearerbob', beerbearerbob);
 		BeerBar.assets(this.load);
 		MoodSlider.assets(this.load);
+		this.sfx.preload();
 	}
 
 	createDiscoBall() {
@@ -45,6 +48,7 @@ export default class GameScene extends Scene {
 	}
 
 	create() {
+		this.sfx.create();
 		prefrences.persist();
 
 		this.shader = this.game.renderer.addPipeline('shader', new ShaderWrapper(this.game));
@@ -94,7 +98,7 @@ export default class GameScene extends Scene {
 			this._count -= 800;
 		}
 
-		this.player.update({ keys: this.keys, physics: this.physics, partyPeople: this.partyPeople });
+		this.player.update({ keys: this.keys, physics: this.physics, partyPeople: this.partyPeople, sfx: this.sfx });
 		this.partyPeople.update(delta);
 		this.women.update({ delta, player: this.player, physics: this.physics });
 
