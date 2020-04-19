@@ -5,6 +5,8 @@ export function createDiscoDancer() {
     return {
         createSprite: function({ scene, x, y }) {
             this.sprite = discoDancer.create({ scene, x, y });
+            this.sprite.setSize(8, 16, false);
+            this.sprite.setOffset(4, 16);
         },
         updateMovement() {
             // moves in all directions (also funky diagonals)

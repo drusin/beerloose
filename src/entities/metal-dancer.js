@@ -6,6 +6,8 @@ export function createMetalDancer() {
         sprite: {},
         createSprite: function({ scene, x, y }) {
             this.sprite = metalDancer.create({ scene, x, y });
+            this.sprite.setSize(8, 16, false);
+            this.sprite.setOffset(4, 16);
         },
         updateMovement() {
             // ...

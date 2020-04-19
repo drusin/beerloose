@@ -6,6 +6,8 @@ export function createSquaredanceDancer() {
         sprite: {},
         createSprite: function({ scene, x, y }) {
             this.sprite = squaredancer.create({ scene, x, y });
+            this.sprite.setSize(8, 16, false);
+            this.sprite.setOffset(4, 16);
         },
         updateMovement() {
             //moves just in 90° angles (not diagonal)
