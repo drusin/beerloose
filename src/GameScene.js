@@ -4,6 +4,7 @@ import { gal, bartender, discoDancer, squaredancer, metalDancer, preloadAllSprit
 import beerbearerbob from './assets/music/beerbearerbop.ogg';
 import { createPlayer } from './entities/player.js';
 import { createPartyPeople } from './party-people.js';
+import background_image from './assets/BasicBackground.png';
 
 export default class GameScene extends Scene {
 	constructor() {
@@ -19,12 +20,14 @@ export default class GameScene extends Scene {
 	}
 
 	preload() {
+		this.load.image('background', background_image);
 		preloadAllSprites({ scene: this });
 		this.load.audio('beerbearerbob', beerbearerbob);
 		BeerBar.assets(this.load);
 	}
 
 	create() {
+		this.add.image(0, 0, 'background').setOrigin(0, 0);
 		createAnimationsForAllSprites({ scene: this });
 		this.keys = this.input.keyboard.addKeys("W,A,S,D,LEFT,UP,RIGHT,DOWN,SPACE,ENTER");
 		const { width, height } = this.sys.game.canvas;
