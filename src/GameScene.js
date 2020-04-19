@@ -1,6 +1,6 @@
 import { Scene } from 'phaser';
 import BeerBar from './beer_bar';
-import { gal, bartender, discoDancer, squaredancer, metalDancer, preloadAllSprites, createAnimationsForAllSprites } from './sprites';
+import { gal, bartender, discoDancer, squaredancer, metalDancer, preloadAllSprites, createAnimationsForAllSprites, dancefloor } from './sprites';
 import beerbearerbob from './assets/music/beerbearerbop.ogg';
 import { createPlayer } from './entities/player.js';
 import { createPartyPeople } from './party-people.js';
@@ -50,6 +50,14 @@ export default class GameScene extends Scene {
 
 		this.add.image(0, 0, 'background').setOrigin(0, 0);
 		createAnimationsForAllSprites({ scene: this });
+		dancefloor.create({ scene: this, x: 200, y: 140 }).play('dancefloor', true);
+		dancefloor.create({ scene: this, x: 200, y: 265 }).play('dancefloor', true);
+		dancefloor.create({ scene: this, x: 320, y: 140 }).play('dancefloor', true);
+		dancefloor.create({ scene: this, x: 320, y: 265 }).play('dancefloor', true);
+		dancefloor.create({ scene: this, x: 440, y: 140 }).play('dancefloor', true);
+		dancefloor.create({ scene: this, x: 440, y: 265 }).play('dancefloor', true);
+		
+
 		this.keys = this.input.keyboard.addKeys("W,A,S,D,LEFT,UP,RIGHT,DOWN,SPACE,ENTER");
 		const { width, height } = this.sys.game.canvas;
 

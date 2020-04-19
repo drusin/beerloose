@@ -5,6 +5,8 @@ import { bartender } from "./bartender";
 import { gal } from "./gal";
 import { player } from "./player";
 
+import { dancefloor } from "./dancefloor";
+
 export function preloadAllSprites({ scene }) {
     discoDancer.preloadSpritesheet({ scene });
     squaredancer.preloadSpritesheet({ scene });
@@ -12,6 +14,8 @@ export function preloadAllSprites({ scene }) {
     bartender.preloadSpritesheet({ scene });
     gal.preloadSpritesheet({ scene });
     player.preloadSpritesheet({ scene });
+
+    dancefloor.preloadSpritesheet({ scene });
 };
 
 export function createAnimationsForAllSprites({ scene }) {
@@ -21,6 +25,8 @@ export function createAnimationsForAllSprites({ scene }) {
     bartender.createAnimations({ scene });
     gal.createAnimations({ scene });
     player.createAnimations({ scene });
+
+    dancefloor.createAnimations({ scene });
 };
 
-export { discoDancer, squaredancer, metalDancer, player, bartender, gal };
+export { discoDancer, squaredancer, metalDancer, player, bartender, gal, dancefloor };
