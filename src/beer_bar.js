@@ -9,11 +9,7 @@ export default class BeerBar {
 
         this.x = x;
         this.y = y;
-
-        this.width = 32;
-        this.height = 256;
-        this.border = 4;
-
+        
         this.amount = 100;
         
         scene.add.existing(this.bar);
