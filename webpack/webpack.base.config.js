@@ -17,6 +17,10 @@ module.exports = {
 			{
 				test: /\.glslf/,
 				use: 'raw-loader'
+			},
+			{
+				test: /\.ogg$/,
+				loader: 'file-loader'
 			}
 		],
 	},

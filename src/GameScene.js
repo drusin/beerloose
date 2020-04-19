@@ -1,7 +1,8 @@
 import { Scene } from 'phaser';
 import BeerBar from './beer_bar';
 import { discoDancer, squaredancer, metalDancer, preloadAllSprites, createAnimationsForAllSprites } from './sprites';
-import { createPlayer } from './entities/player.js'
+import beerbearerbob from './assets/music/beerbearerbop.ogg';
+import { createPlayer } from './entities/player.js';
 
 export default class GameScene extends Scene {
 	constructor() {
@@ -17,6 +18,7 @@ export default class GameScene extends Scene {
 
 	preload() {
 		preloadAllSprites({ scene: this });
+		this.load.audio('beerbearerbob', ['./src/assets/music/beerbearerbop.ogg']);
 	}
 
 	create() {
@@ -36,6 +38,10 @@ export default class GameScene extends Scene {
 		squareGal.anims.play('squaredancer-left-right', true);
 		const metaller = metalDancer.create({ scene: this, x: 200, y: 100 });
 		metaller.anims.play('metal-dancer-headbang', true);
+
+
+		const music = this.sound.add('beerbearerbob');
+		music.play();
 
 		this.physics.add.overlap(this._examplePlayer, this._exampleDrops,
 			(...args) => args.filter(arg => arg !== this._examplePlayer).forEach(arg => arg.destroy())

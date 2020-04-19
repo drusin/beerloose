@@ -21,7 +21,7 @@ const config = {
 		default: 'arcade',
 		arcade: { debug: true }
 	},
-	scene: [PartyShaderTestScene]
+	scene: [GameScene, PartyShaderTestScene]
 };
 
 const GAME = new Phaser.Game(config);
