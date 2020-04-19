@@ -26,7 +26,7 @@ export default class GameScene extends Scene {
 		this.keys = this.input.keyboard.addKeys("W,A,S,D,LEFT,UP,RIGHT,DOWN,SPACE,ENTER");
 		const { width, height } = this.sys.game.canvas;
 
-		this.player.create({ scene: this, x: 300, y: 100 });
+		this.player.createSprite({ scene: this, x: 300, y: 100 });
 
 		this._exampleDrops = this.physics.add.group();
 		this._examplePlayer = this.physics.add.image(500, 600);

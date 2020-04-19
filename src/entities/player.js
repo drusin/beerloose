@@ -6,7 +6,7 @@ export function createPlayer() {
     let sprite;
     return {
         sprite,
-        create: function({ scene, x, y }) {
+        createSprite: function({ scene, x, y }) {
             sprite = playerSprite.create({ scene, x, y, sheet: 'player-two-beers-spritesheet' });
 		    sprite.anims.play('two_beers-player-drop', true);
             sprite.setInteractive();
@@ -24,7 +24,7 @@ export function createPlayer() {
             else if (rightPressed) { direction.x = 1; }
             if (upPressed) { direction.y = -1; }
             else if (downPressed) { direction.y = 1; }
-            
+
             const normalizedDirection = normalize2dVector(direction);
             sprite.setVelocityX(PLAYER_SPEED * normalizedDirection.x);
             sprite.setVelocityY(PLAYER_SPEED * normalizedDirection.y);
