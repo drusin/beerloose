@@ -1,6 +1,6 @@
 import { Scene } from 'phaser';
 import BeerBar from './beer_bar';
-import { gal, bartender, discoDancer, squaredancer, metalDancer, preloadAllSprites, createAnimationsForAllSprites, dancefloor } from './sprites';
+import { gal, bartender, preloadAllSprites, createAnimationsForAllSprites, dancefloor } from './sprites';
 import beerbearerbob from './assets/music/beerbearerbop.ogg';
 import { createPlayer } from './entities/player.js';
 import { createPartyPeople } from './party-people.js';
