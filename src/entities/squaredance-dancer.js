@@ -1,56 +1,47 @@
 import { squaredancer } from '../sprites';
 
+const danceRoutine = {
+    0: step(2000, 0, -1, 'squaredancer-left-right'),
+    1: step(1000, 0, 0, 'squaredancer-clap'),
+    2: step(2000, 0, 1, 'squaredancer-left-right'),
+    3: step(1000, 0, 0, 'squaredancer-clap'),
+    4: step(2000, 0, -1, 'squaredancer-left-right'),
+    5: step(1000, 0, 0, 'squaredancer-clap'),
+    6: step(2000, -1, 0, 'squaredancer-left-right'),
+    7: step(1000, 0, 0, 'squaredancer-clap')
+}
+
+function step(millis, dirX, dirY, name) {
+    return { millis, dirX, dirY, name };
+}
+
+const baseSpeed = 30;
+
 export function createSquaredanceDancer() {
     return {
-        sprite: {},
         createSprite: function({ scene, x, y }) {
             this.sprite = squaredancer.create({ scene, x, y });
             this.sprite.setSize(8, 16, false);
             this.sprite.setOffset(4, 16);
+            this.danceStep = 0;
+            this.delta_counter = 0;
         },
         updateMovement() {
-            //moves just in 90° angles (not diagonal)
-            const baseSpeed = 30;
+            if (danceRoutine[this.danceStep].millis < this.delta_counter) {
+                this.delta_counter = 0;
+                this.danceStep = (this.danceStep + 1) % Object.keys(danceRoutine).length;
+                this.sprite.setVelocityX(baseSpeed * danceRoutine[this.danceStep].dirX);
+                this.sprite.setVelocityY(baseSpeed * danceRoutine[this.danceStep].dirY);
+                this.sprite.anims.play(danceRoutine[this.danceStep].name);
+            }
+        },
+        updateAnimation({ delta }) {
+            this.delta_counter += delta;
 
-            const rand = Math.random();
-            if (rand < 0.03) {
-                // change direction
-                const rand = Math.random();
-                if (rand < 0.25) {
-                    this.sprite.setVelocityX(-baseSpeed);
-                    this.sprite.setVelocityY(0);
-                }
-                else if (0.25 <= rand && rand < 0.5) {
-                    this.sprite.setVelocityX(baseSpeed);
-                    this.sprite.setVelocityY(0);
-                }
-                else if (0.5 <= rand && rand < 0.75) {
-                    this.sprite.setVelocityX(0);
-                    this.sprite.setVelocityY(-baseSpeed);
-                }
-                else if (0.75 <= rand && rand < 1) {
-                    this.sprite.setVelocityX(0);
-                    this.sprite.setVelocityY(baseSpeed);
-                }
-            }
-            else if (0.03 < rand && rand < 0.95) {
-                // continue moving in current direction
-            }
-            else {
-                // stop
-                this.sprite.setVelocityX(0);
-                this.sprite.setVelocityY(0);
-            }
-            this.sprite.setDepth(this.sprite.y);
-        },
-        updateAnimation() {
             const velocity = this.sprite.body.velocity;
-            if (velocity.x === 0 && velocity.y === 0) {
-                this.sprite.anims.play('squaredancer-clap', true);
-            }
-            else {
-                this.sprite.anims.play('squaredancer-left-right', true);
-            }
-        },
+
+            this.sprite.flipX = velocity.x < 0;
+            this.sprite.setDepth(this.sprite.y);
+        }
     };
 }

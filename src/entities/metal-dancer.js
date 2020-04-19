@@ -1,13 +1,13 @@
 import { metalDancer } from '../sprites';
 
 const danceRoutine = {
-    0: step(2000, 0, 1, 'metal-dancer-jump'),
+    0: step(2000, 0, -1, 'metal-dancer-jump'),
     1: step(1000, 0, 0, 'metal-dancer-headbang'),
-    2: step(2000, 1, 0, 'metal-dancer-jump'),
+    2: step(2000, -1, 0, 'metal-dancer-jump'),
     3: step(1000, 0, 0, 'metal-dancer-headbang'),
-    4: step(2000, 0, -1, 'metal-dancer-jump'),
+    4: step(2000, 0, 1, 'metal-dancer-jump'),
     5: step(1000, 0, 0, 'metal-dancer-headbang'),
-    6: step(2000, -1, 0, 'metal-dancer-jump'),
+    6: step(2000, 1, 0, 'metal-dancer-jump'),
     7: step(1000, 0, 0, 'metal-dancer-headbang')
 }
 
