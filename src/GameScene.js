@@ -70,14 +70,7 @@ export default class GameScene extends Scene {
 		this.beamY = BEAM_DEFAULTS[BEAM_INPUTS.END][1];
 
 		this.add.image(0, 0, 'background').setOrigin(0, 0);
-		createAnimationsForAllSprites({ scene: this });
-		dancefloor.create({ scene: this, x: 200, y: 140 }).play('dancefloor', true);
-		dancefloor.create({ scene: this, x: 200, y: 265 }).play('dancefloor', true);
-		dancefloor.create({ scene: this, x: 320, y: 140 }).play('dancefloor', true);
-		dancefloor.create({ scene: this, x: 320, y: 265 }).play('dancefloor', true);
-		dancefloor.create({ scene: this, x: 440, y: 140 }).play('dancefloor', true);
-		dancefloor.create({ scene: this, x: 440, y: 265 }).play('dancefloor', true);
-		
+		createAnimationsForAllSprites({ scene: this });		
 
 		this.keys = this.input.keyboard.addKeys("W,A,S,D,LEFT,UP,RIGHT,DOWN,SPACE,ENTER");
 		const { width, height } = this.sys.game.canvas;
@@ -91,8 +84,8 @@ export default class GameScene extends Scene {
 
 		dj.create({ scene: this, x: 5, y: 70 }).anims.play('dj-play', true);
 		
-		const bartend = bartender.create({ scene: this, x: 570, y: 150 });
-		bartend.anims.play('bartender-tab', true);
+		this.bartender = bartender.create({ scene: this, x: 570, y: 150 });
+		this.bartender.anims.play('bartender-tab', true);
 
 		const music = this.sound.add('beerbearerbob');
 		music.play();
