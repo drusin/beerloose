@@ -14,6 +14,17 @@ import { Sound } from './sfx.js';
 
 export const DANCEFLOOR_BOUNDING_BOX = { left: 100, right: 615, top: 45, bottom: 370 }
 
+const level1_non_traversable_objects = [
+	{ left: 0, right: 640, top: -20, bottom: 0 }, // top wall
+	{ left: 0, right: 180, top: 385, bottom: 400 }, // bottom left 
+	{ left: 180, right: 270, top: 365, bottom: 400 }, // bottom mid
+	{ left: 270, right: 640, top: 380, bottom: 400 }, // bottom right
+	{ left: 0, right: 5, top: 0, bottom: 480 }, // left
+	{ left: 635, right: 640, top: 0, bottom: 480 }, // right
+	{ left: 60, right: 75, top: 90, bottom: 295 }, // dj right
+	{ left: 0, right: 75, top: 90, bottom: 95 }, // dj top
+];
+
 export default class GameScene extends Scene {
 	constructor() {
 		super({ key: GameScene.KEY });
@@ -22,6 +33,7 @@ export default class GameScene extends Scene {
 		this._count = 0;
 		this.partyPeople = createPartyPeople();
 		this.women = createWomen();
+		this.nonTraversable = [];
 		this.sfx = Sound({ scene: this });
 	}
 	
@@ -47,9 +59,16 @@ export default class GameScene extends Scene {
 		}
 	}
 
+	createNonTraversableObjects() {
+		this.nonTraversable = level1_non_traversable_objects.map(
+			({ left, right, top, bottom }) => createStaticInvisibleBox({ physics: this.physics, left, right, top, bottom }));
+	}
+
 	create() {
 		this.sfx.create();
 		prefrences.persist();
+
+		this.createNonTraversableObjects();
 
 		this.shader = this.game.renderer.addPipeline('shader', new ShaderWrapper(this.game));
 		ShaderWrapper.addToCamera(this.shader, this.cameras.main);
@@ -72,6 +91,8 @@ export default class GameScene extends Scene {
 		this.player.createSprite({ scene: this, x: 300, y: 100 });
 		this.women.initialize({ scene: this });
 		this.partyPeople.initialize({ scene: this });
+
+		this.physics.add.collider(this.player.sprite, this.nonTraversable);
 
 		dj.create({ scene: this, x: 5, y: 70 }).anims.play('dj-play', true);
 		
@@ -107,4 +128,13 @@ export default class GameScene extends Scene {
 		this.discoShaderOffset = this.discoShaderOffset >= 360 ? 0 : this.discoShaderOffset + delta / 100;
 		discoBallHelper.changeAllDiscoBalls(this.shader, { [BALL_INPUTS.OFFSET]: this.discoShaderOffset });
 	}
+}
+
+function createStaticInvisibleBox({ physics, left, right, top, bottom }) {
+	const obj = physics.add.sprite(left, top, 'invisible');
+	obj.setOrigin(0);
+	obj.body.width = right - left;
+	obj.body.height = bottom - top;
+	obj.setImmovable(true);
+	return obj;
 }
