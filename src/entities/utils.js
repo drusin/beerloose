@@ -1,12 +1,11 @@
 import { DANCEFLOOR_BOUNDING_BOX } from '../GameScene.js';
 
 export function generateRandomDirection() {
-    const goingLeft = Math.random() < 0.5;
-    const goingUp = Math.random() < 0.5;
+    const directionValuesOnOneAxis = [-1, 0, 1];
     return {
-        x: goingLeft ? -1 : 1,
-        y: goingUp ? -1 : 1,
-    }
+        x: directionValuesOnOneAxis[Math.floor(Math.random() * directionValuesOnOneAxis.length)],
+        y: directionValuesOnOneAxis[Math.floor(Math.random() * directionValuesOnOneAxis.length)],
+    };
 }
 
 export function correctMovement({ sprite }) {
