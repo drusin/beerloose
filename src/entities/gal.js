@@ -48,10 +48,10 @@ export function createGal({ type }) {
    function getMoodIndicator() {
         let indicator = '';
         Object.entries(indicators).forEach(([name, boundaries]) => {   
-           if (boundaries[0] >= happiness && boundaries[1] <= happiness) {
-               indicator = name;
-           }
-       });
-       return indicator;
+            if (boundaries[0] >= happiness && boundaries[1] <= happiness) {
+                indicator = name;
+            }
+        });
+        return indicator;
    }
 }

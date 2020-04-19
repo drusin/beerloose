@@ -1,6 +1,6 @@
 import { Scene } from 'phaser';
 import BeerBar from './beer_bar';
-import { gal, dj, bartender, preloadAllSprites, createAnimationsForAllSprites, dancefloor } from './sprites';
+import { dj, bartender, preloadAllSprites, createAnimationsForAllSprites, dancefloor } from './sprites';
 import beerbearerbob from './assets/music/beerbearerbob.ogg';
 import { createPlayer } from './entities/player.js';
 import { createPartyPeople } from './party-people.js';
@@ -98,8 +98,13 @@ export default class GameScene extends Scene {
 
 		dj.create({ scene: this, x: 5, y: 70 }).anims.play('dj-play', true);
 		
+<<<<<<< Updated upstream
 		this.bartender = bartender.create({ scene: this, x: 570, y: 150 });
 		this.bartender.anims.play('bartender-tab', true);
+=======
+		const bartend = bartender.create({ scene: this, x: 570, y: 150 });
+		bartend.anims.play('bartender-tab', true);
+>>>>>>> Stashed changes
 
 		const music = this.sound.add('beerbearerbob');
 		music.play();

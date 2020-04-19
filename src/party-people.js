@@ -20,7 +20,7 @@ export function createPartyPeople() {
         },
         update: function (delta) {
             this.partyPeople.forEach(person => person.updateMovement());
-            this.partyPeople.forEach(person => person.updateAnimation(delta));
+            this.partyPeople.forEach(person => person.updateAnimation({ delta }));
         },
     };
 }
