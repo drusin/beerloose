@@ -2,7 +2,7 @@ import dancefloor_png from './../assets/sprites/Dancefloor.png';
 import { createSpriteObject } from './sprite-creator-factory';
 
 const frames = {
-    'dancefloor': { start: 0, end: 10 }
+    'dancefloor': { start: 0, end: 25 }
 }
 
 const spriteSheets = {
