@@ -21,7 +21,9 @@ export const bartender = {
         }
     }), 
     create: ({ scene, x, y }) => {
-        return scene.physics.add.sprite(x, y, 'bartender-spritesheet').setOrigin(0, 0).setScale(SPRITE_SCALE_FACTOR);
+        let sprite = scene.physics.add.sprite(x, y, 'bartender-spritesheet').setOrigin(0, 0).setScale(SPRITE_SCALE_FACTOR);
+        sprite.flipX = true;
+        return sprite;
     }
 }    
     

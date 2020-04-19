@@ -1,7 +1,7 @@
 import { Scene } from 'phaser';
 import BeerBar from './beer_bar';
 import { gal, dj, bartender, preloadAllSprites, createAnimationsForAllSprites, dancefloor } from './sprites';
-import beerbearerbob from './assets/music/beerbearerbop.ogg';
+import beerbearerbob from './assets/music/beerbearerbob.ogg';
 import { createPlayer } from './entities/player.js';
 import { createPartyPeople } from './party-people.js';
 import background_image from './assets/BasicBackground.png';
@@ -75,7 +75,7 @@ export default class GameScene extends Scene {
 
 		dj.create({ scene: this, x: 5, y: 70 }).anims.play('dj-play', true);
 		
-		const bartend = bartender.create({ scene: this, x: 600, y: 150 });
+		const bartend = bartender.create({ scene: this, x: 570, y: 150 });
 		bartend.anims.play('bartender-tab', true);
 		gal.create({ scene: this, x: 150, y: 200, number: 1 }).anims.play('1-gal-hair', true);
 		gal.create({ scene: this, x: 150, y: 250, number: 1 }).anims.play('1-gal-drink', true);
