@@ -22,8 +22,6 @@ export function createSquaredanceDancer() {
         updateMovement() {
             const baseSpeed = 30;
 
-            const velocity = sprite.body.velocity;
-
             const rand = Math.random();
             if (rand < 0.03) {
                 // change direction
