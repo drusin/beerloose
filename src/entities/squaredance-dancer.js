@@ -2,6 +2,17 @@ import { squaredancer } from '../sprites';
 
 export function createSquaredanceDancer() {
     let sprite;
+
+    function updateAnimation() {
+        const velocity = sprite.body.velocity;
+        if (velocity.x === 0 && velocity.y === 0) {
+            sprite.anims.play('squaredancer-clap', true);
+        }
+        else {
+            sprite.anims.play('squaredancer-left-right', true);
+        }
+    }
+
     return {
         sprite,
         createSprite: function({ scene, x, y }) {
@@ -9,7 +20,7 @@ export function createSquaredanceDancer() {
             sprite.anims.play('squaredancer-left-right', true);
         },
         updateMovement() {
-            const baseSpeed = 40;
+            const baseSpeed = 30;
 
             const velocity = sprite.body.velocity;
 
@@ -28,6 +39,8 @@ export function createSquaredanceDancer() {
                 sprite.setVelocityX(0);
                 sprite.setVelocityY(0);
             }
+
+            updateAnimation();
         }
     };
 }
