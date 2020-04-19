@@ -2,7 +2,7 @@ import no_beer_player from './../assets/sprites/NoBeer.png';
 import left_beer_player from './../assets/sprites/LeftBeer.png';
 import right_beer_player from './../assets/sprites/RightBeer.png';
 import two_beers_player from './../assets/sprites/TwoBeers.png';
-import { createSpriteObject } from './sprite-creator-factory';
+import { createSpriteObject, SPRITE_SCALE_FACTOR } from './sprite-creator-factory';
 
 const frames = {
     'player-talking': { start: 0, end: 3 },

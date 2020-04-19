@@ -9,6 +9,8 @@ import { indicator } from "./indicator";
 
 import { dancefloor } from "./dancefloor";
 
+export { SPRITE_SCALE_FACTOR } from './sprite-creator-factory';
+
 export function preloadAllSprites({ scene }) {
     discoDancer.preloadSpritesheet({ scene });
     squaredancer.preloadSpritesheet({ scene });
