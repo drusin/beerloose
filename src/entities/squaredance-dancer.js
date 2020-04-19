@@ -16,14 +16,26 @@ export function createSquaredanceDancer() {
 
     function correctMovement() {
         // dancers should not dance through walls!
-        const { left, right, bottom} = sprite.body;
-        if (bottom < DANCEFLOOR_BOUNDING_BOX.top || 
-            bottom > DANCEFLOOR_BOUNDING_BOX.bottom) {
-            sprite.setVelocityY(0);
+        const { left, right, bottom } = sprite.body;
+        if (bottom < DANCEFLOOR_BOUNDING_BOX.top) {
+            if (sprite.body.velocity.y < 0) {
+                sprite.setVelocityY(0);
+            } 
+        } 
+        else if (bottom > DANCEFLOOR_BOUNDING_BOX.bottom) {
+            if (sprite.body.velocity.y > 0) {
+                sprite.setVelocityY(0);
+            } 
         }
-        if (left < DANCEFLOOR_BOUNDING_BOX.left ||
-            right > DANCEFLOOR_BOUNDING_BOX.right) {
-            sprite.setVelocityX(0);
+        if (left < DANCEFLOOR_BOUNDING_BOX.left) {
+            if (sprite.body.velocity.x < 0 ) {
+                sprite.setVelocityX(0);
+            }
+        }
+        if (right > DANCEFLOOR_BOUNDING_BOX.right) {
+            if (sprite.body.velocity.x > 0 ) {
+                sprite.setVelocityX(0);
+            }
         }
     }
 
