@@ -110,6 +110,7 @@ export default class GameScene extends Scene {
 		this.beerBar.draw();
 
 		this.player.update({ 
+			delta,
 			keys: this.keys, 
 			physics: this.physics, 
 			partyPeople: this.partyPeople, 
