@@ -1,15 +1,17 @@
 import gal_1_png from './../assets/sprites/Gal-1.png';
 import gal_2_png from './../assets/sprites/Gal-2.png';
+import gal_3_png from './../assets/sprites/Gal-3.png';
 import { createSpriteObject } from './sprite-creator-factory';
 
 const frames = {
-    'gal-drink': { start: 0, end: 15 },
-    'gal-hair': { start: 15, end: 21 }
+    'gal-drink': { start: 0, end: 16 },
+    'gal-hair': { start: 16, end: 21 }
 }
 
 const spriteSheets = {
     'gal1-spritesheet': { img: gal_1_png, prefix: '1' },
-    'gal2-spritesheet': { img: gal_2_png, prefix: '2' }
+    'gal2-spritesheet': { img: gal_2_png, prefix: '2' },
+    'gal3-spritesheet': { img: gal_3_png, prefix: '3' }
 }
 
 export const gal = {
