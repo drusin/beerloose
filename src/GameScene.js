@@ -95,5 +95,23 @@ export default class GameScene extends Scene {
 
 		this.discoShaderOffset = this.discoShaderOffset >= 360 ? 0 : this.discoShaderOffset + delta / 100;
 		discoBallHelper.changeAllDiscoBalls(this.shader, { [BALL_INPUTS.OFFSET]: this.discoShaderOffset });
+
+		this.handleCollisions();
+	}
+
+	handleCollisions() {
+		// const womenSprites = this.women.women.map(woman => woman.getSprite());
+		// console.log(this.women.women[0]);
+		// console.log(this.women.women[0].sprite);
+		// console.log(this.women.women[0].getSprite());
+		// this.physics.overlap(
+		// 	this.player.getSprite(),
+		// 	womenSprites, 
+		// 	(left, right) => {
+		// 		console.log('detected collsision!');
+		// 		console.log(left);
+		// 		console.log(right);
+		// 	}
+		// );
 	}
 }

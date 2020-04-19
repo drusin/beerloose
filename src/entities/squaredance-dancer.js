@@ -2,12 +2,10 @@ import { squaredancer } from '../sprites';
 import { correctMovement } from './utils.js';
 
 export function createSquaredanceDancer() {
-    let sprite;
-
     return {
-        sprite,
+        sprite: {},
         createSprite: function({ scene, x, y }) {
-            sprite = squaredancer.create({ scene, x, y });
+            this.sprite = squaredancer.create({ scene, x, y });
         },
         updateMovement() {
             //moves just in 90° angles (not diagonal)
@@ -18,20 +16,20 @@ export function createSquaredanceDancer() {
                 // change direction
                 const rand = Math.random();
                 if (rand < 0.25) {
-                    sprite.setVelocityX(-baseSpeed);
-                    sprite.setVelocityY(0);
+                    this.sprite.setVelocityX(-baseSpeed);
+                    this.sprite.setVelocityY(0);
                 }
                 else if (0.25 <= rand && rand < 0.5) {
-                    sprite.setVelocityX(baseSpeed);
-                    sprite.setVelocityY(0);
+                    this.sprite.setVelocityX(baseSpeed);
+                    this.sprite.setVelocityY(0);
                 }
                 else if (0.5 <= rand && rand < 0.75) {
-                    sprite.setVelocityX(0);
-                    sprite.setVelocityY(-baseSpeed);
+                    this.sprite.setVelocityX(0);
+                    this.sprite.setVelocityY(-baseSpeed);
                 }
                 else if (0.75 <= rand && rand < 1) {
-                    sprite.setVelocityX(0);
-                    sprite.setVelocityY(baseSpeed);
+                    this.sprite.setVelocityX(0);
+                    this.sprite.setVelocityY(baseSpeed);
                 }
             }
             else if (0.03 < rand && rand < 0.95) {
@@ -39,19 +37,19 @@ export function createSquaredanceDancer() {
             }
             else {
                 // stop
-                sprite.setVelocityX(0);
-                sprite.setVelocityY(0);
+                this.sprite.setVelocityX(0);
+                this.sprite.setVelocityY(0);
             }
 
-            correctMovement({ sprite });
+            correctMovement({ sprite: this.sprite });
         },
         updateAnimation() {
-            const velocity = sprite.body.velocity;
+            const velocity = this.sprite.body.velocity;
             if (velocity.x === 0 && velocity.y === 0) {
-                sprite.anims.play('squaredancer-clap', true);
+                this.sprite.anims.play('squaredancer-clap', true);
             }
             else {
-                sprite.anims.play('squaredancer-left-right', true);
+                this.sprite.anims.play('squaredancer-left-right', true);
             }
         },
     };

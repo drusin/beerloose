@@ -3,13 +3,12 @@ import { player as playerSprite } from '../sprites';
 const PLAYER_SPEED = 100;
 
 export function createPlayer() {
-    let sprite;
     return {
-        sprite,
+        sprite: {},
         createSprite: function({ scene, x, y }) {
-            sprite = playerSprite.create({ scene, x, y, sheet: 'player-two-beers-spritesheet' });
-		    sprite.anims.play('two_beers-player-drop', true);
-            sprite.setInteractive();
+            this.sprite = playerSprite.create({ scene, x, y, sheet: 'player-two-beers-spritesheet' });
+            this.sprite.anims.play('two_beers-player-drop', true);
+            this.sprite.setInteractive();
         },
         updateMovement: function({ keys }) {
             const { LEFT, RIGHT, UP, DOWN, W, A, S, D } = keys;
@@ -26,8 +25,8 @@ export function createPlayer() {
             else if (downPressed) { direction.y = 1; }
 
             const normalizedDirection = normalize2dVector(direction);
-            sprite.setVelocityX(PLAYER_SPEED * normalizedDirection.x);
-            sprite.setVelocityY(PLAYER_SPEED * normalizedDirection.y);
+            this.sprite.setVelocityX(PLAYER_SPEED * normalizedDirection.x);
+            this.sprite.setVelocityY(PLAYER_SPEED * normalizedDirection.y);
         },
     };
 }
