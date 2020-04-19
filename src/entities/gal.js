@@ -38,7 +38,6 @@ export function createGal({ type }) {
             if (this.delta_counter > 1000 && happiness) {
                 this.delta_counter = 0;
                 happiness--;
-                console.log(happiness);
                 this.indicatorSprite.anims.play(getMoodIndicator(), true);
             }
             this.sprite.anims.play(`${type}-gal-hair`, true).setOrigin(0, 0);
