@@ -11,6 +11,15 @@ export function createGal({ type }) {
         updateMovement() {
             // no movement
         },
+        handleCollisions({ physics, player }) {
+            physics.overlap(
+                player.sprite,
+                this.sprite,
+                (left, right) => {
+                    console.log('detected collsision with woman: ' + type);
+                }
+            );
+        },
         updateAnimation(delta) {
             this.sprite.anims.play(`${type}-gal-hair`, true).setOrigin(0, 0);
         }

@@ -29,8 +29,9 @@ export function createWomen() {
                 ...generateRandomPositionWithinRect({ left: 70, right: 140, top: 320, bottom: 335 })
             }));
         },
-        update: function (delta) {
-            women.forEach(person => person.updateAnimation(delta));
+        update: function ({ delta, player, physics }) {
+            women.forEach(person => person.updateAnimation({ delta }));
+            women.forEach(person => person.handleCollisions({ physics, player }));
         },
     };
 }
