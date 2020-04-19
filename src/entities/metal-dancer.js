@@ -7,7 +7,6 @@ export function createMetalDancer() {
         sprite,
         createSprite: function({ scene, x, y }) {
             sprite = metalDancer.create({ scene, x, y });
-            sprite.anims.play('metal-dancer-headbang', true);
         },
         updateMovement() {
             // ...
