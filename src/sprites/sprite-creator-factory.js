@@ -7,7 +7,7 @@ export function createSpriteObject({
         frameWidth: DEFAULT_SPRITE_DIMENSIONS.width,
         frameHeight: DEFAULT_SPRITE_DIMENSIONS.height,
     },
-    frameRate = 15 
+    frameRate = 10 
 }) {
     return {
         preloadSpritesheet: ({ scene }) => {
