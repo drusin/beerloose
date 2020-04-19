@@ -18,7 +18,7 @@ export default class GameScene extends Scene {
 
 	preload() {
 		preloadAllSprites({ scene: this });
-		this.load.audio('beerbearerbob', [beerbearerbob]);
+		this.load.audio('beerbearerbob', beerbearerbob);
 	}
 
 	create() {
