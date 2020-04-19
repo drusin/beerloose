@@ -23,6 +23,7 @@ export function createMetalDancer() {
                 timeSinceLastAnimationChange = 0;
             }
             timeSinceLastAnimationChange += delta;
+            this.sprite.setDepth(this.sprite.y);
         }
     };
 }

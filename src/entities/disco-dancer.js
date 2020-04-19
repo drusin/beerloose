@@ -41,6 +41,7 @@ export function createDiscoDancer() {
             }
 
             this.sprite.flipX = velocity.x < 0;
+            this.sprite.setDepth(this.sprite.y);
         },
     };
 }

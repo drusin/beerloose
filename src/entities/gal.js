@@ -1,4 +1,4 @@
-import { gal } from '../sprites';
+import { gal, indicator } from '../sprites';
 
 export function createGal({ type }) {
     let happiness = 100;
@@ -6,6 +6,8 @@ export function createGal({ type }) {
     return {
         sprite: {},
         createSprite: function({ scene, x, y }) {
+            this.indicatorSprite = indicator.create({ scene, x, y: (y - 18), sheet: 'indicator-spritesheet' });
+            this.indicatorSprite.anims.play('indicator-player', true);
             this.sprite = gal.create({ scene, x, y, number: type });
         },
         updateMovement() {
@@ -22,6 +24,7 @@ export function createGal({ type }) {
         },
         updateAnimation(delta) {
             this.sprite.anims.play(`${type}-gal-hair`, true).setOrigin(0, 0);
+            this.sprite.setDepth(this.sprite.y);
         }
    };
 }

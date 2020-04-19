@@ -44,6 +44,7 @@ export function createSquaredanceDancer() {
             }
 
             correctMovement({ sprite: this.sprite });
+            this.sprite.setDepth(this.sprite.y);
         },
         updateAnimation() {
             const velocity = this.sprite.body.velocity;

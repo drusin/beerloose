@@ -36,6 +36,8 @@ export function createPlayer() {
             this.sprite.setVelocityY(PLAYER_SPEED * normalizedDirection.y);
             this.indicatorSprite.x = this.sprite.x;
             this.indicatorSprite.y = this.sprite.y - INDICATOR_OFFSET;
+            this.indicatorSprite.setDepth(this.sprite.y);
+            this.sprite.setDepth(this.sprite.y);
         },
         handleCollisions({ partyPeople, physics }) {
             physics.overlap(
