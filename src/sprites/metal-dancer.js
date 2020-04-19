@@ -1,4 +1,4 @@
-import metal_dancer_png from './../assets/Metal.png';
+import metal_dancer_png from './../assets/sprites/Metal.png';
 import { createSpriteObject } from './sprite-creator-factory';
 
 const frames = {

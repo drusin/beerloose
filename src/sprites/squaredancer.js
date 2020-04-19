@@ -1,4 +1,4 @@
-import squaredancer_png from './../assets/Squaredance.png';
+import squaredancer_png from './../assets/sprites/Squaredance.png';
 import { createSpriteObject } from './sprite-creator-factory';
 
 const frames = {

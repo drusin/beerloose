@@ -1,4 +1,4 @@
-import disco_dancer_png from './../assets/Disco.png';
+import disco_dancer_png from './../assets/sprites/Disco.png';
 import { createSpriteObject } from './sprite-creator-factory';
 
 const frames = {

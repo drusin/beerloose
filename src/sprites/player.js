@@ -1,7 +1,7 @@
-import no_beer_player from './../assets/NoBeer.png';
-import left_beer_player from './../assets/LeftBeer.png';
-import right_beer_player from './../assets/RightBeer.png';
-import two_beers_player from './../assets/TwoBeers.png';
+import no_beer_player from './../assets/sprites/NoBeer.png';
+import left_beer_player from './../assets/sprites/LeftBeer.png';
+import right_beer_player from './../assets/sprites/RightBeer.png';
+import two_beers_player from './../assets/sprites/TwoBeers.png';
 import { createSpriteObject } from './sprite-creator-factory';
 
 const frames = {
