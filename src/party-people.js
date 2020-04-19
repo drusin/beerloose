@@ -1,6 +1,8 @@
 import { createDiscoDancer } from './entities/disco-dancer.js';
 import { createMetalDancer } from './entities/metal-dancer.js';
 import { createSquaredanceDancer } from './entities/squaredance-dancer.js';
+import { DANCEFLOOR_BOUNDING_BOX } from './GameScene.js';
+import { DEFAULT_SPRITE_DIMENSIONS } from './sprites/sprite-creator-factory.js';
 
 export function createPartyPeople() {
     const partyPeople = [];
@@ -36,10 +38,16 @@ function generateRandomDancer() {
 }
 
 function generateRandomPositionOnDanceFloor() {
-    const { x1, x2, y1, y2 } = { x1: 100, x2: 615, y1: 45, y2: 360 };
+    const { left, right, top, bottom } = DANCEFLOOR_BOUNDING_BOX;
     return {
-        x: generateRandomInteger({ minInclusive: x1, maxExclusive: x2 }),
-        y: generateRandomInteger({ minInclusive: y1, maxExclusive: y2 }),
+        x: generateRandomInteger({ 
+            minInclusive: left, 
+            maxExclusive: right - DEFAULT_SPRITE_DIMENSIONS.wdith, 
+        }),
+        y: generateRandomInteger({ 
+            minInclusive: top - DEFAULT_SPRITE_DIMENSIONS.height, 
+            maxExclusive: bottom - DEFAULT_SPRITE_DIMENSIONS.height,
+        }),
     };
 }
 

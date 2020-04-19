@@ -7,6 +7,8 @@ import { createPartyPeople } from './party-people.js';
 import background_image from './assets/BasicBackground.png';
 import ShaderWrapper from './shaders/ShaderWrapper';
 
+export const DANCEFLOOR_BOUNDING_BOX = { left: 100, right: 615, top: 45, bottom: 370 }
+
 export default class GameScene extends Scene {
 	constructor() {
 		super({ key: GameScene.KEY });

@@ -17,7 +17,7 @@ export const metalDancer = {
         frames
     }), 
     create: ({ scene, x, y }) => {
-        return scene.physics.add.sprite(x, y, 'metal-dancer-spritesheet');
+        return scene.physics.add.sprite(x, y, 'metal-dancer-spritesheet').setOrigin(0, 0);
     }
 }    
     

@@ -18,7 +18,7 @@ export const discoDancer = {
         frames
     }), 
     create: ({ scene, x, y }) => {
-        return scene.physics.add.sprite(x, y, 'disco-dancer-spritesheet');
+        return scene.physics.add.sprite(x, y, 'disco-dancer-spritesheet').setOrigin(0, 0);
     }
 }    
     

@@ -18,7 +18,7 @@ export const squaredancer = {
         frameRate: 10,
     }), 
     create: ({ scene, x, y }) => {
-        return scene.physics.add.sprite(x, y, 'squaredancer-spritesheet');
+        return scene.physics.add.sprite(x, y, 'squaredancer-spritesheet').setOrigin(0, 0);
     }
 }    
     
