@@ -3,6 +3,7 @@ import { correctMovement, generateRandomDirection } from './utils.js';
 
 export function createDiscoDancer() {
     return {
+        sprite: {},
         createSprite: function({ scene, x, y }) {
             this.sprite = discoDancer.create({ scene, x, y });
             this.sprite.setSize(8, 16, false);

@@ -6,9 +6,8 @@ import {
 import { generateRandomPositionOnDanceFloor } from './util.js';
 
 export function createPartyPeople() {
-    const partyPeople = [];
     return {
-        partyPeople,
+        partyPeople: [],
         initialize: function ({ scene, dancerCount = 20 }) {
             for (let i = 0; i < dancerCount; i++) {
                 const dancer = generateRandomDancer();
@@ -16,12 +15,12 @@ export function createPartyPeople() {
                     scene,
                     ...generateRandomPositionOnDanceFloor(),
                 });
-                partyPeople.push(dancer);
+                this.partyPeople.push(dancer);
             }
         },
         update: function (delta) {
-            partyPeople.forEach(person => person.updateMovement());
-            partyPeople.forEach(person => person.updateAnimation(delta));
+            this.partyPeople.forEach(person => person.updateMovement());
+            this.partyPeople.forEach(person => person.updateAnimation(delta));
         },
     };
 }

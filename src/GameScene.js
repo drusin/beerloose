@@ -89,7 +89,7 @@ export default class GameScene extends Scene {
 			this._count -= 800;
 		}
 
-		this.player.updateMovement({ keys: this.keys });
+		this.player.update({ keys: this.keys, physics: this.physics, partyPeople: this.partyPeople });
 		this.partyPeople.update(delta);
 		this.women.update({ delta, player: this.player, physics: this.physics });
 

@@ -12,6 +12,10 @@ export function createPlayer() {
             this.sprite.anims.play('two_beers-player-drop', true);
             this.sprite.setInteractive();
         },
+        update: function({ keys, partyPeople, physics }) {
+            this.updateMovement({ keys });
+            this.handleCollisions({ partyPeople, physics });
+        },
         updateMovement: function({ keys }) {
             const { LEFT, RIGHT, UP, DOWN, W, A, S, D } = keys;
         
@@ -31,6 +35,16 @@ export function createPlayer() {
             this.sprite.setVelocityY(PLAYER_SPEED * normalizedDirection.y);
             this.indicatorSprite.x = this.sprite.x;
             this.indicatorSprite.y = this.sprite.y - 18;
+        },
+        handleCollisions({ partyPeople, physics }) {
+            physics.overlap(
+                this.sprite,
+                partyPeople.partyPeople.map(p => p.sprite),
+                (left, right) => {
+                    const partyPerson = left === this.sprite ? right : left;
+                    console.log('Heeey my foot!');
+                }
+            );
         },
     };
 }
