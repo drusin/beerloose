@@ -1,5 +1,5 @@
 import { squaredancer } from '../sprites';
-import { correctMovement, generateRandomDirection } from './utils.js';
+import { correctMovement } from './utils.js';
 
 export function createSquaredanceDancer() {
     let sprite;
