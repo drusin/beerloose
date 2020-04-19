@@ -1,6 +1,6 @@
 import { Scene } from 'phaser';
 import BeerBar from './beer_bar';
-import { discoDancer, squaredancer, metalDancer, preloadAllSprites, createAnimationsForAllSprites } from './sprites';
+import { bartender, discoDancer, squaredancer, metalDancer, preloadAllSprites, createAnimationsForAllSprites } from './sprites';
 import beerbearerbob from './assets/music/beerbearerbop.ogg';
 import { createPlayer } from './entities/player.js';
 
@@ -38,7 +38,8 @@ export default class GameScene extends Scene {
 		squareGal.anims.play('squaredancer-left-right', true);
 		const metaller = metalDancer.create({ scene: this, x: 200, y: 100 });
 		metaller.anims.play('metal-dancer-headbang', true);
-
+		const bartend = bartender.create({ scene: this, x: 200, y: 150 });
+		bartend.anims.play('bartender-tab', true);
 
 		const music = this.sound.add('beerbearerbob');
 		music.play();
