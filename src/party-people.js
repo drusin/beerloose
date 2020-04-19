@@ -1,4 +1,8 @@
-import { createDiscoDancer, createMetalDancer, createSquaredanceDancer } from './entities';
+import { 
+    createDiscoDancer, 
+    createMetalDancer, 
+    createSquaredanceDancer
+} from './entities';
 import { DANCEFLOOR_BOUNDING_BOX } from './GameScene.js';
 import { DEFAULT_SPRITE_DIMENSIONS } from './sprites/sprite-creator-factory.js';
 
