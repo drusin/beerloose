@@ -3,7 +3,10 @@ import { DEFAULT_SPRITE_DIMENSIONS } from './sprites/sprite-creator-factory.js';
 
 
 export function generateRandomPositionOnDanceFloor() {
-    const { left, right, top, bottom } = DANCEFLOOR_BOUNDING_BOX;
+    return generateRandomPositionWithinRect(DANCEFLOOR_BOUNDING_BOX);
+}
+
+export function generateRandomPositionWithinRect({ left, right, top, bottom }) {
     return {
         x: generateRandomInteger({ 
             minInclusive: left, 

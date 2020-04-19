@@ -8,6 +8,7 @@ import background_image from './assets/BasicBackground.png';
 import ShaderWrapper from './shaders/ShaderWrapper';
 import discoBallHelper, { BALL_INPUTS, BALL_DEFAULTS } from './shaders/discoBallHelper';
 import prefrences from './preferences';
+import { createWomen } from './women.js';
 
 export const DANCEFLOOR_BOUNDING_BOX = { left: 100, right: 615, top: 45, bottom: 370 }
 
@@ -18,6 +19,7 @@ export default class GameScene extends Scene {
 		this.player = createPlayer();
 		this._count = 0;
 		this.partyPeople = createPartyPeople();
+		this.women = createWomen();
 	}
 	
 	static get KEY() {
@@ -62,6 +64,7 @@ export default class GameScene extends Scene {
 		const { width, height } = this.sys.game.canvas;
 
 		this.player.createSprite({ scene: this, x: 300, y: 100 });
+		this.women.initialize({ scene: this });
 		this.partyPeople.initialize({ scene: this });
 		
 		const bartend = bartender.create({ scene: this, x: 200, y: 150 });
@@ -88,6 +91,7 @@ export default class GameScene extends Scene {
 
 		this.player.updateMovement({ keys: this.keys });
 		this.partyPeople.update(delta);
+		this.women.update(delta);
 
 		this.discoShaderOffset = this.discoShaderOffset >= 360 ? 0 : this.discoShaderOffset + delta / 100;
 		discoBallHelper.changeAllDiscoBalls(this.shader, { [BALL_INPUTS.OFFSET]: this.discoShaderOffset });
