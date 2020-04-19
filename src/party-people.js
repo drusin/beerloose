@@ -15,7 +15,10 @@ export function createPartyPeople() {
                 });
                 partyPeople.push(dancer);
             }
-        }
+        },
+        update: function () {
+            partyPeople.forEach(person => person.updateMovement());
+        },
     };
 }
 

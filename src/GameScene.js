@@ -68,5 +68,6 @@ export default class GameScene extends Scene {
 		}
 
 		this.player.updateMovement({ keys: this.keys });
+		this.partyPeople.update();
 	}
 }
