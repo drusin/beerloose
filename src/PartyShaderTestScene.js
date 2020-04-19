@@ -1,8 +1,9 @@
 import { Scene } from 'phaser';
 import partyPlaceholder from './assets/party.png';
-import DiscoBallShader from './shaders/DiscoBallShader';
-import discoBallShaderManager from './shaders/discoBallShaderManager';
+import ShaderWrapper from './shaders/ShaderWrapper';
+import discoBallShaderManager from './shaders/discoBallHelper';
 import { discoDancer, squaredancer, metalDancer, preloadAllSprites, createAnimationsForAllSprites } from './sprites';
+import { BALL_INPUTS } from './shaders/discoBallHelper'
 
 export default class PartyShaderTestScene extends Scene {
     static get KEY() {
@@ -15,20 +16,15 @@ export default class PartyShaderTestScene extends Scene {
 
     preload() {
         this.load.image('party-placeholder', partyPlaceholder);
-        // this.load.glsl('disco-shader', glslf);
-
         preloadAllSprites({ scene: this });
     }
 
     create() {
         this.add.image(515, 300, 'party-placeholder');
-        this.discoBallShader = this.game.renderer.addPipeline('DiscoBall', new DiscoBallShader(this.game));
-        DiscoBallShader.applyDefaults(this.discoBallShader);
-        console.log(this.discoBallShader);
+        this.discoBallShader = this.game.renderer.addPipeline('DiscoBall', new ShaderWrapper(this.game));
         this.camTexture = this.cameras.main.setRenderToTexture(this.discoBallShader);
-        // discoBallShaderManager.addDiscoBall(this.discoBallShader, DiscoBallShader.DEFAULTS);
-
-        // shaderToString();
+        discoBallShaderManager.addDiscoBall(this.discoBallShader);
+        discoBallShaderManager.addDiscoBall(this.discoBallShader, {[BALL_INPUTS.POSITION]: [100, 100]});
         this.discoShaderOffset = 0;
 
         createAnimationsForAllSprites({ scene: this });
@@ -37,7 +33,7 @@ export default class PartyShaderTestScene extends Scene {
 
     update(time, delta) {
         this.discoShaderOffset = this.discoShaderOffset >= 360 ? 0 : this.discoShaderOffset + delta / 100;
-        this.discoBallShader.setFloat1v(DiscoBallShader.INPUTS.OFFSET, [this.discoShaderOffset]);
+        discoBallShaderManager.changeAllDiscoBalls(this.discoBallShader, {[BALL_INPUTS.OFFSET]: this.discoShaderOffset}, 0);
     }
 
     addDancers() {
