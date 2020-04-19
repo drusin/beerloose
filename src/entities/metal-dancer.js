@@ -23,7 +23,7 @@ export function createMetalDancer() {
             this.sprite = metalDancer.create({ scene, x, y });
             this.sprite.setSize(8, 16, false);
             this.sprite.setOffset(4, 16);
-            this.danceStep = Math.round(Math.random() * Object.keys(danceRoutine).length);
+            this.danceStep = Math.floor(Math.random() * Object.keys(danceRoutine).length);
             this.delta_counter = 0;
         },
         updateMovement() {
