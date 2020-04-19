@@ -9,6 +9,7 @@ export function createPlayer() {
         createSprite: function({ scene, x, y }) {
             this.indicatorSprite = indicator.create({ scene, x, y: (y - INDICATOR_OFFSET), sheet: 'indicator-spritesheet' });
             this.indicatorSprite.anims.play('indicator-player', true);
+            this.indicatorSprite.setDepth(1000);
             this.sprite = playerSprite.create({ scene, x, y, sheet: 'player-two-beers-spritesheet' });
             this.sprite.anims.play('two_beers-player-drop', true);
             this.sprite.setInteractive();
@@ -36,7 +37,6 @@ export function createPlayer() {
             this.sprite.setVelocityY(PLAYER_SPEED * normalizedDirection.y);
             this.indicatorSprite.x = this.sprite.x;
             this.indicatorSprite.y = this.sprite.y - INDICATOR_OFFSET;
-            this.indicatorSprite.setDepth(this.sprite.y);
             this.sprite.setDepth(this.sprite.y);
         },
         handleCollisions({ partyPeople, physics, sfx }) {

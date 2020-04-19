@@ -1,4 +1,6 @@
-import { gal, indicator } from '../sprites';
+import { gal, indicator, SPRITE_SCALE_FACTOR } from '../sprites';
+
+const INDICATOR_OFFSET = 18 * SPRITE_SCALE_FACTOR;
 
 export function createGal({ type }) {
     let happiness = 100;
@@ -6,8 +8,9 @@ export function createGal({ type }) {
     return {
         sprite: {},
         createSprite: function({ scene, x, y }) {
-            this.indicatorSprite = indicator.create({ scene, x, y: (y - 18), sheet: 'indicator-spritesheet' });
-            this.indicatorSprite.anims.play('indicator-player', true);
+            this.indicatorSprite = indicator.create({ scene, x, y: (y - INDICATOR_OFFSET), sheet: 'indicator-spritesheet' });
+            this.indicatorSprite.anims.play('indicator-good', true);
+            this.indicatorSprite.setDepth(1000 + y);
             this.sprite = gal.create({ scene, x, y, number: type });
         },
         updateMovement() {
