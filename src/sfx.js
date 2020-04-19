@@ -1,4 +1,3 @@
-import bump_into_persons_1 from './assets/sfx/bump-into-persons-1.ogg';
 import bump_into_persons_1b from './assets/sfx/bump-into-persons-1b.ogg';
 import { randomItemFromArray } from './util.js';
 
