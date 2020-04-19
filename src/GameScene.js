@@ -70,7 +70,13 @@ export default class GameScene extends Scene {
 		this.beamY = BEAM_DEFAULTS[BEAM_INPUTS.END][1];
 
 		this.add.image(0, 0, 'background').setOrigin(0, 0);
-		createAnimationsForAllSprites({ scene: this });		
+		createAnimationsForAllSprites({ scene: this });	
+		dancefloor.create({ scene: this, x: 200, y: 140 }).play('dancefloor', true);
+		dancefloor.create({ scene: this, x: 200, y: 265 }).play('dancefloor', true);
+		dancefloor.create({ scene: this, x: 320, y: 140 }).play('dancefloor', true);
+		dancefloor.create({ scene: this, x: 320, y: 265 }).play('dancefloor', true);
+		dancefloor.create({ scene: this, x: 440, y: 140 }).play('dancefloor', true);
+		dancefloor.create({ scene: this, x: 440, y: 265 }).play('dancefloor', true);
 
 		this.keys = this.input.keyboard.addKeys("W,A,S,D,LEFT,UP,RIGHT,DOWN,SPACE,ENTER");
 		const { width, height } = this.sys.game.canvas;
