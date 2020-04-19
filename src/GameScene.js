@@ -93,6 +93,7 @@ export default class GameScene extends Scene {
 		this.partyPeople.initialize({ scene: this });
 
 		this.physics.add.collider(this.player.sprite, this.nonTraversable);
+		this.physics.add.collider(this.partyPeople.partyPeople.map(p => p.sprite), this.nonTraversable);
 
 		dj.create({ scene: this, x: 5, y: 70 }).anims.play('dj-play', true);
 		

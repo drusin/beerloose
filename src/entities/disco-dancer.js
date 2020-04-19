@@ -1,5 +1,5 @@
 import { discoDancer } from '../sprites';
-import { correctMovement, generateRandomDirection } from './utils.js';
+import { generateRandomDirection } from './utils.js';
 
 export function createDiscoDancer() {
     return {
@@ -28,8 +28,6 @@ export function createDiscoDancer() {
                 this.sprite.setVelocityX(0);
                 this.sprite.setVelocityY(0);
             }
-
-            correctMovement({ sprite: this.sprite });
         },
         updateAnimation() {
             const velocity = this.sprite.body.velocity;

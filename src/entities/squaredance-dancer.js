@@ -1,5 +1,4 @@
 import { squaredancer } from '../sprites';
-import { correctMovement } from './utils.js';
 
 export function createSquaredanceDancer() {
     return {
@@ -42,8 +41,6 @@ export function createSquaredanceDancer() {
                 this.sprite.setVelocityX(0);
                 this.sprite.setVelocityY(0);
             }
-
-            correctMovement({ sprite: this.sprite });
             this.sprite.setDepth(this.sprite.y);
         },
         updateAnimation() {
