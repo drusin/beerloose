@@ -11,7 +11,7 @@ export function createPartyPeople() {
                 const dancer = generateRandomDancer();
                 dancer.createSprite({
                     scene,
-                    ...generateRandomPositionOnDanceFloor({ scene }),
+                    ...generateRandomPositionOnDanceFloor(),
                 });
                 partyPeople.push(dancer);
             }
@@ -35,12 +35,11 @@ function generateRandomDancer() {
     }
 }
 
-function generateRandomPositionOnDanceFloor({ scene }) {
-    const { width, height } = scene.sys.game.canvas;
-    const PADDING = 20;
+function generateRandomPositionOnDanceFloor() {
+    const { x1, x2, y1, y2 } = { x1: 100, x2: 615, y1: 45, y2: 360 };
     return {
-        x: generateRandomInteger({ minInclusive: PADDING, maxExclusive: width - PADDING }),
-        y: generateRandomInteger({ minInclusive: PADDING, maxExclusive: height - PADDING }),
+        x: generateRandomInteger({ minInclusive: x1, maxExclusive: x2 }),
+        y: generateRandomInteger({ minInclusive: y1, maxExclusive: y2 }),
     };
 }
 
