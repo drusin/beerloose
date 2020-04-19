@@ -14,7 +14,11 @@ export const bartender = {
  
     ...createSpriteObject({
         spriteSheets,
-        frames
+        frames,
+        frameDimensions: {
+            frameWidth: 32,
+            frameHeight: 32,
+        }
     }), 
     create: ({ scene, x, y }) => {
         return scene.physics.add.sprite(x, y, 'bartender-spritesheet');
