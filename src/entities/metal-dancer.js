@@ -41,7 +41,7 @@ export function createMetalDancer() {
             const velocity = this.sprite.body.velocity;
 
             this.sprite.flipX = velocity.x < 0;
-            this.sprite.setDepth(this.sprite.y);
+            this.sprite.setDepth(100 + this.sprite.y);
         }
     };
 }

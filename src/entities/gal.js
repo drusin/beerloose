@@ -41,7 +41,7 @@ export function createGal({ type }) {
                 this.indicatorSprite.anims.play(getMoodIndicator(), true);
             }
             this.sprite.anims.play(`${type}-gal-hair`, true).setOrigin(0, 0);
-            this.sprite.setDepth(this.sprite.y);
+            this.sprite.setDepth(100 + this.sprite.y);
         }
    };
 
