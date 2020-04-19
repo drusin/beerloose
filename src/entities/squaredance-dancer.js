@@ -1,4 +1,5 @@
 import { squaredancer } from '../sprites';
+import { DANCEFLOOR_BOUNDING_BOX } from '../GameScene.js';
 
 export function createSquaredanceDancer() {
     let sprite;
@@ -10,6 +11,19 @@ export function createSquaredanceDancer() {
         }
         else {
             sprite.anims.play('squaredancer-left-right', true);
+        }
+    }
+
+    function correctMovement() {
+        // dancers should not dance through walls!
+        const { left, right, bottom} = sprite.body;
+        if (bottom < DANCEFLOOR_BOUNDING_BOX.top || 
+            bottom > DANCEFLOOR_BOUNDING_BOX.bottom) {
+            sprite.setVelocityY(0);
+        }
+        if (left < DANCEFLOOR_BOUNDING_BOX.left ||
+            right > DANCEFLOOR_BOUNDING_BOX.right) {
+            sprite.setVelocityX(0);
         }
     }
 
@@ -37,6 +51,8 @@ export function createSquaredanceDancer() {
                 sprite.setVelocityX(0);
                 sprite.setVelocityY(0);
             }
+
+            correctMovement();
 
             updateAnimation();
         }
