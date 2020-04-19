@@ -15,7 +15,7 @@ function step(millis, dirX, dirY, name) {
     return { millis, dirX, dirY, name };
 }
 
-const baseSpeed = 30;
+const baseSpeed = 40;
 
 export function createMetalDancer() {
     return {

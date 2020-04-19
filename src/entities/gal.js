@@ -6,7 +6,7 @@ export function createGal({ type }) {
     let happiness = 100;
 
     const indicators = {
-        'indicator-good': [100, 80],
+        'indicator-good': [10000, 80],
         'indicator-medium': [79, 30],
         'indicator-bad': [29, 1],
         'indicator-leaving': [0, 0]
@@ -29,6 +29,8 @@ export function createGal({ type }) {
                 player.sprite,
                 this.sprite,
                 () => {
+                    const amount = player.beer.amount;
+                    happiness += amount;
                     player.beer.chug();
                 }
             );
