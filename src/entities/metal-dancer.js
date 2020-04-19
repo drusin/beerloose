@@ -11,5 +11,8 @@ export function createMetalDancer() {
         updateMovement() {
             // ...
         },
+        updateAnimation() {
+            
+        }
     };
 }
