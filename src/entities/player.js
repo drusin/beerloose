@@ -14,9 +14,9 @@ export function createPlayer() {
             this.sprite.anims.play('two_beers-player-drop', true);
             this.sprite.setInteractive();
         },
-        update: function({ keys, partyPeople, physics, sfx }) {
+        update: function({ keys, partyPeople, physics, sfx, bartender, beer }) {
             this.updateMovement({ keys });
-            this.handleCollisions({ partyPeople, physics, sfx });
+            this.handleCollisions({ partyPeople, physics, sfx, bartender, beer });
         },
         updateMovement: function({ keys }) {
             const { LEFT, RIGHT, UP, DOWN, W, A, S, D } = keys;
@@ -39,13 +39,20 @@ export function createPlayer() {
             this.indicatorSprite.y = this.sprite.y - INDICATOR_OFFSET;
             this.sprite.setDepth(this.sprite.y);
         },
-        handleCollisions({ partyPeople, physics, sfx }) {
+        handleCollisions({ partyPeople, physics, sfx, bartender, beer }) {
             physics.overlap(
                 this.sprite,
                 partyPeople.partyPeople.map(p => p.sprite),
                 (left, right) => {
                     const partyPerson = left === this.sprite ? right : left;
                     sfx.bumpIntoPerson();
+                }
+            );
+            physics.overlap(
+                this.sprite,
+                bartender,
+                () => {
+                    beer.fill();
                 }
             );
         },

@@ -35,6 +35,7 @@ export default class GameScene extends Scene {
 		this.women = createWomen();
 		this.nonTraversable = [];
 		this.sfx = Sound({ scene: this });
+		this.bartender = {};
 	}
 	
 	static get KEY() {
@@ -97,9 +98,9 @@ export default class GameScene extends Scene {
 
 		dj.create({ scene: this, x: 5, y: 70 }).anims.play('dj-play', true);
 		
-		const bartend = bartender.create({ scene: this, x: 570, y: 150 });
-		bartend.anims.play('bartender-tab', true);
-		
+		this.bartender = bartender.create({ scene: this, x: 570, y: 150 });
+		this.bartender.anims.play('bartender-tab', true);
+
 		const music = this.sound.add('beerbearerbob');
 		music.play();
 
@@ -114,7 +115,14 @@ export default class GameScene extends Scene {
 			this._count -= 800;
 		}
 
-		this.player.update({ keys: this.keys, physics: this.physics, partyPeople: this.partyPeople, sfx: this.sfx });
+		this.player.update({ 
+			keys: this.keys, 
+			physics: this.physics, 
+			partyPeople: this.partyPeople, 
+			sfx: this.sfx,
+			bartender: this.bartender,
+			beer: this.beer,
+		});
 		this.partyPeople.update(delta);
 		this.women.update({ delta, player: this.player, physics: this.physics });
 
