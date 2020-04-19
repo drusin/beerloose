@@ -1,4 +1,5 @@
-import { GameObjects } from 'phaser'
+import { GameObjects, Geom } from 'phaser'
+import BeerBarSprite from './assets/sprites/BeerBar.png'
 
 // Displays the amount of remaining beer at hand.
 export default class BeerBar {
@@ -11,12 +12,13 @@ export default class BeerBar {
 
         this.width = 32;
         this.height = 256;
-        this.border = 2;
+        this.border = 4;
 
         this.amount = 100;
         
-        this.draw();
         scene.add.existing(this.bar);
+        this.barSprite = this.bar.scene.add.sprite(this.x, this.y, 'beer_bar');
+        this.beerAmountText = this.bar.scene.add.text(this.x - this.barSprite.width / 2, this.y + this.barSprite.height / 2, 'Beer: %100');
     }
 
     fill() {
@@ -30,21 +32,16 @@ export default class BeerBar {
         this.draw();
     }
 
+    static assets(loader) {
+        loader.spritesheet('beer_bar', BeerBarSprite, { frameWidth: 80, frameHeight: 96 });
+    }
+
     draw() {
         this.bar.clear();
 
-        // Background
-        this.bar.fillStyle(0xffffff);
-        this.bar.fillRect(this.x, this.y, this.width, this.height);
-
-        // Empty Beer
-        const inset = this.border * 2;
-        this.bar.fillStyle(0x5f5f5f);
-        this.bar.fillRect(this.x + this.border, this.y + this.border, this.width - inset, this.height - inset);
-
-        // Existing beer
-        const filledHeight = Math.floor((this.height - inset) * this.amount / 100);
-        this.bar.fillStyle(0xffe80f);
-        this.bar.fillRect(this.x + this.border, this.y - filledHeight + this.height - this.border, this.width - inset, filledHeight);
+        // we have 34 sprites in 'beer_bar', 0 is full and 35 is empty. mapping amount (0 .. 100) to sprite frame (33 .. 0)
+        const frame = Math.floor((1 - this.amount / 100) * 33);
+        this.barSprite.setFrame(frame);
+        this.beerAmountText.setText('Beer: %' + this.amount);
     }
 }

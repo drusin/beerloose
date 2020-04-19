@@ -21,6 +21,7 @@ export default class GameScene extends Scene {
 	preload() {
 		preloadAllSprites({ scene: this });
 		this.load.audio('beerbearerbob', beerbearerbob);
+		BeerBar.assets(this.load);
 	}
 
 	create() {
@@ -56,7 +57,7 @@ export default class GameScene extends Scene {
 			gameObject.y = dragY;
 		});
 
-		this.beer = new BeerBar(this, width - 64, 48);		// position on top right corner.
+		this.beer = new BeerBar(this, width - 64, 96);		// position on top right corner.
 	}
 	
 	update(time, delta) {
