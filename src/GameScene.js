@@ -99,15 +99,7 @@ export default class GameScene extends Scene {
 		
 		const bartend = bartender.create({ scene: this, x: 570, y: 150 });
 		bartend.anims.play('bartender-tab', true);
-		gal.create({ scene: this, x: 150, y: 200, number: 1 }).anims.play('1-gal-hair', true);
-		gal.create({ scene: this, x: 150, y: 250, number: 1 }).anims.play('1-gal-drink', true);
-		gal.create({ scene: this, x: 200, y: 200, number: 2 }).anims.play('2-gal-hair', true);
-		gal.create({ scene: this, x: 200, y: 250, number: 2 }).anims.play('2-gal-drink', true);
-		gal.create({ scene: this, x: 250, y: 200, number: 3 }).anims.play('3-gal-hair', true);
-		gal.create({ scene: this, x: 250, y: 250, number: 3 }).anims.play('3-gal-drink', true);
-		gal.create({ scene: this, x: 300, y: 200, number: 4 }).anims.play('4-gal-hair', true);
-		gal.create({ scene: this, x: 300, y: 250, number: 4 }).anims.play('4-gal-drink', true);
-
+		
 		const music = this.sound.add('beerbearerbob');
 		music.play();
 
