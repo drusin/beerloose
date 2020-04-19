@@ -29,8 +29,8 @@ export function createPlayer() {
             const normalizedDirection = normalize2dVector(direction);
             this.sprite.setVelocityX(PLAYER_SPEED * normalizedDirection.x);
             this.sprite.setVelocityY(PLAYER_SPEED * normalizedDirection.y);
-            this.indicatorSprite.x = sprite.x;
-            this.indicatorSprite.y = sprite.y - 18;
+            this.indicatorSprite.x = this.sprite.x;
+            this.indicatorSprite.y = this.sprite.y - 18;
         },
     };
 }
