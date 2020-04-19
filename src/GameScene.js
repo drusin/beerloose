@@ -77,7 +77,7 @@ export default class GameScene extends Scene {
 		}
 
 		this.player.updateMovement({ keys: this.keys });
-		this.partyPeople.update();
+		this.partyPeople.update(delta);
 
 		this.discoShaderOffset = this.discoShaderOffset >= 360 ? 0 : this.discoShaderOffset + delta / 100;
 		discoBallHelper.changeAllDiscoBalls(this.shader, { [BALL_INPUTS.OFFSET]: this.discoShaderOffset });

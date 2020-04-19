@@ -18,9 +18,9 @@ export function createPartyPeople() {
                 partyPeople.push(dancer);
             }
         },
-        update: function () {
+        update: function (delta) {
             partyPeople.forEach(person => person.updateMovement());
-            partyPeople.forEach(person => person.updateAnimation());
+            partyPeople.forEach(person => person.updateAnimation(delta));
         },
     };
 }
