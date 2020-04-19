@@ -2,7 +2,7 @@ precision mediump float;
 uniform sampler2D uMainSampler;
 varying vec2 outTexCoord;
 
-const int MAX_DISCO_BALLS = 20;
+const int MAX_DISCO_BALLS = 10;
 
 //external input
 vec2 resolution = vec2(640, 480);
