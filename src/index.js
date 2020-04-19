@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 
 import GameScene from './GameScene';
-import PartyShaderTestScene from './PartyShaderTestScene';
+import MenuScene from './MenuScene'
 
 const config = {
 	type: Phaser.AUTO,
@@ -22,7 +22,7 @@ const config = {
 		default: 'arcade',
 		arcade: { debug: false }
 	},
-	scene: [GameScene, PartyShaderTestScene]
+	scene: [MenuScene, GameScene]
 };
 
 const GAME = new Phaser.Game(config);

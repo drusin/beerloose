@@ -7,6 +7,7 @@ import { createPartyPeople } from './party-people.js';
 import background_image from './assets/BasicBackground.png';
 import ShaderWrapper from './shaders/ShaderWrapper';
 import discoBallHelper, { BALL_INPUTS, BALL_DEFAULTS } from './shaders/discoBallHelper';
+import prefrences from './preferences';
 
 export const DANCEFLOOR_BOUNDING_BOX = { left: 100, right: 615, top: 45, bottom: 370 }
 
@@ -40,26 +41,11 @@ export default class GameScene extends Scene {
 	}
 
 	create() {
+		prefrences.persist();
+
 		this.shader = this.game.renderer.addPipeline('shader', new ShaderWrapper(this.game));
-		this.cameras.main.setRenderToTexture(this.shader);
-		// discoBallHelper.addDiscoBall(this.shader);
-		// discoBallHelper.addDiscoBall(this.shader);
-		// discoBallHelper.changeDiscoBall(this.shader, { [BALL_INPUTS.R]: 30 }, 1);
-		// discoBallHelper.addDiscoBall(this.shader);
-		// discoBallHelper.changeDiscoBall(this.shader, { [BALL_INPUTS.R]: 40 }, 2);
-		// discoBallHelper.addDiscoBall(this.shader);
-		// discoBallHelper.changeDiscoBall(this.shader, { [BALL_INPUTS.R]: 50 }, 3);
-		// discoBallHelper.addDiscoBall(this.shader);
-		// discoBallHelper.changeDiscoBall(this.shader, { [BALL_INPUTS.R]: 60 }, 4);
-		// discoBallHelper.addDiscoBall(this.shader);
-		// discoBallHelper.changeDiscoBall(this.shader, { [BALL_INPUTS.R]: 70 }, 5);
-		// discoBallHelper.addDiscoBall(this.shader);
-		// discoBallHelper.changeDiscoBall(this.shader, { [BALL_INPUTS.R]: 80 }, 6);
-		// discoBallHelper.addDiscoBall(this.shader);
-		// discoBallHelper.changeDiscoBall(this.shader, { [BALL_INPUTS.R]: 90 }, 7);
-
+		ShaderWrapper.addToCamera(this.shader, this.cameras.main);
 		this.createDiscoBall();
-
 		this.discoShaderOffset = 0;
 
 		this.add.image(0, 0, 'background').setOrigin(0, 0);
@@ -80,7 +66,7 @@ export default class GameScene extends Scene {
 		const music = this.sound.add('beerbearerbob');
 		music.play();
 
-		this.beer = new BeerBar(this, width - 64, height - 64);		// position on top right corner.
+		this.beer = new BeerBar(this, width - 64, height - 64);
 	}
 	
 	update(time, delta) {

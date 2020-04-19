@@ -1,3 +1,5 @@
+import preferences from '../preferences';
+
 const INPUTS = {
     POSITION: 'd_position',
     R: 'd_r',
@@ -48,6 +50,7 @@ class DiscoBallHelper {
     }
 
     _sendInputs(shader) {
+        if (!preferences.effects) { return; }
         const prepwork = {
             [INPUTS.POSITION]: [],
             [INPUTS.R]: [],
