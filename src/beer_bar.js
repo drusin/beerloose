@@ -9,7 +9,7 @@ export default class BeerBar {
 
         this.x = x;
         this.y = y;
-        
+
         this.amount = 100;
         
         scene.add.existing(this.bar);

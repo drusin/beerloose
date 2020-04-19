@@ -9,6 +9,7 @@ import ShaderWrapper from './shaders/ShaderWrapper';
 import discoBallHelper, { BALL_INPUTS, BALL_DEFAULTS } from './shaders/discoBallHelper';
 import prefrences from './preferences';
 import { createWomen } from './women.js';
+import MoodSlider from './mood_slider';
 
 export const DANCEFLOOR_BOUNDING_BOX = { left: 100, right: 615, top: 45, bottom: 370 }
 
@@ -31,6 +32,7 @@ export default class GameScene extends Scene {
 		preloadAllSprites({ scene: this });
 		this.load.audio('beerbearerbob', beerbearerbob);
 		BeerBar.assets(this.load);
+		MoodSlider.assets(this.load);
 	}
 
 	createDiscoBall() {
@@ -81,7 +83,8 @@ export default class GameScene extends Scene {
 		const music = this.sound.add('beerbearerbob');
 		music.play();
 
-		this.beer = new BeerBar(this, width - 64, height - 61);
+		this.beer = new BeerBar(this, width - 64, height - 68);
+		this.moodSlider = new MoodSlider(this, width * 0.5, height - 64);
 	}
 	
 	update(time, delta) {
