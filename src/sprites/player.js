@@ -25,7 +25,7 @@ export const player = {
         frames
     }), 
     create: ({ scene, x, y, sheet }) => {
-        return scene.physics.add.sprite(x, y, sheet);
+        return scene.physics.add.sprite(x, y, sheet).setScale(SPRITE_SCALE_FACTOR);
     }
 }    
     

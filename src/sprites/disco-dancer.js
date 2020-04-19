@@ -1,5 +1,5 @@
 import disco_dancer_png from './../assets/sprites/Disco.png';
-import { createSpriteObject } from './sprite-creator-factory';
+import { createSpriteObject, SPRITE_SCALE_FACTOR } from './sprite-creator-factory';
 
 const frames = {
     'disco-dancer-turn': { start: 0, end: 10 },
@@ -18,7 +18,7 @@ export const discoDancer = {
         frames
     }), 
     create: ({ scene, x, y }) => {
-        return scene.physics.add.sprite(x, y, 'disco-dancer-spritesheet').setOrigin(0, 0);
+        return scene.physics.add.sprite(x, y, 'disco-dancer-spritesheet').setOrigin(0, 0).setScale(SPRITE_SCALE_FACTOR);
     }
 }    
     

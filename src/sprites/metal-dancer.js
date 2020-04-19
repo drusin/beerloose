@@ -1,5 +1,5 @@
 import metal_dancer_png from './../assets/sprites/Metal.png';
-import { createSpriteObject } from './sprite-creator-factory';
+import { createSpriteObject, SPRITE_SCALE_FACTOR } from './sprite-creator-factory';
 
 const frames = {
     'metal-dancer-headbang': { start: 0, end: 8 },
@@ -17,7 +17,7 @@ export const metalDancer = {
         frames
     }), 
     create: ({ scene, x, y }) => {
-        return scene.physics.add.sprite(x, y, 'metal-dancer-spritesheet').setOrigin(0, 0);
+        return scene.physics.add.sprite(x, y, 'metal-dancer-spritesheet').setOrigin(0, 0).setScale(SPRITE_SCALE_FACTOR);
     }
 }    
     

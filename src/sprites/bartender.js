@@ -1,5 +1,5 @@
 import bartender_png from './../assets/sprites/Bartender.png';
-import { createSpriteObject } from './sprite-creator-factory';
+import { createSpriteObject, SPRITE_SCALE_FACTOR } from './sprite-creator-factory';
 
 const frames = {
     'bartender-tab': { start: 0, end: 15 },
@@ -21,7 +21,7 @@ export const bartender = {
         }
     }), 
     create: ({ scene, x, y }) => {
-        return scene.physics.add.sprite(x, y, 'bartender-spritesheet');
+        return scene.physics.add.sprite(x, y, 'bartender-spritesheet').setScale(SPRITE_SCALE_FACTOR);
     }
 }    
     

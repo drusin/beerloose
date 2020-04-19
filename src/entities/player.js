@@ -1,12 +1,13 @@
-import { player as playerSprite, indicator } from '../sprites';
+import { player as playerSprite, indicator, SPRITE_SCALE_FACTOR } from '../sprites';
 
 const PLAYER_SPEED = 100;
+const INDICATOR_OFFSET = 18 * SPRITE_SCALE_FACTOR;
 
 export function createPlayer() {
     return {
         sprite: {},
         createSprite: function({ scene, x, y }) {
-            this.indicatorSprite = indicator.create({ scene, x, y: (y - 18), sheet: 'indicator-spritesheet' });
+            this.indicatorSprite = indicator.create({ scene, x, y: (y - INDICATOR_OFFSET), sheet: 'indicator-spritesheet' });
             this.indicatorSprite.anims.play('indicator-player', true);
             this.sprite = playerSprite.create({ scene, x, y, sheet: 'player-two-beers-spritesheet' });
             this.sprite.anims.play('two_beers-player-drop', true);
@@ -34,7 +35,7 @@ export function createPlayer() {
             this.sprite.setVelocityX(PLAYER_SPEED * normalizedDirection.x);
             this.sprite.setVelocityY(PLAYER_SPEED * normalizedDirection.y);
             this.indicatorSprite.x = this.sprite.x;
-            this.indicatorSprite.y = this.sprite.y - 18;
+            this.indicatorSprite.y = this.sprite.y - INDICATOR_OFFSET;
         },
         handleCollisions({ partyPeople, physics }) {
             physics.overlap(

@@ -1,5 +1,5 @@
 import indicator_png from './../assets/sprites/Indicator.png';
-import { createSpriteObject } from './sprite-creator-factory';
+import { createSpriteObject, SPRITE_SCALE_FACTOR } from './sprite-creator-factory';
 
 const frames = {
     'indicator-player': { start: 0, end: 1 },
@@ -24,7 +24,7 @@ export const indicator = {
         }
     }), 
     create: ({ scene, x, y }) => {
-        return scene.physics.add.sprite(x, y, 'indicator-spritesheet');
+        return scene.physics.add.sprite(x, y, 'indicator-spritesheet').setScale(SPRITE_SCALE_FACTOR);
     }
 }    
     

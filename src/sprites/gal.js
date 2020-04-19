@@ -1,7 +1,7 @@
 import gal_1_png from './../assets/sprites/Gal-1.png';
 import gal_2_png from './../assets/sprites/Gal-2.png';
 import gal_3_png from './../assets/sprites/Gal-3.png';
-import { createSpriteObject } from './sprite-creator-factory';
+import { createSpriteObject, SPRITE_SCALE_FACTOR } from './sprite-creator-factory';
 
 const frames = {
     'gal-drink': { start: 0, end: 16 },
@@ -21,7 +21,7 @@ export const gal = {
         frames
     }), 
     create: ({ scene, x, y, number = 1 }) => {
-        return scene.physics.add.sprite(x, y, `gal${number}-spritesheet`);
+        return scene.physics.add.sprite(x, y, `gal${number}-spritesheet`).setScale(SPRITE_SCALE_FACTOR);
     }
 }    
     

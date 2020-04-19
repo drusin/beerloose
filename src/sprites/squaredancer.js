@@ -1,5 +1,5 @@
 import squaredancer_png from './../assets/sprites/Squaredance.png';
-import { createSpriteObject } from './sprite-creator-factory';
+import { createSpriteObject, SPRITE_SCALE_FACTOR } from './sprite-creator-factory';
 
 const frames = {
     'squaredancer-clap': { start: 0, end: 6 },
@@ -17,7 +17,7 @@ export const squaredancer = {
         frames,
     }), 
     create: ({ scene, x, y }) => {
-        return scene.physics.add.sprite(x, y, 'squaredancer-spritesheet').setOrigin(0, 0);
+        return scene.physics.add.sprite(x, y, 'squaredancer-spritesheet').setOrigin(0, 0).setScale(SPRITE_SCALE_FACTOR);
     }
 }    
     

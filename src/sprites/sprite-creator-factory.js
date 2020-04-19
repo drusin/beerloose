@@ -1,4 +1,5 @@
 export const DEFAULT_SPRITE_DIMENSIONS = { width: 16, height: 32 };
+export const SPRITE_SCALE_FACTOR = 2;
 
 export function createSpriteObject({ 
     spriteSheets, 
