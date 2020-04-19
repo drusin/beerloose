@@ -16,6 +16,8 @@ export function createPlayer() {
             this.sprite = playerSprite.create({ scene, x, y, sheet: 'player-two-beers-spritesheet' });
             this.sprite.anims.play('two_beers-player-drop', true);
             this.sprite.setInteractive();
+            this.sprite.setSize(6, 12, false);
+            this.sprite.setOffset(4, 16);
         },
         update: function({ delta, keys, partyPeople, physics, sfx, bartender }) {
             this.updateMovement({ keys });

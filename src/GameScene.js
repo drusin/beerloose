@@ -15,7 +15,7 @@ import { Sound } from './sfx.js';
 export const DANCEFLOOR_BOUNDING_BOX = { left: 150, right: 615, top: 45, bottom: 333 }
 
 const level1_non_traversable_objects = [
-	{ left: 0, right: 640, top: -20, bottom: 0 }, // top wall
+	{ left: 0, right: 640, top: -20, bottom: 22 }, // top wall
 	{ left: 0, right: 180, top: 385, bottom: 400 }, // bottom left 
 	{ left: 180, right: 270, top: 365, bottom: 400 }, // bottom mid
 	{ left: 270, right: 640, top: 380, bottom: 400 }, // bottom right
