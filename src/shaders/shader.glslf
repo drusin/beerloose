@@ -5,7 +5,7 @@ varying vec2 outTexCoord;
 //external input
 vec2 resolution = vec2(640, 480);
 
-//disco ball
+//disco ball input
 uniform vec2 d_position[100];
 uniform float d_r[100];
 uniform float d_amount[100];

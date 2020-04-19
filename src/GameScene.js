@@ -5,6 +5,7 @@ import beerbearerbob from './assets/music/beerbearerbop.ogg';
 import { createPlayer } from './entities/player.js';
 import { createPartyPeople } from './party-people.js';
 import background_image from './assets/BasicBackground.png';
+import ShaderWrapper from './shaders/ShaderWrapper';
 
 export default class GameScene extends Scene {
 	constructor() {
@@ -27,6 +28,9 @@ export default class GameScene extends Scene {
 	}
 
 	create() {
+		this.shader = this.game.renderer.addPipeline('shader', new ShaderWrapper(this.game));
+		this.cameras.main.setRenderToTexture(this.shader);
+
 		this.add.image(0, 0, 'background').setOrigin(0, 0);
 		createAnimationsForAllSprites({ scene: this });
 		this.keys = this.input.keyboard.addKeys("W,A,S,D,LEFT,UP,RIGHT,DOWN,SPACE,ENTER");
@@ -34,10 +38,6 @@ export default class GameScene extends Scene {
 
 		this.player.createSprite({ scene: this, x: 300, y: 100 });
 		this.partyPeople.initialize({ scene: this });
-
-		this._exampleDrops = this.physics.add.group();
-		this._examplePlayer = this.physics.add.image(500, 600);
-		this._examplePlayer.setInteractive();
 		
 		const bartend = bartender.create({ scene: this, x: 200, y: 150 });
 		bartend.anims.play('bartender-tab', true);
@@ -49,24 +49,12 @@ export default class GameScene extends Scene {
 		const music = this.sound.add('beerbearerbob');
 		music.play();
 
-		this.physics.add.overlap(this._examplePlayer, this._exampleDrops,
-			(...args) => args.filter(arg => arg !== this._examplePlayer).forEach(arg => arg.destroy())
-		);
-		
-		
-		this.input.setDraggable(this._examplePlayer);
-		this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
-			gameObject.x = dragX;
-			gameObject.y = dragY;
-		});
-
-		this.beer = new BeerBar(this, width - 64, 96);		// position on top right corner.
+		this.beer = new BeerBar(this, width - 64, height - 64);		// position on top right corner.
 	}
 	
 	update(time, delta) {
 		this._count += delta;
 		if (this._count > 800) {
-			this._exampleDrops.create(Math.floor(Math.random() * 800) + 100, 50).setVelocityY(300);
 			this.beer.decrease(1);
 			this._count -= 800;
 		}
