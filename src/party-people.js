@@ -13,7 +13,8 @@ export function createPartyPeople() {
                 const dancer = generateRandomDancer();
                 dancer.createSprite({
                     scene,
-                    ...generateRandomPositionOnDanceFloor(),
+                    x: (150 + (i%5) * 70),
+                    y: (100 + Math.floor(i/5) * 50) 
                 });
                 this.partyPeople.push(dancer);
             }
