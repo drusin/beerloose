@@ -2,18 +2,20 @@ precision mediump float;
 uniform sampler2D uMainSampler;
 varying vec2 outTexCoord;
 
+const int MAX_DISCO_BALLS = 20;
+
 //external input
 vec2 resolution = vec2(640, 480);
 
 //disco ball input
-uniform vec2 d_position[100];
-uniform float d_r[100];
-uniform float d_amount[100];
-uniform float d_length[100];
-uniform float d_width[100];
-uniform float d_offset[100];
-uniform float d_stretchX[100];
-uniform float d_stretchY[100];
+uniform vec2 d_position[MAX_DISCO_BALLS];
+uniform float d_r[MAX_DISCO_BALLS];
+uniform float d_amount[MAX_DISCO_BALLS];
+uniform float d_length[MAX_DISCO_BALLS];
+uniform float d_width[MAX_DISCO_BALLS];
+uniform float d_offset[MAX_DISCO_BALLS];
+uniform float d_stretchX[MAX_DISCO_BALLS];
+uniform float d_stretchY[MAX_DISCO_BALLS];
 
 bool shouldDraw(vec2 st, vec2 normPosition, float length, float spaceBetween, float amount, float offset) {
     float steps = floor(float(360) / amount);
@@ -39,7 +41,7 @@ vec3 discoBalls() {
     float resolutionRatio = resolution.x / resolution.y;
     vec3 sum = vec3(0);
 
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < MAX_DISCO_BALLS; i++) {
         vec2 st = vec2(gl_FragCoord.x / (resolution.x * (1.0 + d_stretchX[i])), gl_FragCoord.y / (resolution.y * resolutionRatio * (1.0 + d_stretchY[i])));
         vec2 normPosition = vec2(d_position[i].x / (resolution.x * (1.0 + d_stretchX[i])), d_position[i].y / (resolution.y * resolutionRatio * (1.0 + d_stretchY[i])));
         float normR = d_r[i] / resolution.x;

@@ -1,4 +1,4 @@
-const BALL_INPUTS = {
+const INPUTS = {
     POSITION: 'd_position',
     R: 'd_r',
     AMOUNT: 'd_amount',
@@ -9,20 +9,21 @@ const BALL_INPUTS = {
     STRETCH_Y: 'd_stretchY'
 };
 
-Object.freeze(BALL_INPUTS);
-export { BALL_INPUTS };
+Object.freeze(INPUTS);
+// export { INPUTS as BALL_INPUTS };
 
 const DEFAULTS = {
-    [BALL_INPUTS.POSITION]: [300, 200],
-    [BALL_INPUTS.R]: 50,
-    [BALL_INPUTS.AMOUNT]: 10,
-    [BALL_INPUTS.LENGTH]: 15,
-    [BALL_INPUTS.WIDTH]: 3,
-    [BALL_INPUTS.OFFSET]: 0,
-    [BALL_INPUTS.STRETCH_X]: 2,
-    [BALL_INPUTS.STRETCH_Y]: 0,
+    [INPUTS.POSITION]: [320, 300],
+    [INPUTS.R]: 20,
+    [INPUTS.AMOUNT]: 8,
+    [INPUTS.LENGTH]: 4,
+    [INPUTS.WIDTH]: 1,
+    [INPUTS.OFFSET]: 0,
+    [INPUTS.STRETCH_X]: 0.5,
+    [INPUTS.STRETCH_Y]: 0,
 };
 Object.freeze(DEFAULTS);
+export { INPUTS as BALL_INPUTS, DEFAULTS as BALL_DEFAULTS };
 
 class DiscoBallHelper {
     constructor() {
@@ -48,19 +49,19 @@ class DiscoBallHelper {
 
     _sendInputs(shader) {
         const prepwork = {
-            [BALL_INPUTS.POSITION]: [],
-            [BALL_INPUTS.R]: [],
-            [BALL_INPUTS.AMOUNT]: [],
-            [BALL_INPUTS.LENGTH]: [],
-            [BALL_INPUTS.WIDTH]: [],
-            [BALL_INPUTS.OFFSET]: [],
-            [BALL_INPUTS.STRETCH_X]: [],
-            [BALL_INPUTS.STRETCH_Y]: []
+            [INPUTS.POSITION]: [],
+            [INPUTS.R]: [],
+            [INPUTS.AMOUNT]: [],
+            [INPUTS.LENGTH]: [],
+            [INPUTS.WIDTH]: [],
+            [INPUTS.OFFSET]: [],
+            [INPUTS.STRETCH_X]: [],
+            [INPUTS.STRETCH_Y]: []
         }
 
         this.balls.forEach(ball => Object.keys(ball).forEach(key => prepwork[key].push(ball[key])));
 
-        const apply = (key, val) => key === BALL_INPUTS.POSITION ?
+        const apply = (key, val) => key === INPUTS.POSITION ?
             shader.setFloat2v(key, [].concat(...val)) :
             shader.setFloat1v(key, val);
 

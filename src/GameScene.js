@@ -6,6 +6,7 @@ import { createPlayer } from './entities/player.js';
 import { createPartyPeople } from './party-people.js';
 import background_image from './assets/BasicBackground.png';
 import ShaderWrapper from './shaders/ShaderWrapper';
+import discoBallHelper, { BALL_INPUTS, BALL_DEFAULTS } from './shaders/discoBallHelper';
 
 export const DANCEFLOOR_BOUNDING_BOX = { left: 100, right: 615, top: 45, bottom: 370 }
 
@@ -29,9 +30,37 @@ export default class GameScene extends Scene {
 		BeerBar.assets(this.load);
 	}
 
+	createDiscoBall() {
+		for (let i = 0; i < 10; i++) {
+			discoBallHelper.addDiscoBall(this.shader, {
+				[BALL_INPUTS.R]: BALL_DEFAULTS[BALL_INPUTS.R] + 20 * i,
+				[BALL_INPUTS.AMOUNT]: BALL_DEFAULTS[BALL_INPUTS.AMOUNT] + i
+			});
+		}
+	}
+
 	create() {
 		this.shader = this.game.renderer.addPipeline('shader', new ShaderWrapper(this.game));
 		this.cameras.main.setRenderToTexture(this.shader);
+		// discoBallHelper.addDiscoBall(this.shader);
+		// discoBallHelper.addDiscoBall(this.shader);
+		// discoBallHelper.changeDiscoBall(this.shader, { [BALL_INPUTS.R]: 30 }, 1);
+		// discoBallHelper.addDiscoBall(this.shader);
+		// discoBallHelper.changeDiscoBall(this.shader, { [BALL_INPUTS.R]: 40 }, 2);
+		// discoBallHelper.addDiscoBall(this.shader);
+		// discoBallHelper.changeDiscoBall(this.shader, { [BALL_INPUTS.R]: 50 }, 3);
+		// discoBallHelper.addDiscoBall(this.shader);
+		// discoBallHelper.changeDiscoBall(this.shader, { [BALL_INPUTS.R]: 60 }, 4);
+		// discoBallHelper.addDiscoBall(this.shader);
+		// discoBallHelper.changeDiscoBall(this.shader, { [BALL_INPUTS.R]: 70 }, 5);
+		// discoBallHelper.addDiscoBall(this.shader);
+		// discoBallHelper.changeDiscoBall(this.shader, { [BALL_INPUTS.R]: 80 }, 6);
+		// discoBallHelper.addDiscoBall(this.shader);
+		// discoBallHelper.changeDiscoBall(this.shader, { [BALL_INPUTS.R]: 90 }, 7);
+
+		this.createDiscoBall();
+
+		this.discoShaderOffset = 0;
 
 		this.add.image(0, 0, 'background').setOrigin(0, 0);
 		createAnimationsForAllSprites({ scene: this });
@@ -63,5 +92,8 @@ export default class GameScene extends Scene {
 
 		this.player.updateMovement({ keys: this.keys });
 		this.partyPeople.update();
+
+		this.discoShaderOffset = this.discoShaderOffset >= 360 ? 0 : this.discoShaderOffset + delta / 100;
+		discoBallHelper.changeAllDiscoBalls(this.shader, { [BALL_INPUTS.OFFSET]: this.discoShaderOffset });
 	}
 }
