@@ -22,7 +22,7 @@ const config = {
 		default: 'arcade',
 		arcade: { debug: false }
 	},
-	scene: [ GameScene]
+	scene: [MenuScene, GameScene]
 };
 
 const GAME = new Phaser.Game(config);
