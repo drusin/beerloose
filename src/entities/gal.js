@@ -28,8 +28,8 @@ export function createGal({ type }) {
             physics.overlap(
                 player.sprite,
                 this.sprite,
-                (left, right) => {
-                    console.log('detected collsision with woman: ' + type);
+                () => {
+                    player.beer.chug();
                 }
             );
         },

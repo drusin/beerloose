@@ -1,6 +1,6 @@
 import { Scene } from 'phaser';
-import BeerBar from './beer_bar';
 import { dj, bartender, preloadAllSprites, createAnimationsForAllSprites, dancefloor } from './sprites';
+import BeerBar, { Beer } from './beer_bar';
 import beerbearerbob from './assets/music/beerbearerbob.ogg';
 import { createPlayer } from './entities/player.js';
 import { createPartyPeople } from './party-people.js';
@@ -96,16 +96,18 @@ export default class GameScene extends Scene {
 		const music = this.sound.add('beerbearerbob');
 		music.play();
 
-		this.beer = new BeerBar(this, width - 64, height - 68);
+		this.beerBar = new BeerBar(this, width - 64, height - 68, this.player.beer);
 		this.moodSlider = new MoodSlider(this, width * 0.5, height - 64);
 	}
 	
 	update(time, delta) {
 		this._count += delta;
 		if (this._count > 800) {
-			this.beer.decrease(1);
+			this.player.beer.decrease(1);
 			this._count -= 800;
 		}
+
+		this.beerBar.draw();
 
 		this.player.update({ 
 			keys: this.keys, 
@@ -113,7 +115,6 @@ export default class GameScene extends Scene {
 			partyPeople: this.partyPeople, 
 			sfx: this.sfx,
 			bartender: this.bartender,
-			beer: this.beer,
 		});
 		this.partyPeople.update(delta);
 		this.women.update({ delta, player: this.player, physics: this.physics });
