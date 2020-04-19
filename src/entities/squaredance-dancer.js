@@ -5,7 +5,7 @@ const danceRoutine = {
     1: step(1000, 0, 0, 'squaredancer-clap'),
     2: step(2000, 0, 1, 'squaredancer-left-right'),
     3: step(1000, 0, 0, 'squaredancer-clap'),
-    4: step(2000, 0, -1, 'squaredancer-left-right'),
+    4: step(2000, 1, 0, 'squaredancer-left-right'),
     5: step(1000, 0, 0, 'squaredancer-clap'),
     6: step(2000, -1, 0, 'squaredancer-left-right'),
     7: step(1000, 0, 0, 'squaredancer-clap')
