@@ -21,7 +21,7 @@ export const gal = {
         frames
     }), 
     create: ({ scene, x, y, number = 1 }) => {
-        return scene.physics.add.sprite(x, y, `gal${number}-spritesheet`).setScale(SPRITE_SCALE_FACTOR);
+        return scene.physics.add.sprite(x, y, `gal${number}-spritesheet`).setOrigin(0, 0).setScale(SPRITE_SCALE_FACTOR);
     }
 }    
     

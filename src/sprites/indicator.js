@@ -24,7 +24,7 @@ export const indicator = {
         }
     }), 
     create: ({ scene, x, y }) => {
-        return scene.physics.add.sprite(x, y, 'indicator-spritesheet').setScale(SPRITE_SCALE_FACTOR);
+        return scene.physics.add.sprite(x, y, 'indicator-spritesheet').setOrigin(0, 0).setScale(SPRITE_SCALE_FACTOR);
     }
 }    
     
