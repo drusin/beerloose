@@ -1,4 +1,4 @@
-import { player as playerSprite } from '../sprites';
+import { player as playerSprite, indicator } from '../sprites';
 
 const PLAYER_SPEED = 100;
 
@@ -6,6 +6,8 @@ export function createPlayer() {
     return {
         sprite: {},
         createSprite: function({ scene, x, y }) {
+            this.indicatorSprite = indicator.create({ scene, x, y: (y - 18), sheet: 'indicator-spritesheet' });
+            this.indicatorSprite.anims.play('indicator-player', true);
             this.sprite = playerSprite.create({ scene, x, y, sheet: 'player-two-beers-spritesheet' });
             this.sprite.anims.play('two_beers-player-drop', true);
             this.sprite.setInteractive();
@@ -27,6 +29,8 @@ export function createPlayer() {
             const normalizedDirection = normalize2dVector(direction);
             this.sprite.setVelocityX(PLAYER_SPEED * normalizedDirection.x);
             this.sprite.setVelocityY(PLAYER_SPEED * normalizedDirection.y);
+            this.indicatorSprite.x = sprite.x;
+            this.indicatorSprite.y = sprite.y - 18;
         },
     };
 }
