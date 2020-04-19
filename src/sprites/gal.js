@@ -1,6 +1,7 @@
 import gal_1_png from './../assets/sprites/Gal-1.png';
 import gal_2_png from './../assets/sprites/Gal-2.png';
 import gal_3_png from './../assets/sprites/Gal-3.png';
+import gal_4_png from './../assets/sprites/Gal-4.png';
 import { createSpriteObject, SPRITE_SCALE_FACTOR } from './sprite-creator-factory';
 
 const frames = {
@@ -11,7 +12,8 @@ const frames = {
 const spriteSheets = {
     'gal1-spritesheet': { img: gal_1_png, prefix: '1' },
     'gal2-spritesheet': { img: gal_2_png, prefix: '2' },
-    'gal3-spritesheet': { img: gal_3_png, prefix: '3' }
+    'gal3-spritesheet': { img: gal_3_png, prefix: '3' },
+    'gal4-spritesheet': { img: gal_4_png, prefix: '4' }
 }
 
 export const gal = {
