@@ -1,10 +1,10 @@
-export const DEFAULT_SPRITE_DIMENSIONS = { wdith: 16, height: 32 };
+export const DEFAULT_SPRITE_DIMENSIONS = { width: 16, height: 32 };
 
 export function createSpriteObject({ 
     spriteSheets, 
     frames, 
     frameDimensions = {
-        frameWidth: DEFAULT_SPRITE_DIMENSIONS.wdith,
+        frameWidth: DEFAULT_SPRITE_DIMENSIONS.width,
         frameHeight: DEFAULT_SPRITE_DIMENSIONS.height,
     },
     frameRate = 15 

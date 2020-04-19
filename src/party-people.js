@@ -42,7 +42,7 @@ function generateRandomPositionOnDanceFloor() {
     return {
         x: generateRandomInteger({ 
             minInclusive: left, 
-            maxExclusive: right - DEFAULT_SPRITE_DIMENSIONS.wdith, 
+            maxExclusive: right - DEFAULT_SPRITE_DIMENSIONS.width, 
         }),
         y: generateRandomInteger({ 
             minInclusive: top - DEFAULT_SPRITE_DIMENSIONS.height, 
