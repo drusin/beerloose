@@ -12,7 +12,7 @@ import { createWomen } from './women.js';
 import MoodSlider from './mood_slider';
 import { Sound } from './sfx.js';
 
-export const DANCEFLOOR_BOUNDING_BOX = { left: 100, right: 615, top: 45, bottom: 370 }
+export const DANCEFLOOR_BOUNDING_BOX = { left: 150, right: 615, top: 45, bottom: 333 }
 
 const level1_non_traversable_objects = [
 	{ left: 0, right: 640, top: -20, bottom: 0 }, // top wall
