@@ -6,7 +6,7 @@ import { createPlayer } from './entities/player.js';
 import { createPartyPeople } from './party-people.js';
 import background_image from './assets/BasicBackground.png';
 import ShaderWrapper from './shaders/ShaderWrapper';
-import discoBallHelper, { BALL_INPUTS, BALL_DEFAULTS } from './shaders/discoBallHelper';
+import beamHelper, { BEAM_INPUTS, BEAM_DEFAULTS } from './shaders/beamHelper';
 import prefrences from './preferences';
 import { createWomen } from './women.js';
 import MoodSlider from './mood_slider';
@@ -51,15 +51,6 @@ export default class GameScene extends Scene {
 		this.sfx.preload();
 	}
 
-	createDiscoBall() {
-		for (let i = 0; i < 10; i++) {
-			discoBallHelper.addDiscoBall(this.shader, {
-				[BALL_INPUTS.R]: BALL_DEFAULTS[BALL_INPUTS.R] + 20 * i,
-				[BALL_INPUTS.AMOUNT]: BALL_DEFAULTS[BALL_INPUTS.AMOUNT] + i
-			});
-		}
-	}
-
 	createNonTraversableObjects() {
 		this.nonTraversable = level1_non_traversable_objects.map(
 			({ left, right, top, bottom }) => createStaticInvisibleBox({ physics: this.physics, left, right, top, bottom }));
@@ -73,8 +64,10 @@ export default class GameScene extends Scene {
 
 		this.shader = this.game.renderer.addPipeline('shader', new ShaderWrapper(this.game));
 		ShaderWrapper.addToCamera(this.shader, this.cameras.main);
-		this.createDiscoBall();
-		this.discoShaderOffset = 0;
+		beamHelper.addBeam(this.shader);
+		this.beamDirection = 1;
+		this.beamX = 100;
+		this.beamY = BEAM_DEFAULTS[BEAM_INPUTS.END][1];
 
 		this.add.image(0, 0, 'background').setOrigin(0, 0);
 		createAnimationsForAllSprites({ scene: this });
@@ -98,13 +91,8 @@ export default class GameScene extends Scene {
 
 		dj.create({ scene: this, x: 5, y: 70 }).anims.play('dj-play', true);
 		
-<<<<<<< Updated upstream
-		this.bartender = bartender.create({ scene: this, x: 570, y: 150 });
-		this.bartender.anims.play('bartender-tab', true);
-=======
 		const bartend = bartender.create({ scene: this, x: 570, y: 150 });
 		bartend.anims.play('bartender-tab', true);
->>>>>>> Stashed changes
 
 		const music = this.sound.add('beerbearerbob');
 		music.play();
@@ -131,8 +119,11 @@ export default class GameScene extends Scene {
 		this.partyPeople.update(delta);
 		this.women.update({ delta, player: this.player, physics: this.physics });
 
-		this.discoShaderOffset = this.discoShaderOffset >= 360 ? 0 : this.discoShaderOffset + delta / 100;
-		discoBallHelper.changeAllDiscoBalls(this.shader, { [BALL_INPUTS.OFFSET]: this.discoShaderOffset });
+		this.beamX += delta * this.beamDirection / 10;
+		if (this.beamX < 100 || this.beamX > 540) {
+			this.beamDirection = this.beamDirection * -1;
+		}
+		beamHelper.changeBeam(this.shader, { [BEAM_INPUTS.END]: [this.beamX, this.beamY] }, 0);
 	}
 }
 
