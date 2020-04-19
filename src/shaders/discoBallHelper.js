@@ -12,14 +12,13 @@ const INPUTS = {
 };
 
 Object.freeze(INPUTS);
-// export { INPUTS as BALL_INPUTS };
 
 const DEFAULTS = {
     [INPUTS.POSITION]: [320, 300],
     [INPUTS.R]: 20,
     [INPUTS.AMOUNT]: 8,
-    [INPUTS.LENGTH]: 4,
-    [INPUTS.WIDTH]: 1,
+    [INPUTS.LENGTH]: 3,
+    [INPUTS.WIDTH]: 5,
     [INPUTS.OFFSET]: 0,
     [INPUTS.STRETCH_X]: 0.5,
     [INPUTS.STRETCH_Y]: 0,

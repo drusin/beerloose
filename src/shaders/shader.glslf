@@ -3,6 +3,12 @@ uniform sampler2D uMainSampler;
 varying vec2 outTexCoord;
 
 const int MAX_DISCO_BALLS = 10;
+const float DISCO_BRIGHTNESS = 0.6;
+const float glow = 5.0;
+
+const vec4 DANCE_COORDS = vec4(136.0, 153.0, 496.0, 404.0);
+const float DANCE_GLOW = 1.6;
+const float DANCE_GLOW_SMOOTH = 15.0;
 
 //external input
 vec2 resolution = vec2(640, 480);
@@ -34,7 +40,12 @@ bool shouldDraw(vec2 st, vec2 normPosition, float length, float spaceBetween, fl
 vec3 doStuff(vec2 st, vec2 normPosition, float normR, float normWitdth, float length, float spaceBetween, float amount, float offset) {
     float dist = distance(st, normPosition);
     bool isCircle = dist < normR + normWitdth && dist > normR - normWitdth;
-    return vec3(isCircle && shouldDraw(st, normPosition, length, spaceBetween, amount, offset) ? 0.5 : 0.0);
+    bool shouldDraw = shouldDraw(st, normPosition, length, spaceBetween, amount, offset);
+    return vec3(isCircle && shouldDraw ?
+        DISCO_BRIGHTNESS 
+            * smoothstep(normR - normWitdth, normR - normWitdth + glow / resolution.x, dist) 
+            * smoothstep(normR + normWitdth, normR + normWitdth - glow / resolution.x, dist)
+       : 0.0);
 }
 
 vec3 discoBalls() {
@@ -54,7 +65,26 @@ vec3 discoBalls() {
     return sum;
 }
 
+vec3 dark() {
+    return vec3(gl_FragCoord.y > 95.0 ? 0.7 : 1.0);
+}
+
+vec3 danceMat() {
+    bool matches = gl_FragCoord.x > DANCE_COORDS.x - DANCE_GLOW_SMOOTH && gl_FragCoord.y > DANCE_COORDS.y - DANCE_GLOW_SMOOTH 
+            && gl_FragCoord.x < DANCE_COORDS.z + DANCE_GLOW_SMOOTH && gl_FragCoord.y < DANCE_COORDS.w + DANCE_GLOW_SMOOTH;
+    return vec3(matches ?
+        1.0 + (DANCE_GLOW -1.0) 
+            * smoothstep(DANCE_COORDS.x - DANCE_GLOW_SMOOTH, DANCE_COORDS.x, gl_FragCoord.x)
+            * smoothstep(DANCE_COORDS.y - DANCE_GLOW_SMOOTH, DANCE_COORDS.y, gl_FragCoord.y)
+            * smoothstep(DANCE_COORDS.z + DANCE_GLOW_SMOOTH, DANCE_COORDS.z, gl_FragCoord.x)
+            * smoothstep(DANCE_COORDS.w + DANCE_GLOW_SMOOTH, DANCE_COORDS.w, gl_FragCoord.y)
+        :1.0);
+}
+
 void main(void) {
     vec4 color = texture2D(uMainSampler, outTexCoord);
-    gl_FragColor = color + vec4(discoBalls(), 1.0);
+    gl_FragColor = color 
+        * vec4(dark(), 1.0) 
+        * vec4(danceMat(), 1.0)
+        + vec4(discoBalls(), 1.0);
 }

@@ -79,7 +79,7 @@ export default class GameScene extends Scene {
 		const music = this.sound.add('beerbearerbob');
 		music.play();
 
-		this.beer = new BeerBar(this, width - 64, height - 64);
+		this.beer = new BeerBar(this, width - 64, height - 61);
 	}
 	
 	update(time, delta) {
