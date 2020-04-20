@@ -84,18 +84,19 @@ export function Sound({ scene }) {
             scene.load.audio('beer-opening-2', beer_opening_2);
         },
         create: function () {
-            sounds.bumpIntoPerson1 = scene.sound.add('bump-into-person-1');
+            const badMicAdjustmentConfig = { volume: 2.5 }
+            sounds.bumpIntoPerson1 = scene.sound.add('bump-into-person-1', badMicAdjustmentConfig);
             sounds.bumpIntoPerson2 = scene.sound.add('bump-into-person-2');
             sounds.bumpIntoPerson3 = scene.sound.add('bump-into-person-3');
             sounds.bumpIntoPerson4 = scene.sound.add('bump-into-person-4');
             sounds.bumpIntoPerson5 = scene.sound.add('bump-into-person-5');
             sounds.bumpIntoPerson6 = scene.sound.add('bump-into-person-6');
             sounds.bumpIntoPerson7 = scene.sound.add('bump-into-person-7');
-            sounds.bumpIntoPerson8 = scene.sound.add('bump-into-person-8');
-            sounds.bumpIntoPerson9 = scene.sound.add('bump-into-person-9');
-            sounds.bumpIntoPerson10 = scene.sound.add('bump-into-person-10');
-            sounds.bumpIntoPerson11 = scene.sound.add('bump-into-person-11');
-            sounds.bumpIntoPerson12 = scene.sound.add('bump-into-person-12');
+            sounds.bumpIntoPerson8 = scene.sound.add('bump-into-person-8', badMicAdjustmentConfig);
+            sounds.bumpIntoPerson9 = scene.sound.add('bump-into-person-9', badMicAdjustmentConfig);
+            sounds.bumpIntoPerson10 = scene.sound.add('bump-into-person-10', badMicAdjustmentConfig);
+            sounds.bumpIntoPerson11 = scene.sound.add('bump-into-person-11', badMicAdjustmentConfig);
+            sounds.bumpIntoPerson12 = scene.sound.add('bump-into-person-12', badMicAdjustmentConfig);
             sounds.pouring1 = scene.sound.add('pouring-1');
             sounds.chatting1 = scene.sound.add('chatting-1', { loop: true });
             sounds.bartender2 = scene.sound.add('bartender-2');
