@@ -21,7 +21,7 @@ export function createSquaredanceDancer() {
     return {
         createSprite: function({ scene, x, y }) {
             this.sprite = squaredancer.create({ scene, x, y });
-            this.sprite.setSize(8, 16, false);
+            this.sprite.setSize(6, 12, false);
             this.sprite.setOffset(4, 16);
             this.danceStep = 0;
             this.delta_counter = 0;

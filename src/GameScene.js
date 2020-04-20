@@ -23,7 +23,7 @@ const level1_non_traversable_objects = [
 	{ left: 635, right: 640, top: 0, bottom: 480 }, // right
 	{ left: 65, right: 75, top: 95, bottom: 320 }, // dj right
 	{ left: 45, right: 75, top: 310, bottom: 320 }, // dj down
-	{ left: 0, right: 75, top: 95, bottom: 95 }, // dj top
+	{ left: 0, right: 75, top: 95, bottom: 120 }, // dj top
 	{ left: 590, right: 640, top: 176, bottom: 200 }, // bar
 ];
 

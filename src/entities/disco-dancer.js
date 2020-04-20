@@ -21,7 +21,7 @@ export function createDiscoDancer() {
     return {
         createSprite: function({ scene, x, y }) {
             this.sprite = discoDancer.create({ scene, x, y });
-            this.sprite.setSize(8, 16, false);
+            this.sprite.setSize(6, 12, false);
             this.sprite.setOffset(4, 16);
             this.danceStep = Math.floor(Math.random() * Object.keys(danceRoutine).length);
             this.delta_counter = 0;
