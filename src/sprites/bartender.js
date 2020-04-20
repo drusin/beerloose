@@ -23,6 +23,7 @@ export const bartender = {
     create: ({ scene, x, y }) => {
         let sprite = scene.physics.add.sprite(x, y, 'bartender-spritesheet').setOrigin(0, 0).setScale(SPRITE_SCALE_FACTOR);
         sprite.flipX = true;
+        sprite.setDepth(100 + sprite.y + 15); //manual correction
         return sprite;
     }
 }    

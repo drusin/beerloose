@@ -20,7 +20,9 @@ export const dj = {
         }
     }), 
     create: ({ scene, x, y }) => {
-        return scene.physics.add.sprite(x, y, 'dj-spritesheet').setOrigin(0, 0).setScale(SPRITE_SCALE_FACTOR);
+        const sprite = scene.physics.add.sprite(x, y, 'dj-spritesheet').setOrigin(0, 0).setScale(SPRITE_SCALE_FACTOR);
+        sprite.setDepth(100 + sprite.y + 15); //manual correction
+        return sprite;
     }
 }    
     

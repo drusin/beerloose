@@ -15,14 +15,16 @@ import { Sound } from './sfx.js';
 export const DANCEFLOOR_BOUNDING_BOX = { left: 150, right: 615, top: 45, bottom: 333 }
 
 const level1_non_traversable_objects = [
-	{ left: 0, right: 640, top: -20, bottom: 22 }, // top wall
+	{ left: 0, right: 640, top: 0, bottom: 25 }, // top wall
 	{ left: 0, right: 180, top: 385, bottom: 400 }, // bottom left 
 	{ left: 180, right: 270, top: 365, bottom: 400 }, // bottom mid
 	{ left: 270, right: 640, top: 380, bottom: 400 }, // bottom right
 	{ left: 0, right: 5, top: 0, bottom: 480 }, // left
 	{ left: 635, right: 640, top: 0, bottom: 480 }, // right
-	{ left: 60, right: 75, top: 90, bottom: 295 }, // dj right
-	{ left: 0, right: 75, top: 90, bottom: 95 }, // dj top
+	{ left: 65, right: 75, top: 95, bottom: 320 }, // dj right
+	{ left: 45, right: 75, top: 310, bottom: 320 }, // dj down
+	{ left: 0, right: 75, top: 95, bottom: 95 }, // dj top
+	{ left: 590, right: 640, top: 176, bottom: 200 }, // bar
 ];
 
 export default class GameScene extends Scene {
