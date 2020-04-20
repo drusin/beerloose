@@ -1,6 +1,8 @@
 class Preferences {
     constructor() {
         this.effects = true;
+        this.sfxVolume = 1;
+        this.musicVolume = 1;
     }
 
     persist() {

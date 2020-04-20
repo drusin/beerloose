@@ -38,6 +38,7 @@ import satisfied_customer_13 from './assets/sfx/satisfied-customer-13-bringmeAno
 import beer_opening_1 from './assets/sfx/beer-opening.ogg';
 import beer_opening_2 from './assets/sfx/beer-opening-2.ogg';
 import { randomItemFromArray } from './util.js';
+import preferences from './preferences';
 
 export function Sound({ scene }) {
     const sounds = {};
@@ -124,6 +125,10 @@ export function Sound({ scene }) {
             sounds.satisfied13 = scene.sound.add('satisfied-customer-13', badMicAdjustmentConfig(5));
             sounds.beerOpening1 = scene.sound.add('beer-opening-1');
             sounds.beerOpening2 = scene.sound.add('beer-opening-2');
+            this.adjustVolumeToPrefs();
+        },
+        adjustVolumeToPrefs() {
+            Object.values(sounds).forEach(sound => sound.volume *= preferences.sfxVolume);
         },
         bumpIntoPerson: function () {
             const choices = [

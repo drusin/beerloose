@@ -5,7 +5,6 @@ import { createPlayer } from './entities/player.js';
 import { createPartyPeople } from './party-people.js';
 import background_image from './assets/BasicBackground.png';
 import ShaderWrapper from './shaders/ShaderWrapper';
-import beamHelper, { BEAM_INPUTS, BEAM_DEFAULTS, centerOnSprite } from './shaders/beamHelper';
 import prefrences from './preferences';
 import { createWomen } from './women.js';
 import MoodSlider from './mood_slider';
@@ -65,8 +64,8 @@ export default class GameScene extends Scene {
 	}
 
 	create() {
-		this.sfx.create();
 		prefrences.persist();
+		this.sfx.create();
 
 		this.createNonTraversableObjects();
 
@@ -112,6 +111,8 @@ export default class GameScene extends Scene {
 			this.sound.add('beersong'),
 			this.sound.add('stayingalive'),
 		]
+		music.forEach(song => song.volume *= prefrences.musicVolume);
+
 		let currentTrackIndex = Math.floor(Math.random() * music.length);
 		
 		const playTrack = ({ trackIndex }) => {
