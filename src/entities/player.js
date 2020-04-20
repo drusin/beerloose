@@ -49,7 +49,7 @@ export function createPlayer() {
                 this.sprite,
                 partyPeople.partyPeople.map(p => p.sprite),
                 (left, right) => {
-                    if (timeSinceLastCollisionWithDancer > 2000) {
+                    if (timeSinceLastCollisionWithDancer > 500) {
                         const dir = this.sprite.body.velocity.x > 0 ? -1 : 1;
                         this.sprite.setVelocityX(dir * 1500);
                         sfx.bumpIntoPerson();
