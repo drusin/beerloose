@@ -98,7 +98,7 @@ export default class GameScene extends Scene {
 		this.bartender = bartender.create({ scene: this, x: 570, y: 150 });
 		this.bartender.anims.play('bartender-tab', true);
 
-		// this.startEndlessLoopOfBackgroundMusic();
+		this.startEndlessLoopOfBackgroundMusic();
 		this.sfx.indistinctChattingLoop();
 
 		this.beerBar = new BeerBar(this, width - 64, height - 68, this.player.beer);
