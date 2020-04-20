@@ -1,5 +1,15 @@
 import bump_into_persons_1b from './assets/sfx/bump-into-persons-1b.ogg';
 import pouring_1 from './assets/sfx/pouring-1.ogg';
+import bartender_2 from './assets/sfx/bartender-2-easyBoy.ogg';
+import bartender_3 from './assets/sfx/bartender-3-thisOneIsForYouPal.ogg';
+import bartender_4 from './assets/sfx/bartender-4-thisOneIsForYouMate.ogg';
+import bartender_5 from './assets/sfx/bartender-5-youAreThirsty.ogg';
+import bartender_6 from './assets/sfx/bartender-6-wowYouAreThirsty.ogg';
+import bartender_7 from './assets/sfx/bartender-7-niceToSeeYouAgain.ogg';
+import bartender_8 from './assets/sfx/bartender-8-oneTheHouse.ogg';
+import bartender_9 from './assets/sfx/bartender-9-heyBob.ogg';
+import bartender_10 from './assets/sfx/bartender-10-howisItGoingbob.ogg';
+import bartender_11 from './assets/sfx/bartender-11-hangInTherePally.ogg';
 import satisfied_customer_1 from './assets/sfx/satisfied-customer-1.ogg';
 import satisfied_customer_2 from './assets/sfx/satisfied-customer-2-merci.ogg';
 import satisfied_customer_3 from './assets/sfx/satisfied-customer-3-idtakeanotherone.ogg';
@@ -23,6 +33,16 @@ export function Sound({ scene }) {
         preload: function () {
             scene.load.audio('bump-into-person-1', bump_into_persons_1b);
             scene.load.audio('pouring-1', pouring_1);
+            scene.load.audio('bartender-2', bartender_2);
+            scene.load.audio('bartender-3', bartender_3);
+            scene.load.audio('bartender-4', bartender_4);
+            scene.load.audio('bartender-5', bartender_5);
+            scene.load.audio('bartender-6', bartender_6);
+            scene.load.audio('bartender-7', bartender_7);
+            scene.load.audio('bartender-8', bartender_8);
+            scene.load.audio('bartender-9', bartender_9);
+            scene.load.audio('bartender-10', bartender_10);
+            scene.load.audio('bartender-11', bartender_11);
             scene.load.audio('satisfied-customer-1', satisfied_customer_1);
             scene.load.audio('satisfied-customer-2', satisfied_customer_2);
             scene.load.audio('satisfied-customer-3', satisfied_customer_3);
@@ -42,6 +62,16 @@ export function Sound({ scene }) {
         create: function () {
             sounds.bumpIntoPerson1 = scene.sound.add('bump-into-person-1');
             sounds.pouring1 = scene.sound.add('pouring-1');
+            sounds.bartender2 = scene.sound.add('bartender-2');
+            sounds.bartender3 = scene.sound.add('bartender-3');
+            sounds.bartender4 = scene.sound.add('bartender-4');
+            sounds.bartender5 = scene.sound.add('bartender-5');
+            sounds.bartender6 = scene.sound.add('bartender-6');
+            sounds.bartender7 = scene.sound.add('bartender-7');
+            sounds.bartender8 = scene.sound.add('bartender-8');
+            sounds.bartender9 = scene.sound.add('bartender-9');
+            sounds.bartender10 = scene.sound.add('bartender-10');
+            sounds.bartender11 = scene.sound.add('bartender-11');
             sounds.satisfied1 = scene.sound.add('satisfied-customer-1');
             sounds.satisfied2 = scene.sound.add('satisfied-customer-2');
             sounds.satisfied3 = scene.sound.add('satisfied-customer-3');
@@ -87,7 +117,20 @@ export function Sound({ scene }) {
             return playRandomSound({ choices });
         },
         beerOpening: function() {
-            const choices = [sounds.beerOpening1, sounds.beerOpening2];
+            const choices = [
+                sounds.beerOpening1, 
+                sounds.beerOpening2,
+                sounds.bartender2,
+                sounds.bartender3,
+                sounds.bartender4,
+                sounds.bartender5,
+                sounds.bartender6,
+                sounds.bartender7,
+                sounds.bartender8,
+                sounds.bartender9,
+                sounds.bartender10,
+                sounds.bartender11,
+            ];
             return playRandomSound({ choices });
         },
     };
