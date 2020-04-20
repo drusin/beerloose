@@ -52,10 +52,10 @@ export function Sound({ scene }) {
             scene.load.audio('satisfied-customer-7', satisfied_customer_7);
             scene.load.audio('satisfied-customer-8', satisfied_customer_8);
             scene.load.audio('satisfied-customer-9', satisfied_customer_9);
-            scene.load.audio('satisfied-customer-10', satisfied_customer_10, { volume: 1.5 });
-            scene.load.audio('satisfied-customer-11', satisfied_customer_11, { volume: 1.5 });
-            scene.load.audio('satisfied-customer-12', satisfied_customer_12, { volume: 1.5 });
-            scene.load.audio('satisfied-customer-13', satisfied_customer_13, { volume: 1.5 });
+            scene.load.audio('satisfied-customer-10', satisfied_customer_10);
+            scene.load.audio('satisfied-customer-11', satisfied_customer_11);
+            scene.load.audio('satisfied-customer-12', satisfied_customer_12);
+            scene.load.audio('satisfied-customer-13', satisfied_customer_13);
             scene.load.audio('beer-opening-1', beer_opening_1);
             scene.load.audio('beer-opening-2', beer_opening_2);
         },
@@ -81,10 +81,10 @@ export function Sound({ scene }) {
             sounds.satisfied7 = scene.sound.add('satisfied-customer-7');
             sounds.satisfied8 = scene.sound.add('satisfied-customer-8');
             sounds.satisfied9 = scene.sound.add('satisfied-customer-9');
-            sounds.satisfied10 = scene.sound.add('satisfied-customer-10');
-            sounds.satisfied11 = scene.sound.add('satisfied-customer-11');
-            sounds.satisfied12 = scene.sound.add('satisfied-customer-12');
-            sounds.satisfied13 = scene.sound.add('satisfied-customer-13');
+            sounds.satisfied10 = scene.sound.add('satisfied-customer-10', { volume: 3 });
+            sounds.satisfied11 = scene.sound.add('satisfied-customer-11', { volume: 3 });
+            sounds.satisfied12 = scene.sound.add('satisfied-customer-12', { volume: 3 });
+            sounds.satisfied13 = scene.sound.add('satisfied-customer-13', { volume: 3 });
             sounds.beerOpening1 = scene.sound.add('beer-opening-1');
             sounds.beerOpening2 = scene.sound.add('beer-opening-2');
         },

@@ -18,7 +18,7 @@ Object.freeze(INPUTS);
 const DEFAULTS = {
     [INPUTS.START]: [320, projectY(-50)],
     [INPUTS.END]: [320, projectY(200)],
-    [INPUTS.COLOR]: [1, 1, 1]
+    [INPUTS.COLOR]: [0.6, 0.6, 0.6]
 };
 Object.freeze(DEFAULTS);
 export { INPUTS as BEAM_INPUTS, DEFAULTS as BEAM_DEFAULTS };
