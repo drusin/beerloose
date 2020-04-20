@@ -1,4 +1,15 @@
-import bump_into_persons_1b from './assets/sfx/bump-into-persons-1b.ogg';
+import bump_into_persons_1 from './assets/sfx/bump-into-persons-1-eyy-harsh.ogg';
+import bump_into_persons_2 from './assets/sfx/aiii my foot.ogg';
+import bump_into_persons_3 from './assets/sfx/hmm.ogg';
+import bump_into_persons_4 from './assets/sfx/ouch.ogg';
+import bump_into_persons_5 from './assets/sfx/scusi.ogg';
+import bump_into_persons_6 from './assets/sfx/watch out partner.ogg';
+import bump_into_persons_7 from './assets/sfx/yo man.ogg';
+import bump_into_persons_8 from './assets/sfx/bump-into-persons-8-eyy.ogg';
+import bump_into_persons_9 from './assets/sfx/bump-into-persons-9-notCoolMan.ogg';
+import bump_into_persons_10 from './assets/sfx/bump-into-persons-10-heyBoyWatchOut.ogg';
+import bump_into_persons_11 from './assets/sfx/bump-into-persons-11-heey.ogg';
+import bump_into_persons_12 from './assets/sfx/bump-into-persons-12-whatAreYouDoingMan.ogg';
 import pouring_1 from './assets/sfx/pouring-1.ogg';
 import bartender_2 from './assets/sfx/bartender-2-easyBoy.ogg';
 import bartender_3 from './assets/sfx/bartender-3-thisOneIsForYouPal.ogg';
@@ -31,7 +42,18 @@ export function Sound({ scene }) {
     const sounds = {};
     return {
         preload: function () {
-            scene.load.audio('bump-into-person-1', bump_into_persons_1b);
+            scene.load.audio('bump-into-person-1', bump_into_persons_1);
+            scene.load.audio('bump-into-person-2', bump_into_persons_2);
+            scene.load.audio('bump-into-person-3', bump_into_persons_3);
+            scene.load.audio('bump-into-person-4', bump_into_persons_4);
+            scene.load.audio('bump-into-person-5', bump_into_persons_5);
+            scene.load.audio('bump-into-person-6', bump_into_persons_6);
+            scene.load.audio('bump-into-person-7', bump_into_persons_7);
+            scene.load.audio('bump-into-person-8', bump_into_persons_8);
+            scene.load.audio('bump-into-person-9', bump_into_persons_9);
+            scene.load.audio('bump-into-person-10', bump_into_persons_10);
+            scene.load.audio('bump-into-person-11', bump_into_persons_11);
+            scene.load.audio('bump-into-person-12', bump_into_persons_12);
             scene.load.audio('pouring-1', pouring_1);
             scene.load.audio('bartender-2', bartender_2);
             scene.load.audio('bartender-3', bartender_3);
@@ -61,6 +83,17 @@ export function Sound({ scene }) {
         },
         create: function () {
             sounds.bumpIntoPerson1 = scene.sound.add('bump-into-person-1');
+            sounds.bumpIntoPerson2 = scene.sound.add('bump-into-person-2');
+            sounds.bumpIntoPerson3 = scene.sound.add('bump-into-person-3');
+            sounds.bumpIntoPerson4 = scene.sound.add('bump-into-person-4');
+            sounds.bumpIntoPerson5 = scene.sound.add('bump-into-person-5');
+            sounds.bumpIntoPerson6 = scene.sound.add('bump-into-person-6');
+            sounds.bumpIntoPerson7 = scene.sound.add('bump-into-person-7');
+            sounds.bumpIntoPerson8 = scene.sound.add('bump-into-person-8');
+            sounds.bumpIntoPerson9 = scene.sound.add('bump-into-person-9');
+            sounds.bumpIntoPerson10 = scene.sound.add('bump-into-person-10');
+            sounds.bumpIntoPerson11 = scene.sound.add('bump-into-person-11');
+            sounds.bumpIntoPerson12 = scene.sound.add('bump-into-person-12');
             sounds.pouring1 = scene.sound.add('pouring-1');
             sounds.bartender2 = scene.sound.add('bartender-2');
             sounds.bartender3 = scene.sound.add('bartender-3');
@@ -89,7 +122,20 @@ export function Sound({ scene }) {
             sounds.beerOpening2 = scene.sound.add('beer-opening-2');
         },
         bumpIntoPerson: function () {
-            const choices = [sounds.bumpIntoPerson1];
+            const choices = [
+                sounds.bumpIntoPerson1,
+                sounds.bumpIntoPerson2,
+                sounds.bumpIntoPerson3,
+                sounds.bumpIntoPerson4,
+                sounds.bumpIntoPerson5,
+                sounds.bumpIntoPerson6,
+                sounds.bumpIntoPerson7,
+                sounds.bumpIntoPerson8,
+                sounds.bumpIntoPerson9,
+                sounds.bumpIntoPerson10,
+                sounds.bumpIntoPerson11,
+                sounds.bumpIntoPerson12,
+            ];
             return playRandomSound({ choices });
         },
         pouringBeer: function() {
