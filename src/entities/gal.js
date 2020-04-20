@@ -23,6 +23,8 @@ export function createGal({ type, escapeRoute = {} }) {
             this.delta_counter = 0;
             this.escapeStep = 0;
             this.sprite.anims.play(`${type}-gal-hair`, true).setOrigin(0, 0);
+            this.sprite.setSize(6, 12, false);
+            this.sprite.setOffset(4, 16);
             happiness += Math.floor(20 * Math.random());
         },
         updateMovement({ physics }) {
