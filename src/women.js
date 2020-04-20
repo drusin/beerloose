@@ -64,6 +64,9 @@ export function createWomen() {
         },
         getTotalHappiness() {
             return women.reduce((acc, woman) => acc += woman.getHappiness(), 0) / women.length;
+        },
+        getTotalAmount() {
+            return women.reduce((acc, woman) => acc += woman.getTotalAmount(), 0);
         }
     };
 }

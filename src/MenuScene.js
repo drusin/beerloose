@@ -2,6 +2,7 @@ import { Scene } from 'phaser';
 import preferences from './preferences';
 import GameScene from './GameScene';
 import logo from './assets/logo_stroke_2-11.png';
+import IntroScene from './IntroScene';
 
 export default class MenuScene extends Scene {
     static get KEY() {
@@ -22,7 +23,7 @@ export default class MenuScene extends Scene {
         preferences.load();
         this.startButton = this.add.text(300, 200, 'Start')
             .setInteractive()
-            .on('pointerdown', () => this.scene.start(GameScene.KEY));
+            .on('pointerdown', () => this.scene.start(IntroScene.KEY));
 
         this.effectsButton = this.add.text(250, 250, this.effectsText)
             .setInteractive()
@@ -56,6 +57,7 @@ export default class MenuScene extends Scene {
 
     setMusic(amount) {
         preferences.musicVolume += amount;
+        preferences.musicVolume = Math.min(100, Math.max(0, preferences.musicVolume));
         this.musicLabel.setText(this.musicText);
     }
 
@@ -69,6 +71,7 @@ export default class MenuScene extends Scene {
 
     setSfx(amount) {
         preferences.sfxVolume += amount;
+        preferences.sfxVolume = Math.min(100, Math.max(0, preferences.sfxVolume));
         this.sfxLabel.setText(this.sfxText);
     }
 }

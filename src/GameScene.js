@@ -15,6 +15,7 @@ import LightBeams from './lightBeams';
 import beerbearerbob from './assets/music/beerbearerbob.ogg';
 import beersong from './assets/music/beersong.ogg';
 import stayingalive from './assets/music/Staying_Alive_Ableton2.ogg';
+import HighscoreScene from './HighscoreScene';
 
 export const DANCEFLOOR_BOUNDING_BOX = { left: 150, right: 615, top: 45, bottom: 333 }
 
@@ -155,6 +156,14 @@ export default class GameScene extends Scene {
 		});
 
 		this.lightBeams.update(delta, this.player.sprite.body);
+
+		this.checkEndCondition()
+	}
+
+	checkEndCondition() {
+		if (this.women.getTotalHappiness() <= 0) {
+			setTimeout(() => this.scene.start(HighscoreScene.KEY), 5000);
+		}
 	}
 }
 

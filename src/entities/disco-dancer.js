@@ -1,13 +1,13 @@
 import { discoDancer } from '../sprites';
 
 const danceRoutine = {
-    0: step(2000, -1, 1, 'disco-dancer-up-down'),
+    0: step(1500, -1, 1, 'disco-dancer-up-down'),
     1: step(1000, 0, 0, 'disco-dancer-turn'),
-    2: step(2000, 1, -1, 'disco-dancer-up-down'),
+    2: step(1500, 1, -1, 'disco-dancer-up-down'),
     3: step(1000, 0, 0, 'disco-dancer-turn'),
-    4: step(2000, -1, -1, 'disco-dancer-up-down'),
+    4: step(1500, -1, -1, 'disco-dancer-up-down'),
     5: step(1000, 0, 0, 'disco-dancer-turn'),
-    6: step(2000, 1, 1, 'disco-dancer-up-down'),
+    6: step(1500, 1, 1, 'disco-dancer-up-down'),
     7: step(1000, 0, 0, 'disco-dancer-turn'),
 }
 
