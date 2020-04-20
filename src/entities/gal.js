@@ -33,7 +33,7 @@ export function createGal({ type, escapeRoute = {} }) {
             }            
             if (escapeRoute[this.escapeStep]) {
                 this.delta_counter = 0;
-                if ((escapeRoute[this.escapeStep].destX - this.sprite.body.x) < 5 && (escapeRoute[this.escapeStep].destY - this.sprite.body.y) < 5) {
+                if (Math.abs(escapeRoute[this.escapeStep].destX - this.sprite.body.x) < 16 && Math.abs(escapeRoute[this.escapeStep].destY - this.sprite.body.y) < 48) {
                     this.sprite.setVelocityX(0);
                     this.sprite.setVelocityY(0);
                     this.indicatorSprite.setVelocityX(0);

@@ -17,8 +17,8 @@ export function createWomen() {
                 x: 20,
                 y: 130,
                 escapeRoute: {
-                    0: step(10, 310, '1-gal-leave'),
-                    1: step(210, 310, '1-gal-leave'),
+                    0: step(10, 380, '1-gal-leave'),
+                    1: step(210, 320, '1-gal-leave'),
                     2: step(210, 600, '1-gal-leave')
                 }
             }));
