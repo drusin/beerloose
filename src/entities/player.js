@@ -13,8 +13,8 @@ export function createPlayer() {
             this.indicatorSprite = indicator.create({ scene, x, y: (y - INDICATOR_OFFSET), sheet: 'indicator-spritesheet' });
             this.indicatorSprite.anims.play('indicator-player', true);
             this.indicatorSprite.setDepth(1000);
-            this.sprite = playerSprite.create({ scene, x, y, sheet: 'player-two-beers-spritesheet' });
-            this.sprite.anims.play('two_beers-player-walking', true);
+            this.sprite = playerSprite.create({ scene, x, y, sheet: 'player-spritesheet' });
+            this.sprite.anims.play('beer-player-idle', true);
             this.sprite.setInteractive();
             this.sprite.setSize(6, 12, false);
             this.sprite.setOffset(4, 16);
@@ -43,6 +43,12 @@ export function createPlayer() {
             this.indicatorSprite.x = this.sprite.x;
             this.indicatorSprite.y = this.sprite.y - INDICATOR_OFFSET;
             this.sprite.setDepth(100 + this.sprite.y);
+            const prefix = this.beer.amount > 0 ? 'beer' : 'no-beer';
+            if ( !this.sprite.body.velocity.x && !this.sprite.body.velocity.y ) {
+                this.sprite.anims.play(prefix + '-player-idle', true);
+            } else {
+                this.sprite.anims.play(prefix + '-player-walking', true);
+            }
             this.sprite.flipX = this.sprite.body.velocity.x < 0;
         },
         handleCollisions({ delta, partyPeople, physics, sfx, bartender }) {
