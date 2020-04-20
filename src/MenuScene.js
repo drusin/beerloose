@@ -23,27 +23,40 @@ export default class MenuScene extends Scene {
         preferences.load();
         this.startButton = this.add.text(300, 200, 'Start')
             .setInteractive()
-            .on('pointerdown', () => this.scene.start(IntroScene.KEY));
+            .on('pointerdown', () => this.scene.start(preferences.skipTutorial ? GameScene.KEY : IntroScene.KEY));
 
-        this.effectsButton = this.add.text(250, 250, this.effectsText)
+        this.tutorialButton = this.add.text(250, 250, this.tutorialText)
+            .setInteractive()
+            .on('pointerdown', () => this.toggleTutorial());
+
+        this.effectsButton = this.add.text(250, 280, this.effectsText)
             .setInteractive()
             .on('pointerdown', () => this.toggleVisualEffects());
 
-        this.musicMinusButton = this.add.text(230, 280, '-')
+        this.musicMinusButton = this.add.text(230, 310, '-')
             .setInteractive()
             .on('pointerdown', () => this.setMusic(-10));
-        this.musicLabel = this.add.text(250, 280, this.musicText);
-        this.musicPlusButton = this.add.text(430, 280, '+')
+        this.musicLabel = this.add.text(250, 310, this.musicText);
+        this.musicPlusButton = this.add.text(430, 310, '+')
             .setInteractive()
             .on('pointerdown', () => this.setMusic(10));
 
-        this.sfxMinusButton = this.add.text(230, 310, '-')
+        this.sfxMinusButton = this.add.text(230, 340, '-')
             .setInteractive()
             .on('pointerdown', () => this.setSfx(-10));
-        this.sfxLabel = this.add.text(250, 310, this.sfxText);
-        this.sfxPlusButton = this.add.text(430, 310, '+')
+        this.sfxLabel = this.add.text(250, 340, this.sfxText);
+        this.sfxPlusButton = this.add.text(430, 340, '+')
             .setInteractive()
             .on('pointerdown', () => this.setSfx(10));
+    }
+
+    get tutorialText() {
+        return preferences.skipTutorial ? 'Skip tutorial (ON)' : 'Skip tutorial (OFF)'
+    }
+
+    toggleTutorial() {
+        preferences.skipTutorial = !preferences.skipTutorial;
+        this.tutorialButton.text = this.tutorialText;
     }
 
     get effectsText() {

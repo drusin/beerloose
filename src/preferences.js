@@ -3,6 +3,7 @@ class Preferences {
         this.effects = true;
         this.sfxVolume = 100;
         this.musicVolume = 50;
+        this.skipTutorial = false;
     }
 
     persist() {
