@@ -111,7 +111,7 @@ export default class GameScene extends Scene {
 			this.sound.add('beersong'),
 			this.sound.add('stayingalive'),
 		]
-		music.forEach(song => song.volume *= prefrences.musicVolume);
+		music.forEach(song => song.volume *= prefrences.musicVolume / 100);
 
 		let currentTrackIndex = Math.floor(Math.random() * music.length);
 		

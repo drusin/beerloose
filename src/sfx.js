@@ -128,7 +128,7 @@ export function Sound({ scene }) {
             this.adjustVolumeToPrefs();
         },
         adjustVolumeToPrefs() {
-            Object.values(sounds).forEach(sound => sound.volume *= preferences.sfxVolume);
+            Object.values(sounds).forEach(sound => sound.volume *= preferences.sfxVolume / 100);
         },
         bumpIntoPerson: function () {
             const choices = [
