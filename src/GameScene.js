@@ -1,7 +1,6 @@
 import { Scene } from 'phaser';
 import { dj, bartender, preloadAllSprites, createAnimationsForAllSprites, dancefloor } from './sprites';
 import BeerBar, { Beer } from './beer_bar';
-import beerbearerbob from './assets/music/beerbearerbob.ogg';
 import { createPlayer } from './entities/player.js';
 import { createPartyPeople } from './party-people.js';
 import background_image from './assets/BasicBackground.png';
@@ -12,6 +11,10 @@ import { createWomen } from './women.js';
 import MoodSlider from './mood_slider';
 import { Sound } from './sfx.js';
 import LightBeams from './lightBeams';
+
+import beerbearerbob from './assets/music/beerbearerbob.ogg';
+import beersong from './assets/music/beersong.ogg';
+import stayingalive from './assets/music/Staying_Alive_Ableton2.ogg';
 
 export const DANCEFLOOR_BOUNDING_BOX = { left: 150, right: 615, top: 45, bottom: 333 }
 
@@ -49,6 +52,8 @@ export default class GameScene extends Scene {
 		this.load.image('background', background_image);
 		preloadAllSprites({ scene: this });
 		this.load.audio('beerbearerbob', beerbearerbob);
+		this.load.audio('beersong', beersong);
+		this.load.audio('stayingalive', stayingalive);
 		BeerBar.assets(this.load);
 		MoodSlider.assets(this.load);
 		this.sfx.preload();
@@ -94,8 +99,11 @@ export default class GameScene extends Scene {
 		this.bartender = bartender.create({ scene: this, x: 570, y: 150 });
 		this.bartender.anims.play('bartender-tab', true);
 
-		const music = this.sound.add('beerbearerbob');
-		music.play();
+		const music = [
+			this.sound.add('beerbearerbob'),
+			this.sound.add('beersong'),
+			this.sound.add('stayingalive')]
+		music[1].play();
 
 		this.beerBar = new BeerBar(this, width - 64, height - 68, this.player.beer);
 		this.moodSlider = new MoodSlider(this, width * 0.5, height - 64);

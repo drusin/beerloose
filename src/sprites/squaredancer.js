@@ -4,6 +4,7 @@ import { createSpriteObject, SPRITE_SCALE_FACTOR } from './sprite-creator-factor
 const frames = {
     'squaredancer-clap': { start: 0, end: 6 },
     'squaredancer-left-right': { start: 6, end: 14 },
+    'squaredancer-walking': { start: 15, end: 19 },
 }
 
 const spriteSheets = {

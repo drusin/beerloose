@@ -44,7 +44,7 @@ export function createSquaredanceDancer() {
                     this.nextStep = undefined;
                 }
                 else {
-                    this.sprite.anims.play('squaredancer-left-right', true);
+                    this.sprite.anims.play('squaredancer-walking', true);
                     this.sprite.flipX = this.sprite.body.velocity.x < 0;
                     physics.moveTo(this.sprite, this.nextStep.destX, this.nextStep.destY, baseSpeed);
                 }
