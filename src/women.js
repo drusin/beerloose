@@ -57,11 +57,14 @@ export function createWomen() {
                 }
             }));
         },
-        update: function ({ delta, player, physics, sfx }) {
+        update({ delta, player, physics, sfx }) {
             women.forEach(person => person.updateMovement({ physics }));
             women.forEach(person => person.updateAnimation({ delta }));
             women.forEach(person => person.handleCollisions({ physics, player, sfx }));
         },
+        getTotalHappiness() {
+            return women.reduce((acc, woman) => acc += woman.getHappiness(), 0) / women.length;
+        }
     };
 }
 

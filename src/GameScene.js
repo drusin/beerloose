@@ -102,7 +102,7 @@ export default class GameScene extends Scene {
 		this.sfx.indistinctChattingLoop();
 
 		this.beerBar = new BeerBar(this, width - 64, height - 68, this.player.beer);
-		this.moodSlider = new MoodSlider(this, width * 0.5, height - 64);
+		this.moodSlider = new MoodSlider(this, width * 0.5, height - 64, this.women);
 	}
 
 	startEndlessLoopOfBackgroundMusic() {
@@ -133,6 +133,7 @@ export default class GameScene extends Scene {
 		}
 
 		this.beerBar.draw();
+		this.moodSlider.draw();
 
 		this.player.update({ 
 			delta,

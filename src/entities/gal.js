@@ -84,6 +84,9 @@ export function createGal({ type, escapeRoute = {} }) {
                 this.indicatorSprite.anims.play(getMoodIndicator(), true);
             }
             this.sprite.setDepth(100 + this.sprite.y);
+        },
+        getHappiness() {
+            return happiness % 100;
         }
    };
 
