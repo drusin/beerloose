@@ -56,6 +56,7 @@ export default class MenuScene extends Scene {
 
     setMusic(amount) {
         preferences.musicVolume += amount;
+        preferences.musicVolume = Math.min(100, Math.max(0, preferences.musicVolume));
         this.musicLabel.setText(this.musicText);
     }
 
@@ -69,6 +70,7 @@ export default class MenuScene extends Scene {
 
     setSfx(amount) {
         preferences.sfxVolume += amount;
+        preferences.sfxVolume = Math.min(100, Math.max(0, preferences.sfxVolume));
         this.sfxLabel.setText(this.sfxText);
     }
 }
