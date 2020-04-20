@@ -4,6 +4,7 @@ import { createSpriteObject, SPRITE_SCALE_FACTOR } from './sprite-creator-factor
 const frames = {
     'metal-dancer-headbang': { start: 0, end: 8 },
     'metal-dancer-jump': { start: 8, end: 13 },
+    'metal-dancer-walking': { start: 14, end: 17 }
 }
 
 const spriteSheets = {
