@@ -2,6 +2,7 @@ import { Scene } from 'phaser';
 import { dj, bartender, preloadAllSprites, createAnimationsForAllSprites, dancefloor } from './sprites';
 import BeerBar, { Beer } from './beer_bar';
 import { createPlayer } from './entities/player.js';
+import { createDj } from './entities/dj';
 import { createPartyPeople } from './party-people.js';
 import background_image from './assets/BasicBackground.png';
 import ShaderWrapper from './shaders/ShaderWrapper';
@@ -41,6 +42,7 @@ export default class GameScene extends Scene {
 		this.nonTraversable = [];
 		this.sfx = Sound({ scene: this });
 		this.bartender = {};
+		this.dj = createDj();
 	}
 	
 	static get KEY() {
@@ -92,11 +94,12 @@ export default class GameScene extends Scene {
 
 		this.physics.add.collider(this.player.sprite, this.nonTraversable);
 		this.physics.add.collider(this.partyPeople.partyPeople.map(p => p.sprite), this.nonTraversable);
-
-		dj.create({ scene: this, x: 5, y: 70 }).anims.play('dj-play', true);
 		
 		this.bartender = bartender.create({ scene: this, x: 570, y: 150 });
 		this.bartender.anims.play('bartender-tab', true);
+
+		this.dj.createSprite({ scene: this, x: 5, y: 70 });
+		this.dj.play();
 
 		this.startEndlessLoopOfBackgroundMusic();
 		this.sfx.indistinctChattingLoop();
@@ -145,6 +148,11 @@ export default class GameScene extends Scene {
 		});
 		this.partyPeople.update({ delta, physics: this.physics });
 		this.women.update({ delta, player: this.player, physics: this.physics, sfx: this.sfx });
+
+		this.dj.update({
+			physics: this.physics,
+			player: this.player
+		});
 
 		this.lightBeams.update(delta, this.player.sprite.body);
 	}

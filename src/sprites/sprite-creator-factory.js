@@ -10,6 +10,11 @@ export function createSpriteObject({
     },
     frameRate = 10 
 }) {
+    const notRepeatableSprites = [
+        'gal-drink',
+        'beer-player-drop',
+        'dj-drink'
+    ]
     return {
         preloadSpritesheet: ({ scene }) => {
             Object.entries(spriteSheets).forEach(([key, value]) => scene.load.spritesheet(key, value.img, frameDimensions));
@@ -23,7 +28,7 @@ export function createSpriteObject({
                         key: prefix + key,
                         frames: scene.anims.generateFrameNumbers(spriteSheetKey, value),
                         frameRate,
-                        repeat: key === 'gal-drink' || key === 'beer-player-drop' ? 0 : -1
+                        repeat: notRepeatableSprites.includes(key) ? 0 : -1
                     });
                 }) 
             });

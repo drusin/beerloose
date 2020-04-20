@@ -8,9 +8,9 @@ export function createPlayer() {
     let timeSinceLastCollisionWithDancer = 0;
     let timeSinceLastRefill = 0;
     let currentlyRefilling = 0;
-    let isDropping = false;
     return {
         sprite: {},
+        isDropping: false,
         beer: new Beer(),
         createSprite: function({ scene, x, y }) {
             this.indicatorSprite = indicator.create({ scene, x, y: (y - INDICATOR_OFFSET), sheet: 'indicator-spritesheet' });

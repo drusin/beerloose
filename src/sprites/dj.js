@@ -2,7 +2,8 @@ import dj_png from './../assets/sprites/DJ.png';
 import { createSpriteObject, SPRITE_SCALE_FACTOR } from './sprite-creator-factory';
 
 const frames = {
-    'dj-play': { start: 0, end: 13 }
+    'dj-play': { start: 0, end: 12 },
+    'dj-drink': { start: 13, end: 20 }
 }
 
 const spriteSheets = {
