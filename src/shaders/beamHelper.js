@@ -1,5 +1,13 @@
 import preferences from '../preferences';
 
+export function projectY(y) {
+    return 480 - y;
+}
+
+export function centerOnSprite(spriteX, spriteY) {
+    return [spriteX + 4, projectY(spriteY) - 16];
+}
+
 const INPUTS = {
     START: 'beamStart',
     END: 'beamEnd',
@@ -8,8 +16,8 @@ const INPUTS = {
 Object.freeze(INPUTS);
 
 const DEFAULTS = {
-    [INPUTS.START]: [320, 480],
-    [INPUTS.END]: [320, 280],
+    [INPUTS.START]: [320, projectY(-50)],
+    [INPUTS.END]: [320, projectY(200)],
     [INPUTS.COLOR]: [1, 1, 1]
 };
 Object.freeze(DEFAULTS);
@@ -29,7 +37,7 @@ class BeamHelper {
 
     addBeam(shader, inputs) {
         inputs = Object.assign({}, DEFAULTS, inputs);
-        const index = this.beams.push(inputs);
+        const index = this.beams.push(inputs) -1;
         this._sendInputs(shader);
         return index;
     }

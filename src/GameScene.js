@@ -6,11 +6,12 @@ import { createPlayer } from './entities/player.js';
 import { createPartyPeople } from './party-people.js';
 import background_image from './assets/BasicBackground.png';
 import ShaderWrapper from './shaders/ShaderWrapper';
-import beamHelper, { BEAM_INPUTS, BEAM_DEFAULTS } from './shaders/beamHelper';
+import beamHelper, { BEAM_INPUTS, BEAM_DEFAULTS, centerOnSprite } from './shaders/beamHelper';
 import prefrences from './preferences';
 import { createWomen } from './women.js';
 import MoodSlider from './mood_slider';
 import { Sound } from './sfx.js';
+import LightBeams from './lightBeams';
 
 export const DANCEFLOOR_BOUNDING_BOX = { left: 150, right: 615, top: 45, bottom: 333 }
 
@@ -66,10 +67,8 @@ export default class GameScene extends Scene {
 
 		this.shader = this.game.renderer.addPipeline('shader', new ShaderWrapper(this.game));
 		ShaderWrapper.addToCamera(this.shader, this.cameras.main);
-		beamHelper.addBeam(this.shader);
-		this.beamDirection = 1;
-		this.beamX = 100;
-		this.beamY = BEAM_DEFAULTS[BEAM_INPUTS.END][1];
+		this.lightBeams = new LightBeams();
+		this.lightBeams.init(this.shader);
 
 		this.add.image(0, 0, 'background').setOrigin(0, 0);
 		createAnimationsForAllSprites({ scene: this });	
@@ -122,11 +121,7 @@ export default class GameScene extends Scene {
 		this.partyPeople.update(delta);
 		this.women.update({ delta, player: this.player, physics: this.physics, sfx: this.sfx });
 
-		this.beamX += delta * this.beamDirection / 10;
-		if (this.beamX < 100 || this.beamX > 540) {
-			this.beamDirection = this.beamDirection * -1;
-		}
-		beamHelper.changeBeam(this.shader, { [BEAM_INPUTS.END]: [this.beamX, this.beamY] }, 0);
+		this.lightBeams.update(delta, this.player.sprite.body);
 	}
 }
 

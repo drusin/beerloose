@@ -41,7 +41,7 @@ vec3 discoBalls() {
     float resolutionRatio = resolution.x / resolution.y;
     vec3 sum = vec3(0);
 
-    for (int i = 0; i < MAX_DISCO_BALLS; i++) {
+    for (int i = 1; i < MAX_DISCO_BALLS; i++) {
         vec2 st = vec2(gl_FragCoord.x / (resolution.x * (1.0 + d_stretchX[i])), gl_FragCoord.y / (resolution.y * resolutionRatio * (1.0 + d_stretchY[i])));
         vec2 normPosition = vec2(d_position[i].x / (resolution.x * (1.0 + d_stretchX[i])), d_position[i].y / (resolution.y * resolutionRatio * (1.0 + d_stretchY[i])));
         float normR = d_r[i] / resolution.x;

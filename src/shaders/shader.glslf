@@ -65,15 +65,15 @@ vec3 beam() {
     for (int i = 0; i < MAX_BEAM_AMOUNT; i++) {
         vec2 circleCoords = position(beamEnd[i]);
         if (distance(circleCoords, st) < BEAM_R / RESOLUTION.x) {
-            return vec3(1.0) + beamColor[i];
+            sum *= vec3(1.0) + beamColor[i];
+            continue;
         }
         vec2 left = vec2(circleCoords.x - BEAM_R / RESOLUTION.x, circleCoords.y);
         vec2 right = vec2(circleCoords.x + BEAM_R / RESOLUTION.x, circleCoords.y);
 
         if (insideTriangle(st, position(beamStart[i]), left, right)) {
-            return vec3(1) + beamColor[i] / 2.0;
+            sum *= vec3(1) + beamColor[i] / 2.0;
         }
-        return vec3(1.0);
     }
 
     return sum;
