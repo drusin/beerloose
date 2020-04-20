@@ -5,7 +5,7 @@ const INDICATOR_OFFSET = 18 * SPRITE_SCALE_FACTOR;
 const baseSpeed = 60;
 
 export function createGal({ type, escapeRoute = {} }) {
-    let happiness = 2;
+    let happiness = 100;
 
     const indicators = {
         'indicator-good': [10000, 80],
@@ -23,6 +23,8 @@ export function createGal({ type, escapeRoute = {} }) {
             this.delta_counter = 0;
             this.escapeStep = 0;
             this.sprite.anims.play(`${type}-gal-hair`, true).setOrigin(0, 0);
+            happiness += Math.floor(20 * Math.random());
+            console.log({type, happiness});
         },
         updateMovement({ physics }) {
             if (happiness || !Object.keys(escapeRoute).length) {
