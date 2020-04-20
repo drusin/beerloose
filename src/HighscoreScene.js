@@ -27,9 +27,6 @@ export default class HighscoreScene extends Scene {
         if (this.playerHighscoreWasAdded) return;
         if (!this.highscoreInitiallyFetchedAndRendered) return;
         if (this.timeSinceSceneCreated > 1000) {
-            const graphics = this.add.graphics();
-            graphics.fillStyle("#000");
-            graphics.fillRect(0, 0, 640, 480);
             this.playerHighscoreWasAdded = true;
             let playerName = window.prompt("What's your name, Bob?", '');
             playerName = playerName !== null ? playerName : '';
@@ -53,6 +50,10 @@ export default class HighscoreScene extends Scene {
             !!entry.submittedData.score
         );
         const sorted = filtered.sort((l, r) => parseInt(r.submittedData.score) - parseInt(l.submittedData.score));
+
+        const graphics = this.add.graphics();
+        graphics.fillStyle("#000");
+        graphics.fillRect(0, 0, 640, 480);
 
         this.add.text(140, 50, 'The Best Beer Bearer Bobs', { fontSize: '25px' });
         this.add.text(200, 150, 'Name');
