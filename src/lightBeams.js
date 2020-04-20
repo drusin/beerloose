@@ -13,7 +13,7 @@ export default function () {
             this.playerSpotlight = beamHelper.addBeam(shader);
             this.leftRed = beamHelper.addBeam(shader, { [BEAM_INPUTS.START]: LEFT_START, [BEAM_INPUTS.COLOR]: [2, 0, 0] });
             this.leftGreen = beamHelper.addBeam(shader, { [BEAM_INPUTS.START]: LEFT_START, [BEAM_INPUTS.COLOR]: [0, 2, 0] });
-            this.leftBlue = beamHelper.addBeam(shader, { [BEAM_INPUTS.START]: LEFT_START, [BEAM_INPUTS.COLOR]: [0, 0, 2] });
+            this.leftBlue = beamHelper.addBeam(shader, { [BEAM_INPUTS.START]: LEFT_START, [BEAM_INPUTS.COLOR]: [0, 0, 4] });
             this.rightRed = beamHelper.addBeam(shader, { [BEAM_INPUTS.START]: RIGHT_START, [BEAM_INPUTS.COLOR]: [2, 0, 0] });
             this.rightGreen = beamHelper.addBeam(shader, { [BEAM_INPUTS.START]: RIGHT_START, [BEAM_INPUTS.COLOR]: [0, 2, 0] });
             this.rightBlue = beamHelper.addBeam(shader, { [BEAM_INPUTS.START]: RIGHT_START, [BEAM_INPUTS.COLOR]: [0, 0, 4] });
