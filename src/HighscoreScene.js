@@ -82,11 +82,28 @@ export default class HighscoreScene extends Scene {
         for (let i = 0; i < Math.min(NUMBER_OF_HIGHSCORE_LINES, sorted.length); i++) {
             this.renderHighscoreLine({ entry: sorted[i], index: i });
         }
+        this.renderCredits();
     }
 
     renderHighscoreLine({ entry, index }) {
         this.add.text(150, Y_POSITIONS[index], `#${index + 1}`, { fontSize: '18px', color: '#000' });
         this.add.text(185, Y_POSITIONS[index], entry.submittedData.username ? entry.submittedData.username : 'Bob', { fontSize: '18px', color: '#000' });
         this.add.text(425, Y_POSITIONS[index], entry.submittedData.score, { fontSize: '18px', color: '#000' });
+    }
+
+    renderCredits() {
+        const CREDITS = [
+            'Alex',
+            'Dawid',
+            'Murat',
+            'Sascha',
+            'Simon',
+            'Sven',
+            'Ricarda',
+            'Tom',
+        ]
+        for (let i = 0; i < CREDITS.length; i++) {
+            this.add.text(550, 325 + 17 * i, CREDITS[i], { fontSize: '18px', color: '#FDBB11' });
+        }
     }
 }
