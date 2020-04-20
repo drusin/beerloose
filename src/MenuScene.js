@@ -1,6 +1,7 @@
 import { Scene } from 'phaser';
 import preferences from './preferences';
 import GameScene from './GameScene';
+import logo from './assets/logo_stroke_2-11.png';
 
 export default class MenuScene extends Scene {
     static get KEY() {
@@ -11,7 +12,13 @@ export default class MenuScene extends Scene {
         super({ key: MenuScene.KEY });
     }
 
+    preload() {
+        this.load.image('logo', logo);
+    }
+
     create() {
+        this.add.image(320, 130, 'logo');
+
         preferences.load();
         this.startButton = this.add.text(300, 200, 'Start')
             .setInteractive()
