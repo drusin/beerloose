@@ -86,7 +86,7 @@ export function createGal({ type, escapeRoute = {} }) {
             this.sprite.setDepth(100 + this.sprite.y);
         },
         getHappiness() {
-            return happiness % 100;
+            return Math.min(happiness, 100);
         }
    };
 
