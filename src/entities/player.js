@@ -66,8 +66,10 @@ export function createPlayer() {
                             this.isDropping = true;
                             this.sprite.anims.play('beer-player-drop', true);
                             const ref = this;
-                            this.sprite.on('animationcomplete', function () {
-                                ref.isDropping = false;
+                            this.sprite.on('animationcomplete', function (animation) {
+                                if (animation.key === 'beer-player-drop') {
+                                    ref.isDropping = false;
+                                }
                             }, this.sprite);
                         }
                         const dir = this.sprite.body.velocity.x > 0 ? -1 : 1;
