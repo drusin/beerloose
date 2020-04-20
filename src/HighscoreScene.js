@@ -37,7 +37,7 @@ export default class HighscoreScene extends Scene {
     }
 
     preload() {
-        this.load.image('background', background);
+        this.load.image('highScoreBackground', background);
     }
 
     async create() {
@@ -77,7 +77,7 @@ export default class HighscoreScene extends Scene {
         const graphics = this.add.graphics();
         graphics.fillStyle(0x663931, 1.0);
         graphics.fillRect(110, 0, 415, 480);
-        this.add.image(320, 240, 'background');
+        this.add.image(320, 240, 'highScoreBackground');
 
         for (let i = 0; i < Math.min(NUMBER_OF_HIGHSCORE_LINES, sorted.length); i++) {
             this.renderHighscoreLine({ entry: sorted[i], index: i });
