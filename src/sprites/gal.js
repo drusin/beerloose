@@ -6,7 +6,8 @@ import { createSpriteObject, SPRITE_SCALE_FACTOR } from './sprite-creator-factor
 
 const frames = {
     'gal-drink': { start: 0, end: 16 },
-    'gal-hair': { start: 16, end: 21 }
+    'gal-hair': { start: 16, end: 21 },
+    'gal-leave': { start: 4, end: 7 }
 }
 
 const spriteSheets = {

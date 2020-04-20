@@ -2,8 +2,10 @@ import { gal, indicator, SPRITE_SCALE_FACTOR } from '../sprites';
 
 const INDICATOR_OFFSET = 18 * SPRITE_SCALE_FACTOR;
 
-export function createGal({ type }) {
-    let happiness = 100;
+const baseSpeed = 60;
+
+export function createGal({ type, escapeRoute = {} }) {
+    let happiness = 2;
 
     const indicators = {
         'indicator-good': [10000, 80],
@@ -13,17 +15,34 @@ export function createGal({ type }) {
     };
 
     return {
-        sprite: {},
         createSprite: function({ scene, x, y }) {
             this.indicatorSprite = indicator.create({ scene, x, y: (y - INDICATOR_OFFSET), sheet: 'indicator-spritesheet' });
             this.indicatorSprite.anims.play('indicator-good', true);
             this.indicatorSprite.setDepth(1000 + y);
             this.sprite = gal.create({ scene, x, y, number: type });
             this.delta_counter = 0;
+            this.escapeStep = 0;
             this.sprite.anims.play(`${type}-gal-hair`, true).setOrigin(0, 0);
         },
-        updateMovement() {
-            // no movement
+        updateMovement({ physics }) {
+            if (happiness || !Object.keys(escapeRoute).length) {
+                return;
+            }            
+            if (escapeRoute[this.escapeStep]) {
+                this.delta_counter = 0;
+                if ((escapeRoute[this.escapeStep].destX - this.sprite.body.x) < 5 && (escapeRoute[this.escapeStep].destY - this.sprite.body.y) < 5) {
+                    this.sprite.setVelocityX(0);
+                    this.sprite.setVelocityY(0);
+                    this.indicatorSprite.setVelocityX(0);
+                    this.indicatorSprite.setVelocityY(0);
+                    this.escapeStep++;
+                }
+                else {
+                    this.sprite.anims.play(escapeRoute[this.escapeStep].name);
+                    physics.moveTo(this.sprite, escapeRoute[this.escapeStep].destX, escapeRoute[this.escapeStep].destY, baseSpeed);
+                    physics.moveTo(this.indicatorSprite, escapeRoute[this.escapeStep].destX, escapeRoute[this.escapeStep].destY- INDICATOR_OFFSET, baseSpeed);
+                }
+            }
         },
         handleCollisions({ physics, player, sfx }) {
             physics.overlap(
@@ -54,13 +73,8 @@ export function createGal({ type }) {
                 this.delta_counter = 0;
                 happiness--;
                 this.indicatorSprite.anims.play(getMoodIndicator(), true);
-            } else if (!happiness) {
-                this.leave();
             }
             this.sprite.setDepth(100 + this.sprite.y);
-        },
-        leave() {
-            //TODO
         }
    };
 
