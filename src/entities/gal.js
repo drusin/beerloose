@@ -38,7 +38,8 @@ export function createGal({ type, escapeRoute = {} }) {
                     this.escapeStep++;
                 }
                 else {
-                    this.sprite.anims.play(escapeRoute[this.escapeStep].name);
+                    this.sprite.anims.play(escapeRoute[this.escapeStep].name, true);
+                    this.sprite.flipX = this.sprite.body.velocity.x < 0;
                     physics.moveTo(this.sprite, escapeRoute[this.escapeStep].destX, escapeRoute[this.escapeStep].destY, baseSpeed);
                     physics.moveTo(this.indicatorSprite, escapeRoute[this.escapeStep].destX, escapeRoute[this.escapeStep].destY- INDICATOR_OFFSET, baseSpeed);
                 }
