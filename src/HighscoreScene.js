@@ -10,16 +10,41 @@ export default class HighscoreScene extends Scene {
 
     constructor() {
         super({ key: HighscoreScene.KEY });
+
+        // ugly hacky solution to get the order as i want…
+        this.timeSinceSceneCreated = 0;
+        this.playerHighscoreWasAdded = false;
+        this.highscoreInitiallyFetchedAndRendered = false;
     }
 
     async create() {
-        let playerName = window.prompt("What's your name, Bob?", '');
-        playerName = playerName !== null ? playerName : '';
-        playerName = playerName.substring(0, 20);
-        playerName = playerName.replace(/(\r\n|\n|\r)/gm, '');
-        const statistics = await sendStatistics({ username: playerName, score: 5666 });
-        if (!statistics.entries) return;
+        let statistics = await getStatistics();
+        this.drawHighscore({ statistics });
+        this.highscoreInitiallyFetchedAndRendered = true;
+    }
 
+    async update(delta) {
+        if (this.playerHighscoreWasAdded) return;
+        if (!this.highscoreInitiallyFetchedAndRendered) return;
+        if (this.timeSinceSceneCreated > 1000) {
+            const graphics = this.add.graphics();
+            graphics.fillStyle("#000");
+            graphics.fillRect(0, 0, 640, 480);
+            this.playerHighscoreWasAdded = true;
+            let playerName = window.prompt("What's your name, Bob?", '');
+            playerName = playerName !== null ? playerName : '';
+            playerName = playerName.substring(0, 20);
+            playerName = playerName.replace(/(\r\n|\n|\r)/gm, '');
+            const statistics = await sendStatistics({ username: playerName, score: 6667 });
+
+            this.drawHighscore({ statistics});
+            
+        }
+        this.timeSinceSceneCreated += delta;
+    }
+
+    drawHighscore({ statistics }) {
+        if (!statistics.entries) return;
         // just in case people find out how to push fishy stuff to the server…
         const filtered = statistics.entries.filter(entry =>
             !!entry.timestamp &&
