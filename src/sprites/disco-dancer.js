@@ -4,7 +4,8 @@ import { createSpriteObject, SPRITE_SCALE_FACTOR } from './sprite-creator-factor
 const frames = {
     'disco-dancer-turn': { start: 0, end: 10 },
     'disco-dancer-up': { start: 10, end: 18 },
-    'disco-dancer-up-down': { start: 18, end: 23 }
+    'disco-dancer-up-down': { start: 18, end: 23 },
+    'disco-dancer-walking': { start: 24, end: 27 }
 }
 
 const spriteSheets = {

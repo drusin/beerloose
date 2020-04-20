@@ -44,7 +44,7 @@ export function createDiscoDancer() {
                     this.nextStep = undefined;
                 }
                 else {
-                    this.sprite.anims.play('disco-dancer-up', true);
+                    this.sprite.anims.play('disco-dancer-walking', true);
                     this.sprite.flipX = this.sprite.body.velocity.x < 0;
                     physics.moveTo(this.sprite, this.nextStep.destX, this.nextStep.destY, baseSpeed);
                 }
