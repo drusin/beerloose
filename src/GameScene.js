@@ -145,6 +145,7 @@ export default class GameScene extends Scene {
 		});
 		this.partyPeople.update({ delta, physics: this.physics });
 		this.women.update({ delta, player: this.player, physics: this.physics, sfx: this.sfx });
+		console.log(this.women.getTotalAmount());
 
 		this.lightBeams.update(delta, this.player.sprite.body);
 	}

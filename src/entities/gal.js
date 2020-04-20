@@ -26,6 +26,7 @@ export function createGal({ type, escapeRoute = {} }) {
             this.sprite.setSize(6, 12, false);
             this.sprite.setOffset(4, 16);
             happiness += Math.floor(20 * Math.random());
+            this.totalAmount = 0;
         },
         updateMovement({ physics }) {
             if (happiness || !Object.keys(escapeRoute).length) {
@@ -58,6 +59,7 @@ export function createGal({ type, escapeRoute = {} }) {
                         return;
                     }
                     happiness += amount * 0.5;
+                    this.totalAmount += amount;
                     player.beer.chug();
                     this.sprite.anims.play(`${type}-gal-drink`, true);
 
@@ -87,6 +89,9 @@ export function createGal({ type, escapeRoute = {} }) {
         },
         getHappiness() {
             return Math.min(happiness, 100);
+        },
+        getTotalAmount() {
+            return this.totalAmount;
         }
    };
 
