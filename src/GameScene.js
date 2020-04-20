@@ -118,7 +118,7 @@ export default class GameScene extends Scene {
 			sfx: this.sfx,
 			bartender: this.bartender,
 		});
-		this.partyPeople.update(delta);
+		this.partyPeople.update({ delta, physics: this.physics });
 		this.women.update({ delta, player: this.player, physics: this.physics, sfx: this.sfx });
 
 		this.lightBeams.update(delta, this.player.sprite.body);

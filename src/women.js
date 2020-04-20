@@ -5,6 +5,7 @@ import {
 function step( destX, destY, name) {
     return { destX, destY, name };
 }
+
 export function createWomen() {
     const women = [];
     return {

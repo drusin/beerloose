@@ -15,18 +15,41 @@ function step(millis, dirX, dirY, name) {
     return { millis, dirX, dirY, name };
 }
 
+const wayIn = walkstep(210, 320);
+
+function walkstep( destX, destY) {
+    return { destX, destY};
+}
+
 const baseSpeed = 30;
 
 export function createSquaredanceDancer() {
     return {
-        createSprite: function({ scene, x, y }) {
+        createSprite: function({ scene, x, y, destination = undefined }) {
             this.sprite = squaredancer.create({ scene, x, y });
             this.sprite.setSize(6, 12, false);
             this.sprite.setOffset(4, 16);
             this.danceStep = 0;
             this.delta_counter = 0;
+            if (destination) {
+                this.walkPath = [ wayIn, walkstep(destination.x, destination.y) ];
+            }
         },
-        updateMovement() {
+        updateMovement({ physics }) {
+            if (this.nextStep || this.walkPath && this.walkPath.length) {
+                this.nextStep = this.nextStep ? this.nextStep : this.walkPath.shift();
+                if (Math.abs(this.nextStep.destX - this.sprite.body.x) < 16 && Math.abs(this.nextStep.destY - this.sprite.body.y) < 32) {
+                    this.sprite.setVelocityX(0);
+                    this.sprite.setVelocityY(0);
+                    this.nextStep = undefined;
+                }
+                else {
+                    this.sprite.anims.play('squaredancer-left-right', true);
+                    this.sprite.flipX = this.sprite.body.velocity.x < 0;
+                    physics.moveTo(this.sprite, this.nextStep.destX, this.nextStep.destY, baseSpeed);
+                }
+                return;
+            }
             if (danceRoutine[this.danceStep].millis < this.delta_counter) {
                 this.delta_counter = 0;
                 this.danceStep = (this.danceStep + 1) % Object.keys(danceRoutine).length;

@@ -31,26 +31,32 @@ export function createPartyPeople() {
             this.current_delta = 0;
             this.scene = scene;
             for (let i = 0; i < dancerCount; i++) {
-                this.spawnDancer();
+                this.spawnDancer({ start: getRandomSpot()});
             }
         },
-        spawnDancer() {
+        spawnDancer({ start, destination = undefined}) {
             const dancer = generateRandomDancer();
-            const spot = getRandomSpot();
             dancer.createSprite({
                 scene: this.scene,
-                x: spot.x,
-                y: spot.y 
+                x: start.x,
+                y: start.y,
+                destination 
             });
             this.partyPeople.push(dancer);
         },
-        update: function (delta) {
+        update: function ({ delta, physics }) {
             this.current_delta += delta;
             if (spots.length && this.current_delta > MILLIS_TILL_SPAWN) {
                 this.current_delta = 0;
-                this.spawnDancer();
+                this.spawnDancer({ 
+                    start: {
+                        x: Math.floor(Math.random() * 640),
+                        y: 600
+                    },
+                    destination: getRandomSpot()
+                });
             }
-            this.partyPeople.forEach(person => person.updateMovement());
+            this.partyPeople.forEach(person => person.updateMovement({ physics }));
             this.partyPeople.forEach(person => person.updateAnimation({ delta }));
         },
     };
