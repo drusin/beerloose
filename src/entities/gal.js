@@ -52,7 +52,7 @@ export function createGal({ type, escapeRoute = {} }) {
                 this.sprite,
                 () => {
                     const amount = player.beer.amount;
-                    if (!amount) {
+                    if (!amount || !happiness) {
                         return;
                     }
                     happiness += amount;
