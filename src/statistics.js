@@ -6,7 +6,14 @@ export async function sendStatistics({ username, score }) {
         score,
     }
 
-    await fetch(`${SERVER_URL}/submit-statistics?username=${username}&score=${score}`);
+    const response = await fetch(`${SERVER_URL}/submit-statistics`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(content)
+    })
+    return await response.json();
 }
 
 export async function getStatistics() {
