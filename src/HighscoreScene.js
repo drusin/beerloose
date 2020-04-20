@@ -55,7 +55,7 @@ export default class HighscoreScene extends Scene {
             playerName = playerName !== null ? playerName : '';
             playerName = playerName.substring(0, 21);
             playerName = playerName.replace(/(\r\n|\n|\r)/gm, '');
-            const statistics = await sendStatistics({ username: playerName, score: 55556 });
+            const statistics = await sendStatistics({ username: playerName, score: this.score });
             this.drawHighscore({ statistics});
             
         }
