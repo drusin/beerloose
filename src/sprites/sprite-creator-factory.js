@@ -23,7 +23,7 @@ export function createSpriteObject({
                         key: prefix + key,
                         frames: scene.anims.generateFrameNumbers(spriteSheetKey, value),
                         frameRate,
-                        repeat: key === 'gal-drink' ? 0 : -1
+                        repeat: key === 'gal-drink' || key === 'beer-player-drop' ? 0 : -1
                     });
                 }) 
             });

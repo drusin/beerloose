@@ -8,6 +8,7 @@ export function createPlayer() {
     let timeSinceLastCollisionWithDancer = 0;
     let timeSinceLastRefill = 0;
     let currentlyRefilling = 0;
+    let isDropping = false;
     return {
         sprite: {},
         beer: new Beer(),
@@ -46,10 +47,12 @@ export function createPlayer() {
             this.indicatorSprite.y = this.sprite.y - INDICATOR_OFFSET;
             this.sprite.setDepth(100 + this.sprite.y);
             const prefix = this.beer.amount > 0 ? 'beer' : 'no-beer';
-            if ( !this.sprite.body.velocity.x && !this.sprite.body.velocity.y ) {
-                this.sprite.anims.play(prefix + '-player-idle', true);
-            } else {
-                this.sprite.anims.play(prefix + '-player-walking', true);
+            if (!this.isDropping) {
+                if ( !this.sprite.body.velocity.x && !this.sprite.body.velocity.y ) {
+                    this.sprite.anims.play(prefix + '-player-idle', true);
+                } else {
+                    this.sprite.anims.play(prefix + '-player-walking', true);
+                }
             }
             this.sprite.flipX = this.sprite.body.velocity.x < 0;
         },
@@ -59,6 +62,14 @@ export function createPlayer() {
                 partyPeople.partyPeople.map(p => p.sprite),
                 (left, right) => {
                     if (timeSinceLastCollisionWithDancer > 500) {
+                        if ((this.beer.amount > 0) && (this.beer.amount - 10 <= 0)) {
+                            this.isDropping = true;
+                            this.sprite.anims.play('beer-player-drop', true);
+                            const ref = this;
+                            this.sprite.on('animationcomplete', function () {
+                                ref.isDropping = false;
+                            }, this.sprite);
+                        }
                         const dir = this.sprite.body.velocity.x > 0 ? -1 : 1;
                         this.sprite.setVelocityX(dir * 1500);
                         sfx.bumpIntoPerson();
