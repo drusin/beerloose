@@ -154,7 +154,7 @@ export default class GameScene extends Scene {
 
 	checkEndCondition() {
 		if (this.women.getTotalHappiness() <= 0) {
-			setTimeout(() => this.scene.start(HighscoreScene.KEY), 10000);
+			setTimeout(() => this.scene.start(HighscoreScene.KEY), 5000);
 		}
 	}
 }
