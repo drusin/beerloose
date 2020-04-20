@@ -19,6 +19,8 @@ export default class MenuScene extends Scene {
 
     create() {
         this.add.image(320, 130, 'logo');
+        this.add.text(400, 80, 'starring Beer Bearer Bob', { color: '#FDBB11' });
+        this.add.text(200, 430, 'Keep The Party Alive!', { color: '#FDBB11', fontSize: 24 });
 
         preferences.load();
         this.startButton = this.add.text(300, 200, 'Start')
