@@ -13,7 +13,7 @@ export async function sendStatistics({ username, score }) {
         },
         body: JSON.stringify(content)
     })
-    console.log(await response.json());
+    return await response.json();
 }
 
 export async function getStatistics() {
