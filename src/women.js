@@ -11,22 +11,26 @@ export function createWomen() {
             women.push(createWoman({
                 scene,
                 type: 1,
-                ...generateRandomPositionWithinRect({ left: 70, right: 140, top: 365, bottom: 380 })
+                x: 20,
+                y: 130
             }));
             women.push(createWoman({
                 scene,
                 type: 2,
-                ...generateRandomPositionWithinRect({ left: 70, right: 140, top: 350, bottom: 365 })
+                x: 100,
+                y: 70
             }));
             women.push(createWoman({
                 scene,
                 type: 3,
-                ...generateRandomPositionWithinRect({ left: 70, right: 140, top: 335, bottom: 350 })
+                x: 200,
+                y: 30
             }));
             women.push(createWoman({
                 scene,
-                type: 3,
-                ...generateRandomPositionWithinRect({ left: 70, right: 140, top: 320, bottom: 335 })
+                type: 4,
+                x: 110,
+                y: 270
             }));
         },
         update: function ({ delta, player, physics }) {
