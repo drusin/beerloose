@@ -84,8 +84,8 @@ export function Sound({ scene }) {
             scene.load.audio('beer-opening-2', beer_opening_2);
         },
         create: function () {
-            const badMicAdjustmentConfig = (volume = 2.5) =>  ({ volume });
-            sounds.bumpIntoPerson1 = scene.sound.add('bump-into-person-1', badMicAdjustmentConfig());
+            const badMicAdjustmentConfig = (volume = 3) =>  ({ volume });
+            sounds.bumpIntoPerson1 = scene.sound.add('bump-into-person-1', badMicAdjustmentConfig(1));
             sounds.bumpIntoPerson2 = scene.sound.add('bump-into-person-2');
             sounds.bumpIntoPerson3 = scene.sound.add('bump-into-person-3');
             sounds.bumpIntoPerson4 = scene.sound.add('bump-into-person-4');
@@ -99,16 +99,16 @@ export function Sound({ scene }) {
             sounds.bumpIntoPerson12 = scene.sound.add('bump-into-person-12', badMicAdjustmentConfig());
             sounds.pouring1 = scene.sound.add('pouring-1');
             sounds.chatting1 = scene.sound.add('chatting-1', { loop: true });
-            sounds.bartender2 = scene.sound.add('bartender-2', badMicAdjustmentConfig());
-            sounds.bartender3 = scene.sound.add('bartender-3', badMicAdjustmentConfig(10));
-            sounds.bartender5 = scene.sound.add('bartender-5', badMicAdjustmentConfig(10));
-            sounds.bartender4 = scene.sound.add('bartender-4', badMicAdjustmentConfig(10));
-            sounds.bartender6 = scene.sound.add('bartender-6', badMicAdjustmentConfig(10));
-            sounds.bartender7 = scene.sound.add('bartender-7', badMicAdjustmentConfig(10));
-            sounds.bartender8 = scene.sound.add('bartender-8', badMicAdjustmentConfig(10));
-            sounds.bartender9 = scene.sound.add('bartender-9', badMicAdjustmentConfig(10));
-            sounds.bartender10 = scene.sound.add('bartender-10', badMicAdjustmentConfig(10));
-            sounds.bartender11 = scene.sound.add('bartender-11', badMicAdjustmentConfig(10));
+            sounds.bartender2 = scene.sound.add('bartender-2', badMicAdjustmentConfig(5));
+            sounds.bartender3 = scene.sound.add('bartender-3', badMicAdjustmentConfig(5));
+            sounds.bartender4 = scene.sound.add('bartender-4', badMicAdjustmentConfig(5));
+            sounds.bartender5 = scene.sound.add('bartender-5', badMicAdjustmentConfig(5));
+            sounds.bartender6 = scene.sound.add('bartender-6', badMicAdjustmentConfig(5));
+            sounds.bartender7 = scene.sound.add('bartender-7', badMicAdjustmentConfig(5));
+            sounds.bartender8 = scene.sound.add('bartender-8', badMicAdjustmentConfig(5));
+            sounds.bartender9 = scene.sound.add('bartender-9', badMicAdjustmentConfig(5));
+            sounds.bartender10 = scene.sound.add('bartender-10', badMicAdjustmentConfig(5));
+            sounds.bartender11 = scene.sound.add('bartender-11', badMicAdjustmentConfig(5));
             sounds.satisfied1 = scene.sound.add('satisfied-customer-1');
             sounds.satisfied2 = scene.sound.add('satisfied-customer-2');
             sounds.satisfied3 = scene.sound.add('satisfied-customer-3');
