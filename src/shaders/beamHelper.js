@@ -52,6 +52,15 @@ class BeamHelper {
         this._sendInputs(shader);
     }
 
+    removeBeam(shader, index) {
+        this.beams[index] = {};
+        this._sendInputs(shader);
+    }
+
+    reset() {
+        this.beams = [];
+    }
+
     _sendInputs(shader) {
         if (!preferences.effects) { return; }
         const prepwork = {

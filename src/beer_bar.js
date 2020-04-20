@@ -3,7 +3,7 @@ import BeerBarSprite from './assets/sprites/BeerBar.png'
 
 export class Beer {
     constructor() {
-        this.amount = 100;
+        this.amount = 0;
     }
 
     fill() {

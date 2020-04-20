@@ -4,6 +4,7 @@ import GameScene from './GameScene';
 import MenuScene from './MenuScene';
 import IntroScene from './IntroScene';
 import HighscoreScene from './HighscoreScene.js';
+import TutorialScene from './TutorialScene';
 
 const config = {
 	type: Phaser.AUTO,
@@ -24,7 +25,7 @@ const config = {
 		default: 'arcade',
 		arcade: { debug: false }
 	},
-	scene: [MenuScene, IntroScene, GameScene, HighscoreScene]
+	scene: [MenuScene, IntroScene, TutorialScene, GameScene, HighscoreScene]
 };
 
 const GAME = new Phaser.Game(config);

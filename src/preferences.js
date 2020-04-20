@@ -2,7 +2,7 @@ class Preferences {
     constructor() {
         this.effects = true;
         this.sfxVolume = 100;
-        this.musicVolume = 100;
+        this.musicVolume = 50;
     }
 
     persist() {

@@ -2,6 +2,7 @@ import { Scene } from 'phaser';
 import background from './assets/BasicBackground.png';
 import mobile from './assets/mobile.png';
 import GameScene from './GameScene';
+import TutorialScene from './TutorialScene';
 
 export default class IntroScene extends Scene {
     static get KEY() {
@@ -53,7 +54,7 @@ drinking, Bob.
             this.text.text = this.messages.shift();
         }
         else {
-            this.scene.start(GameScene.KEY);
+            this.scene.start(TutorialScene.KEY);
         }
     }
 }
