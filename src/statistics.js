@@ -1,4 +1,4 @@
-const SERVER_URL = "http://rusin.xyz:5555";
+const SERVER_URL = "https://thumbnails.simon-lenz.de";
 
 export async function sendStatistics({ username, score }) {
     const content = {
