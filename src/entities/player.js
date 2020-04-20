@@ -6,6 +6,8 @@ const INDICATOR_OFFSET = 18 * SPRITE_SCALE_FACTOR;
 
 export function createPlayer() {
     let timeSinceLastCollisionWithDancer = 0;
+    let timeSinceLastRefill = 0;
+    let currentlyRefilling = 0;
     return {
         sprite: {},
         beer: new Beer(),
@@ -69,11 +71,19 @@ export function createPlayer() {
                 this.sprite,
                 bartender,
                 () => {
+                    if (timeSinceLastRefill < 2000 || currentlyRefilling) return;
+                    currentlyRefilling = true;
                     this.beer.fill();
-                    sfx.pouringBeer();
+                    const playedSound = sfx.beerOpening();
+                    playedSound.once('complete', function(){
+                        sfx.pouringBeer();
+                        timeSinceLastRefill = 0;
+                        currentlyRefilling = false;
+                    });
                 }
             );
             timeSinceLastCollisionWithDancer += delta;
+            timeSinceLastRefill += delta;
         },
     };
 }
