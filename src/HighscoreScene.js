@@ -17,12 +17,16 @@ export default class HighscoreScene extends Scene {
         this.highscoreInitiallyFetchedAndRendered = false;
     }
 
+    init(data) {
+        this.score = data.score;
+    }
+
     async create() {
         let statistics = await getStatistics();
         this.drawHighscore({ statistics });
         this.highscoreInitiallyFetchedAndRendered = true;
     }
-
+    
     async update(delta) {
         if (this.playerHighscoreWasAdded) return;
         if (!this.highscoreInitiallyFetchedAndRendered) return;
@@ -32,8 +36,7 @@ export default class HighscoreScene extends Scene {
             playerName = playerName !== null ? playerName : '';
             playerName = playerName.substring(0, 20);
             playerName = playerName.replace(/(\r\n|\n|\r)/gm, '');
-            const statistics = await sendStatistics({ username: playerName, score: 6667 });
-
+            const statistics = await sendStatistics({ username: playerName, score: this.score });
             this.drawHighscore({ statistics});
             
         }
@@ -47,7 +50,8 @@ export default class HighscoreScene extends Scene {
             !!entry.timestamp &&
             typeof entry.timestamp === 'string' &&
             !!entry.submittedData &&
-            !!entry.submittedData.score
+            typeof entry.submittedData.score !== 'undefined' &&
+            typeof entry.submittedData.username !== 'undefined'
         );
         const sorted = filtered.sort((l, r) => parseInt(r.submittedData.score) - parseInt(l.submittedData.score));
 

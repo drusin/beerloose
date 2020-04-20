@@ -44,6 +44,8 @@ export default class GameScene extends Scene {
 		this.sfx = Sound({ scene: this });
 		this.bartender = {};
 		this.dj = createDj();
+
+		this.highscoreScreenCommissioned = false;
 	}
 	
 	static get KEY() {
@@ -161,8 +163,9 @@ export default class GameScene extends Scene {
 	}
 
 	checkEndCondition() {
-		if (this.women.getTotalHappiness() <= 0) {
-			setTimeout(() => this.scene.start(HighscoreScene.KEY), 5000);
+		if (this.women.getTotalHappiness() <= 0 && !this.highscoreScreenCommissioned) {
+			setTimeout(() => this.scene.start(HighscoreScene.KEY, { score: this.women.getTotalAmount() }), 5000);
+			this.highscoreScreenCommissioned = true;
 		}
 	}
 }
