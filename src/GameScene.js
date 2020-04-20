@@ -99,17 +99,31 @@ export default class GameScene extends Scene {
 		this.bartender = bartender.create({ scene: this, x: 570, y: 150 });
 		this.bartender.anims.play('bartender-tab', true);
 
-		const music = [
-			this.sound.add('beerbearerbob'),
-			this.sound.add('beersong'),
-			this.sound.add('stayingalive')]
-		music[1].play();
+		this.startEndlessLoopOfBackgroundMusic();
 		this.sfx.indistinctChattingLoop();
 
 		this.beerBar = new BeerBar(this, width - 64, height - 68, this.player.beer);
 		this.moodSlider = new MoodSlider(this, width * 0.5, height - 64);
 	}
-	
+
+	startEndlessLoopOfBackgroundMusic() {
+		const music = [
+			this.sound.add('beerbearerbob'),
+			this.sound.add('beersong'),
+			this.sound.add('stayingalive'),
+		]
+		let currentTrackIndex = Math.floor(Math.random() * music.length);
+		
+		const playTrack = ({ trackIndex }) => {
+			music[trackIndex].play();
+			music[trackIndex].once('complete', function() {
+				currentTrackIndex++;
+				playTrack({ trackIndex: currentTrackIndex % music.length });
+			})
+		}
+		playTrack({ trackIndex: currentTrackIndex });
+	}
+
 	update(time, delta) {
 		this._count += delta;
 		if (this._count > 800) {
