@@ -64,7 +64,12 @@ export function createGal({ type, escapeRoute = {} }) {
                     const that = this;
                     this.sprite.on('animationcomplete', function (animation) {
                         if (animation.key === `${type}-gal-drink`) {
-                            sfx.satisfiedCustomer();
+                            if (type === 3) {
+                                sfx.satisfiedCustomerFrench();
+                            }
+                            else {
+                                sfx.satisfiedCustomer();
+                            }
                             that.sprite.anims.play(`${type}-gal-hair`, true);
                         }
                     }, this.sprite);
