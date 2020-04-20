@@ -24,7 +24,6 @@ export function createGal({ type, escapeRoute = {} }) {
             this.escapeStep = 0;
             this.sprite.anims.play(`${type}-gal-hair`, true).setOrigin(0, 0);
             happiness += Math.floor(20 * Math.random());
-            console.log({type, happiness});
         },
         updateMovement({ physics }) {
             if (happiness || !Object.keys(escapeRoute).length) {

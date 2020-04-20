@@ -14,7 +14,7 @@ export function createPlayer() {
             this.indicatorSprite.anims.play('indicator-player', true);
             this.indicatorSprite.setDepth(1000);
             this.sprite = playerSprite.create({ scene, x, y, sheet: 'player-two-beers-spritesheet' });
-            this.sprite.anims.play('two_beers-player-drop', true);
+            this.sprite.anims.play('two_beers-player-walking', true);
             this.sprite.setInteractive();
             this.sprite.setSize(6, 12, false);
             this.sprite.setOffset(4, 16);
@@ -43,6 +43,7 @@ export function createPlayer() {
             this.indicatorSprite.x = this.sprite.x;
             this.indicatorSprite.y = this.sprite.y - INDICATOR_OFFSET;
             this.sprite.setDepth(100 + this.sprite.y);
+            this.sprite.flipX = this.sprite.body.velocity.x < 0;
         },
         handleCollisions({ delta, partyPeople, physics, sfx, bartender }) {
             physics.overlap(
