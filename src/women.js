@@ -1,7 +1,6 @@
 import { 
     createGal,
 } from './entities';
-import { generateRandomPositionWithinRect } from './util.js';
 
 export function createWomen() {
     const women = [];
@@ -33,9 +32,9 @@ export function createWomen() {
                 y: 270
             }));
         },
-        update: function ({ delta, player, physics }) {
+        update: function ({ delta, player, physics, sfx }) {
             women.forEach(person => person.updateAnimation({ delta }));
-            women.forEach(person => person.handleCollisions({ physics, player }));
+            women.forEach(person => person.handleCollisions({ physics, player, sfx }));
         },
     };
 }

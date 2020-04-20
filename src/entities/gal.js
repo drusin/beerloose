@@ -25,7 +25,7 @@ export function createGal({ type }) {
         updateMovement() {
             // no movement
         },
-        handleCollisions({ physics, player }) {
+        handleCollisions({ physics, player, sfx }) {
             physics.overlap(
                 player.sprite,
                 this.sprite,
@@ -36,13 +36,15 @@ export function createGal({ type }) {
                     }
                     happiness += amount;
                     player.beer.chug();
-                    this.sprite.anims.play(`${type}-gal-drink`, true).setOrigin(0, 0);
+                    this.sprite.anims.play(`${type}-gal-drink`, true);
+
+                    const that = this;
                     this.sprite.on('animationcomplete', function (animation) {
-                        console.log(animation);
                         if (animation.key === `${type}-gal-drink`) {
-                            this.sprite.anims.play(`${type}-hair`, true).setOrigin(0, 0);
+                            sfx.satisfiedCustomer();
+                            that.sprite.anims.play(`${type}-gal-hair`, true);
                         }
-                    }, this);
+                    }, this.sprite);
                 }
             );
         },

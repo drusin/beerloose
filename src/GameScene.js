@@ -120,7 +120,7 @@ export default class GameScene extends Scene {
 			bartender: this.bartender,
 		});
 		this.partyPeople.update(delta);
-		this.women.update({ delta, player: this.player, physics: this.physics });
+		this.women.update({ delta, player: this.player, physics: this.physics, sfx: this.sfx });
 
 		this.beamX += delta * this.beamDirection / 10;
 		if (this.beamX < 100 || this.beamX > 540) {
