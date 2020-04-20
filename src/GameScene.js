@@ -104,6 +104,7 @@ export default class GameScene extends Scene {
 			this.sound.add('beersong'),
 			this.sound.add('stayingalive')]
 		music[1].play();
+		this.sfx.indistinctChattingLoop();
 
 		this.beerBar = new BeerBar(this, width - 64, height - 68, this.player.beer);
 		this.moodSlider = new MoodSlider(this, width * 0.5, height - 64);

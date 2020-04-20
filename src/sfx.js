@@ -11,6 +11,7 @@ import bump_into_persons_10 from './assets/sfx/bump-into-persons-10-heyBoyWatchO
 import bump_into_persons_11 from './assets/sfx/bump-into-persons-11-heey.ogg';
 import bump_into_persons_12 from './assets/sfx/bump-into-persons-12-whatAreYouDoingMan.ogg';
 import pouring_1 from './assets/sfx/pouring-1.ogg';
+import chatting_1 from './assets/sfx/chatting persons.ogg';
 import bartender_2 from './assets/sfx/bartender-2-easyBoy.ogg';
 import bartender_3 from './assets/sfx/bartender-3-thisOneIsForYouPal.ogg';
 import bartender_4 from './assets/sfx/bartender-4-thisOneIsForYouMate.ogg';
@@ -55,6 +56,7 @@ export function Sound({ scene }) {
             scene.load.audio('bump-into-person-11', bump_into_persons_11);
             scene.load.audio('bump-into-person-12', bump_into_persons_12);
             scene.load.audio('pouring-1', pouring_1);
+            scene.load.audio('chatting-1', chatting_1);
             scene.load.audio('bartender-2', bartender_2);
             scene.load.audio('bartender-3', bartender_3);
             scene.load.audio('bartender-4', bartender_4);
@@ -95,6 +97,7 @@ export function Sound({ scene }) {
             sounds.bumpIntoPerson11 = scene.sound.add('bump-into-person-11');
             sounds.bumpIntoPerson12 = scene.sound.add('bump-into-person-12');
             sounds.pouring1 = scene.sound.add('pouring-1');
+            sounds.chatting1 = scene.sound.add('chatting-1', { loop: true });
             sounds.bartender2 = scene.sound.add('bartender-2');
             sounds.bartender3 = scene.sound.add('bartender-3');
             sounds.bartender4 = scene.sound.add('bartender-4');
@@ -160,6 +163,10 @@ export function Sound({ scene }) {
         },
         satisfiedCustomerFrench: function() {
             const choices = [sounds.satisfied2, sounds.satisfied5, sounds.satisfied7, sounds.satisfied8];
+            return playRandomSound({ choices });
+        },
+        indistinctChattingLoop: function() {
+            const choices = [sounds.chatting1];
             return playRandomSound({ choices });
         },
         beerOpening: function() {
