@@ -57,7 +57,7 @@ export function createGal({ type, escapeRoute = {} }) {
                     if (!amount || !happiness) {
                         return;
                     }
-                    happiness += amount;
+                    happiness += amount * 0.5;
                     player.beer.chug();
                     this.sprite.anims.play(`${type}-gal-drink`, true);
 
