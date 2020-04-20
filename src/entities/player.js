@@ -62,6 +62,7 @@ export function createPlayer() {
                 bartender,
                 () => {
                     this.beer.fill();
+                    sfx.pouringBeer();
                 }
             );
             timeSinceLastCollisionWithDancer += delta;
