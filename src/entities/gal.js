@@ -20,6 +20,7 @@ export function createGal({ type }) {
             this.indicatorSprite.setDepth(1000 + y);
             this.sprite = gal.create({ scene, x, y, number: type });
             this.delta_counter = 0;
+            this.sprite.anims.play(`${type}-gal-hair`, true).setOrigin(0, 0);
         },
         updateMovement() {
             // no movement
@@ -30,8 +31,18 @@ export function createGal({ type }) {
                 this.sprite,
                 () => {
                     const amount = player.beer.amount;
+                    if (!amount) {
+                        return;
+                    }
                     happiness += amount;
                     player.beer.chug();
+                    this.sprite.anims.play(`${type}-gal-drink`, true).setOrigin(0, 0);
+                    this.sprite.on('animationcomplete', function (animation) {
+                        console.log(animation);
+                        if (animation.key === `${type}-gal-drink`) {
+                            this.sprite.anims.play(`${type}-hair`, true).setOrigin(0, 0);
+                        }
+                    }, this);
                 }
             );
         },
@@ -41,9 +52,13 @@ export function createGal({ type }) {
                 this.delta_counter = 0;
                 happiness--;
                 this.indicatorSprite.anims.play(getMoodIndicator(), true);
+            } else if (!happiness) {
+                this.leave();
             }
-            this.sprite.anims.play(`${type}-gal-hair`, true).setOrigin(0, 0);
             this.sprite.setDepth(100 + this.sprite.y);
+        },
+        leave() {
+            //TODO
         }
    };
 

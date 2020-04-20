@@ -49,8 +49,9 @@ export function createPlayer() {
                 this.sprite,
                 partyPeople.partyPeople.map(p => p.sprite),
                 (left, right) => {
-                    const partyPerson = left === this.sprite ? right : left;
                     if (timeSinceLastCollisionWithDancer > 2000) {
+                        const dir = this.sprite.body.velocity.x > 0 ? -1 : 1;
+                        this.sprite.setVelocityX(dir * 1500);
                         sfx.bumpIntoPerson();
                         this.beer.decrease(10);
                         timeSinceLastCollisionWithDancer = 0;
