@@ -4,7 +4,8 @@ import BeerBarSprite from './assets/sprites/BeerBar.png';
 import MoodProgressSprite from './assets/sprites/MoodProgressBackground.png';
 import MoodPositiveSprite from './assets/sprites/MoodPositive.png';
 import MoodNegativeSprite from './assets/sprites/MoodNegative.png';
-import MoodSmileysSprite from './assets/sprites/MoodSmileys.png';
+// import MoodSmileysSprite from './assets/sprites/MoodSmileys.png';
+import Indicator from './assets/sprites/Indicator.png';
 
 export default class MoodSlider {
 
@@ -13,7 +14,8 @@ export default class MoodSlider {
         
         loader.image('mood_positive', MoodPositiveSprite); //, { frameWidth: 186, frameHeight: 92 });
         loader.image('mood_negative', MoodNegativeSprite); // { frameWidth: 186, frameHeight: 92 });
-        loader.spritesheet('mood_smileys', MoodSmileysSprite, { frameWidth: 56, frameHeight: 52 });
+        // loader.spritesheet('mood_smileys', MoodSmileysSprite, { frameWidth: 56, frameHeight: 52 });
+        loader.spritesheet('indicator', Indicator, { frameWidth: 16, frameHeight: 16 });
 
         loader.image('mood_progress_background', MoodProgressSprite);
     }
@@ -32,12 +34,15 @@ export default class MoodSlider {
         this.moodBackgroundSprite = this.graphics.scene.add.image(this.x + 82, this.y + 27, 'mood_progress_background');
         this.moodBackgroundSprite.setScale(0.5);
 
-        this.goodSmiley = this.graphics.scene.add.sprite(this.x + this.moodBackgroundSprite.displayWidth + 10, this.y + 27, 'mood_smileys');
-        this.goodSmiley.setScale(0.6);
-        this.goodSmiley.setFrame(1);
+        // this.goodSmiley = this.graphics.scene.add.sprite(this.x + this.moodBackgroundSprite.displayWidth + 10, this.y + 27, 'mood_smileys');
+        this.goodSmiley = this.graphics.scene.add.sprite(this.x + this.moodBackgroundSprite.displayWidth + 10, this.y + 27, 'indicator');
+        this.goodSmiley.setScale(2);
+        this.goodSmiley.setFrame(2);
 
-        this.badSmiley = this.graphics.scene.add.sprite(this.x - 35, this.y + 27, 'mood_smileys');
-        this.badSmiley.setScale(0.6);
+        // this.badSmiley = this.graphics.scene.add.sprite(this.x - 35, this.y + 27, 'mood_smileys');
+        this.badSmiley = this.graphics.scene.add.sprite(this.x - 35, this.y + 27, 'indicator');
+        this.badSmiley.setScale(2);
+        this.badSmiley.setFrame(9);
 
         this.moodPositiveSprite = this.graphics.scene.add.image(this.x + 126, this.y + 27, 'mood_positive');
         this.moodPositiveSprite.setScale(0.5);
