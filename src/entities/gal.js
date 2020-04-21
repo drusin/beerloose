@@ -11,7 +11,7 @@ export function createGal({ type, escapeRoute = {} }) {
         'indicator-good': [10000, 80],
         'indicator-medium': [79, 30],
         'indicator-bad': [29, 1],
-        'indicator-leaving': [0, 0]
+        'indicator-leaving': [0, -10000]
     };
 
     return {
@@ -29,7 +29,7 @@ export function createGal({ type, escapeRoute = {} }) {
             this.totalAmount = 0;
         },
         updateMovement({ physics }) {
-            if (happiness || !Object.keys(escapeRoute).length) {
+            if (happiness > 0 || !Object.keys(escapeRoute).length) {
                 return;
             }            
             if (escapeRoute[this.escapeStep]) {
@@ -55,10 +55,10 @@ export function createGal({ type, escapeRoute = {} }) {
                 this.sprite,
                 () => {
                     const amount = player.beer.amount;
-                    if (!amount || !happiness) {
+                    if (!amount || happiness < 0) {
                         return;
                     }
-                    happiness += Math.floor(amount * 0.3);
+                    happiness += amount * 0.3;
                     this.totalAmount += amount;
                     player.beer.chug();
                     this.sprite.anims.play(`${type}-gal-drink`, true);
@@ -78,17 +78,22 @@ export function createGal({ type, escapeRoute = {} }) {
                 }
             );
         },
-        updateAnimation({ delta }) {
+        updateAnimation({ delta, women }) {
             this.delta_counter += delta;
-            if (this.delta_counter > 1000 && happiness) {
+            if (this.delta_counter > 1000 && happiness >= 0) {
                 this.delta_counter = 0;
-                happiness--;
-                this.indicatorSprite.anims.play(getMoodIndicator(), true);
+
+                const th = women.getTotalHappiness();
+                if (th < 25) happiness -= 2;
+                if (25 <= th && th < 50) happiness -= 1.66;
+                if (50 <= th && th < 75) happiness -= 1.33;
+                if (75 <= th) happiness -= 1;
             }
+            this.indicatorSprite.anims.play(getMoodIndicator(), true);
             this.sprite.setDepth(100 + this.sprite.y);
         },
         getHappiness() {
-            return Math.min(happiness, 100);
+            return Math.min(Math.max(happiness, 0), 100);
         },
         getTotalAmount() {
             return this.totalAmount;
@@ -97,8 +102,8 @@ export function createGal({ type, escapeRoute = {} }) {
 
    function getMoodIndicator() {
         let indicator = '';
-        Object.entries(indicators).forEach(([name, boundaries]) => {   
-            if (boundaries[0] >= happiness && boundaries[1] <= happiness) {
+        Object.entries(indicators).forEach(([name, boundaries]) => {
+            if (boundaries[0] >= Math.floor(happiness) && boundaries[1] <= Math.floor(happiness)) {
                 indicator = name;
             }
         });

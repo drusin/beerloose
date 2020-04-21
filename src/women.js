@@ -59,7 +59,7 @@ export function createWomen() {
         },
         update({ delta, player, physics, sfx }) {
             women.forEach(person => person.updateMovement({ physics }));
-            women.forEach(person => person.updateAnimation({ delta }));
+            women.forEach(person => person.updateAnimation({ delta, women: this }));
             women.forEach(person => person.handleCollisions({ physics, player, sfx }));
         },
         getTotalHappiness() {
