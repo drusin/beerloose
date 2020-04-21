@@ -75,7 +75,7 @@ export function createPlayer() {
                         const dir = this.sprite.body.velocity.x > 0 ? -1 : 1;
                         this.sprite.setVelocityX(dir * 1500);
                         sfx.bumpIntoPerson();
-                        this.beer.decrease(10);
+                        this.beer.decrease(15);
                         timeSinceLastCollisionWithDancer = 0;
                     }
                 }
